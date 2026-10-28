@@ -1,0 +1,30 @@
+/* Blueprint Paper · checkbox and radio
+   <label class="bp-choice"><input type="checkbox" class="bp-checkbox"> Text</label>
+   <label class="bp-choice"><input type="radio" class="bp-radio" name="n"> Text</label>
+   Same rule as the switch: hollow = off, filled = on. */
+.bp-choice { display: inline-flex; align-items: center; gap: var(--bp-3); cursor: pointer; font-size: var(--bp-text); -webkit-tap-highlight-color: transparent; }
+.bp-choice:has(:disabled) { opacity: .4; cursor: default; }
+.bp-checkbox, .bp-radio {
+  -webkit-appearance: none; appearance: none;
+  position: relative; flex: none; width: 18px; height: 18px; margin: 0;
+  border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground); cursor: pointer;
+  transition: transform var(--bp-speed-s) var(--bp-ease);
+}
+.bp-radio { border-radius: 50%; }
+.bp-checkbox::after, .bp-radio::after {
+  content: ""; position: absolute; inset: 4px;
+  background: var(--bp-ink); border-radius: inherit;
+  transform: scale(.6); opacity: 0;
+  transition: transform var(--bp-speed) var(--bp-ease), opacity var(--bp-speed-s) linear;
+}
+.bp-checkbox:checked::after, .bp-radio:checked::after { transform: scale(1); opacity: 1; }
+.bp-checkbox:indeterminate::after { opacity: 1; transform: scale(1); inset: 8px 4px; }
+.bp-checkbox:active, .bp-radio:active { transform: scale(.9); }
+.bp-checkbox:disabled, .bp-radio:disabled { cursor: default; }
+.bp-checkbox:focus-visible, .bp-radio:focus-visible { outline-offset: 3px; }
+.bp-checkbox--lg, .bp-radio--lg { width: 24px; height: 24px; }
+.bp-checkbox--lg::after, .bp-radio--lg::after { inset: 6px; }
+
+/* a stacked group */
+.bp-choice-group { display: flex; flex-direction: column; gap: var(--bp-3); }
+.bp-choice-group--row { flex-direction: row; flex-wrap: wrap; gap: var(--bp-5); }

@@ -1,0 +1,44 @@
+/* Blueprint Paper · field (label, input, textarea, select, hint)
+   <div class="bp-field">
+     <label class="bp-field__label" for="x">Label</label>
+     <input class="bp-input" id="x">
+     <p class="bp-field__hint">Hint</p>
+   </div> */
+.bp-field { display: flex; flex-direction: column; gap: var(--bp-2); min-width: 0; }
+.bp-field__label { font-size: var(--bp-label); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
+.bp-field__hint { font-size: var(--bp-text-s); color: var(--bp-ink-72); }
+.bp-field--invalid .bp-field__hint { color: var(--bp-ink); }
+.bp-field--invalid .bp-input, .bp-field--invalid .bp-select, .bp-field--invalid .bp-textarea { border-width: var(--bp-stroke-2); }
+
+.bp-input, .bp-textarea, .bp-select {
+  width: 100%; min-height: var(--bp-control); padding: 0 var(--bp-4);
+  border: var(--bp-stroke) solid var(--bp-ink); border-radius: 0;
+  background: var(--bp-ground); color: var(--bp-ink);
+  font: 400 var(--bp-text)/1.4 var(--bp-font);
+  -webkit-appearance: none; appearance: none;
+  transition: border-color var(--bp-speed-s) linear;
+}
+.bp-input::placeholder, .bp-textarea::placeholder { color: var(--bp-ink-55); }
+.bp-input:hover, .bp-textarea:hover, .bp-select:hover { border-color: var(--bp-ink); }
+.bp-input:focus-visible, .bp-textarea:focus-visible, .bp-select:focus-visible { outline-offset: 2px; }
+.bp-input:disabled, .bp-textarea:disabled, .bp-select:disabled { opacity: .4; cursor: default; }
+.bp-input:read-only:not(:disabled) { border-style: dashed; border-color: var(--bp-ink-55); }
+.bp-input--sm, .bp-select--sm { min-height: var(--bp-control-s); padding: 0 var(--bp-3); font-size: var(--bp-text-s); }
+.bp-textarea { min-height: 120px; padding: var(--bp-3) var(--bp-4); resize: vertical; }
+.bp-select {
+  padding-right: calc(var(--bp-4) * 2 + 12px); cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23E6EEFF' stroke-width='1.25'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right var(--bp-4) center;
+}
+.bp-select option { background: var(--bp-ground); color: var(--bp-ink); }
+
+/* input with a unit or prefix: <div class="bp-input-group"><span class="bp-input-group__add">mm</span><input class="bp-input"></div> */
+.bp-input-group { display: flex; }
+.bp-input-group > .bp-input { flex: 1; min-width: 0; }
+.bp-input-group > .bp-input:not(:first-child) { margin-left: calc(-1 * var(--bp-stroke)); }
+.bp-input-group__add {
+  display: inline-flex; align-items: center; padding: 0 var(--bp-3);
+  border: var(--bp-stroke) solid var(--bp-ink); color: var(--bp-ink-72);
+  font-size: var(--bp-label-s); letter-spacing: var(--bp-track); text-transform: uppercase; white-space: nowrap;
+}
+.bp-input-group__add + .bp-input { margin-left: calc(-1 * var(--bp-stroke)); }

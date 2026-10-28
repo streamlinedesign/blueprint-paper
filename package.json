@@ -1,0 +1,29 @@
+{
+  "name": "@blueprint-paper/css",
+  "version": "0.1.0",
+  "description": "A blueprint-themed, CSS-first UI kit. Interfaces drawn like technical drawings.",
+  "license": "MIT",
+  "homepage": "https://streamlinedesign.github.io/blueprint-paper/",
+  "repository": { "type": "git", "url": "https://github.com/streamlinedesign/blueprint-paper.git" },
+  "keywords": ["css", "framework", "ui-kit", "design-system", "blueprint", "switch", "toggle"],
+  "type": "module",
+  "style": "dist/blueprint-paper.css",
+  "main": "dist/blueprint-paper.css",
+  "exports": {
+    ".": "./dist/blueprint-paper.css",
+    "./min": "./dist/blueprint-paper.min.css",
+    "./tokens": "./dist/tokens.css",
+    "./base": "./dist/base.css",
+    "./components/*": "./dist/components/*"
+  },
+  "files": ["dist", "src", "README.md", "CHANGELOG.md", "LICENSE"],
+  "sideEffects": true,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "npm run build && git diff --quiet -- dist docs/blueprint-paper.css || (echo 'dist is out of date: run npm run build and commit' && exit 1)",
+    "dev": "npx -y serve docs -l 4321"
+  },
+  "devDependencies": {
+    "lightningcss": "^1.33.0"
+  }
+}

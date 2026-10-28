@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blueprint Paper</title>
+<meta name="description" content="A blueprint-themed, CSS-first UI kit. Interfaces drawn like technical drawings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="blueprint-paper.css">
+<link rel="stylesheet" href="docs.css">
+</head>
+<body class="bp-sheet">
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="top">
+  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.1.0</span></a>
+  <form class="search" role="search" onsubmit="return false">
+    <label class="bp-label-s bp-dim" for="q">Search</label>
+    <input class="bp-input bp-input--sm" id="q" type="search" placeholder="Search components, classes, tokens… ( / )" autocomplete="off">
+    <output class="bp-label-s bp-dim" id="q-count" for="q" aria-live="polite"></output>
+  </form>
+  <nav class="top-links bp-label-s">
+    <a href="demo.html">Demo</a>
+    <a href="https://github.com/streamlinedesign/blueprint-paper">GitHub</a>
+  </nav>
+</header>
+
+<div class="shell">
+  <nav class="side" aria-label="Sections">
+    <span class="bp-label-s bp-dim">Start</span>
+    <a href="#install">Install</a>
+    <a href="#tokens">Tokens</a>
+    <a href="#typography">Typography</a>
+    <span class="bp-label-s bp-dim">Components</span>
+    <a href="#switch">Switch</a>
+    <a href="#button">Button</a>
+    <a href="#field">Field</a>
+    <a href="#choice">Checkbox &amp; radio</a>
+    <a href="#card">Card &amp; list</a>
+    <a href="#table">Table</a>
+    <a href="#badge">Badge</a>
+    <span class="bp-label-s bp-dim">Project</span>
+    <a href="#roadmap">Roadmap</a>
+  </nav>
+
+  <main class="content" id="content">
+
+    <section class="doc hero" data-keywords="intro about blueprint paper css framework ui kit">
+      <span class="bp-label-s bp-dim">CSS-first UI kit · sheet 1</span>
+      <h1 class="bp-display bp-display--xl">Interfaces drawn like technical drawings.</h1>
+      <p class="bp-prose bp-dim">Blueprint Paper is a small stylesheet. Navy paper, pale ink, one monospace face, and controls whose state you can read from the line work: hollow is off, filled is on. No JavaScript required for any component.</p>
+      <div class="bp-row bp-wrap">
+        <a class="bp-btn bp-btn--solid" href="#install">Install</a>
+        <a class="bp-btn" href="demo.html">See the demo</a>
+      </div>
+    </section>
+
+    <section class="doc" id="install" data-keywords="install npm cdn jsdelivr link import getting started setup">
+      <h2>Install</h2>
+      <p class="bp-prose">One stylesheet. Load it, then put <code>bp-sheet</code> on <code>&lt;body&gt;</code>. The kit uses IBM Plex Mono and falls back to the system monospace if you don't load it.</p>
+      <h4>From the CDN</h4>
+<pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/streamlinedesign/blueprint-paper@main/dist/blueprint-paper.min.css"&gt;
+&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&amp;display=swap"&gt;</code></pre>
+      <h4>From npm</h4>
+<pre><code>npm install @blueprint-paper/css
+import '@blueprint-paper/css';            // everything
+import '@blueprint-paper/css/tokens';     // or tokens + just what you need
+import '@blueprint-paper/css/components/switch.css';</code></pre>
+      <p class="bp-prose bp-dim">Everything lives in cascade layers (<code>bp.tokens</code>, <code>bp.base</code>, <code>bp.components</code>), so any CSS you write outside a layer overrides the kit without <code>!important</code>.</p>
+    </section>
+
+    <section class="doc" id="tokens" data-keywords="tokens variables custom properties color ink ground spacing stroke motion easing speed">
+      <h2>Tokens</h2>
+      <p class="bp-prose">Every color, size and curve is a custom property on <code>:root</code>. Components only use tokens, so changing the look means changing these.</p>
+      <div class="bp-table-wrap"><table class="bp-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td><code>--bp-ground</code></td><td><span class="swatch" style="background:#0F2E5C"></span>#0F2E5C</td><td>Paper</td></tr>
+          <tr><td><code>--bp-ink</code></td><td><span class="swatch" style="background:#E6EEFF"></span>#E6EEFF</td><td>Ink, 11.5:1 on paper</td></tr>
+          <tr><td><code>--bp-ink-72</code></td><td><span class="swatch" style="background:rgba(230,238,255,.72)"></span>72% ink</td><td>Secondary text, 6.7:1</td></tr>
+          <tr><td><code>--bp-ink-55</code></td><td><span class="swatch" style="background:rgba(230,238,255,.55)"></span>55% ink</td><td>Light rules, placeholders, 4.6:1</td></tr>
+          <tr><td><code>--bp-ink-20</code></td><td><span class="swatch" style="background:rgba(230,238,255,.2)"></span>20% ink</td><td>Hover fill</td></tr>
+          <tr><td><code>--bp-ink-09</code></td><td><span class="swatch" style="background:rgba(230,238,255,.09)"></span>9% ink</td><td>Grid</td></tr>
+          <tr><td><code>--bp-stroke</code> / <code>--bp-stroke-2</code></td><td>1px / 2px</td><td>Structure / interactive edges</td></tr>
+          <tr><td><code>--bp-grid</code></td><td>26px</td><td>Paper grid</td></tr>
+          <tr><td><code>--bp-control</code> / <code>--bp-control-s</code></td><td>48px / 36px</td><td>Control heights</td></tr>
+          <tr><td><code>--bp-1</code> … <code>--bp-8</code></td><td>4, 8, 12, 16, 24, 32, 48, 64px</td><td>Spacing scale</td></tr>
+          <tr><td><code>--bp-speed</code> / <code>--bp-speed-s</code></td><td>180ms / 120ms</td><td>Motion durations</td></tr>
+          <tr><td><code>--bp-ease</code></td><td>cubic-bezier(.25, 1, .5, 1)</td><td>Ease-out for every transition</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section class="doc" id="typography" data-keywords="typography type font heading display label text dim prose mono plex rule hr">
+      <h2>Typography</h2>
+      <p class="bp-prose">One face, IBM Plex Mono, in three weights. Large display sizes are light (300), body is regular, labels are medium and uppercase with wide tracking, like annotations on a drawing.</p>
+      <div class="example">
+        <div class="bp-stack">
+          <span class="bp-display bp-display--xl">Display XL 56</span>
+          <span class="bp-display bp-display--l">Display L 40</span>
+          <span class="bp-display bp-display--m">Display M 32</span>
+          <span class="bp-display bp-display--s">Display S 18</span>
+          <p class="bp-prose">Body 14. The quick brown fox jumps over the lazy dog, then checks the drawing against the parts list and finds the pump on sheet 3.</p>
+          <p class="bp-text-s bp-dim">Small 12, dimmed. Used for hints and secondary rows.</p>
+          <span class="bp-label">Label 11 · medium · tracked</span>
+          <span class="bp-label-s bp-dim">Label small 10 · regular</span>
+          <hr class="bp-rule">
+          <hr class="bp-rule bp-rule--light">
+          <hr class="bp-rule bp-rule--dash">
+          <p>Inline <code>code</code> and <kbd>Ctrl</kbd> <kbd>K</kbd> get a hairline box. <a href="#typography">Links</a> are underlined ink.</p>
+        </div>
+      </div>
+      <p class="bp-prose bp-dim">Bare <code>h1</code>–<code>h4</code> inside <code>.bp-sheet</code> get the L, M, S and label sizes. The <code>.bp-display--*</code> classes set a size on anything.</p>
+    </section>
+
+    <section class="doc" id="switch" data-keywords="switch toggle lever checkbox role=switch on off vertical horizontal thumb track stretch press animation">
+      <h2>Switch</h2>
+      <p class="bp-prose">The component the kit started from. A pill switch hides its state in a color and a knob position. Here the state is in the line work: a hollow thumb on the left (or bottom) is off, a filled thumb on the right (or top) is on. The track is always solid.</p>
+      <div class="example">
+        <div class="bp-row bp-wrap" style="gap:32px">
+          <label class="bp-switch bp-switch--lg"><input type="checkbox" role="switch" aria-label="Large switch"><span class="bp-switch__track"></span></label>
+          <label class="bp-switch bp-switch--lg bp-switch--vertical"><input type="checkbox" role="switch" aria-label="Large vertical switch" checked><span class="bp-switch__track"></span></label>
+          <label class="bp-switch"><input type="checkbox" role="switch" aria-label="Switch"><span class="bp-switch__track"></span></label>
+          <label class="bp-switch bp-switch--vertical"><input type="checkbox" role="switch" aria-label="Vertical switch" checked><span class="bp-switch__track"></span></label>
+          <label class="bp-switch"><input type="checkbox" role="switch" aria-label="Disabled switch" checked disabled><span class="bp-switch__track"></span></label>
+        </div>
+      </div>
+      <pre><code>&lt;label class="bp-switch"&gt;
+  &lt;input type="checkbox" role="switch"&gt;
+  &lt;span class="bp-switch__track"&gt;&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;label class="bp-switch bp-switch--vertical"&gt;…&lt;/label&gt;   up is on</code></pre>
+      <h4>With a label</h4>
+      <div class="example">
+        <div class="bp-row bp-wrap" style="gap:32px">
+          <label class="bp-switch-field"><span class="bp-switch"><input type="checkbox" role="switch" checked><span class="bp-switch__track"></span></span><span>Pump A</span></label>
+          <label class="bp-switch-field"><span class="bp-switch bp-switch--vertical"><input type="checkbox" role="switch"><span class="bp-switch__track"></span></span><span>Pump B</span></label>
+        </div>
+      </div>
+      <pre><code>&lt;label class="bp-switch-field"&gt;
+  &lt;span class="bp-switch"&gt;&lt;input type="checkbox" role="switch"&gt;&lt;span class="bp-switch__track"&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span&gt;Pump A&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+      <h4>Thumb widths and track weight</h4>
+      <div class="example">
+        <div class="bp-row bp-wrap" style="gap:28px">
+          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--2"><input type="checkbox" role="switch" aria-label="Thumb 2"><span class="bp-switch__track"></span></label><span class="bp-label-s bp-dim">--2</span></span>
+          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--4"><input type="checkbox" role="switch" aria-label="Thumb 4" checked><span class="bp-switch__track"></span></label><span class="bp-label-s bp-dim">--4</span></span>
+          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Thumb 8"><span class="bp-switch__track"></span></label><span class="bp-label-s bp-dim">8</span></span>
+          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--12"><input type="checkbox" role="switch" aria-label="Thumb 12" checked><span class="bp-switch__track"></span></label><span class="bp-label-s bp-dim">--12</span></span>
+          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--16"><input type="checkbox" role="switch" aria-label="Thumb 16"><span class="bp-switch__track"></span></label><span class="bp-label-s bp-dim">--16</span></span>
+          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--light"><input type="checkbox" role="switch" aria-label="Light track" checked><span class="bp-switch__track"></span></label><span class="bp-label-s bp-dim">--light</span></span>
+        </div>
+      </div>
+      <h4>Motion</h4>
+      <ul class="notes bp-prose">
+        <li>180ms slide on a custom ease-out. Under 300ms, never the built-in curves.</li>
+        <li>Press and hold: the thumb stretches toward where it's going, then snaps back as it slides. The control answers your finger before the state changes.</li>
+        <li>Keyboard (Tab, Space): flips instantly. Keyboard actions are never animated.</li>
+        <li><code>prefers-reduced-motion</code>: every transition is removed.</li>
+        <li>The hit area is at least 44 × 44px on every size.</li>
+      </ul>
+    </section>
+
+    <section class="doc" id="button" data-keywords="button btn solid ghost block icon group sizes small large disabled">
+      <h2>Button</h2>
+      <p class="bp-prose">Outlined by default. Solid for the one primary action on a screen. Ghost for actions that should stay quiet until hovered.</p>
+      <div class="example">
+        <div class="bp-row bp-wrap">
+          <button class="bp-btn" type="button">Outline</button>
+          <button class="bp-btn bp-btn--solid" type="button">Solid</button>
+          <button class="bp-btn bp-btn--ghost" type="button">Ghost</button>
+          <button class="bp-btn" type="button" disabled>Disabled</button>
+          <button class="bp-btn" type="button"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg>Add part</button>
+          <button class="bp-btn bp-btn--icon" type="button" aria-label="Add"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg></button>
+        </div>
+      </div>
+      <pre><code>&lt;button class="bp-btn"&gt;Outline&lt;/button&gt;
+&lt;button class="bp-btn bp-btn--solid"&gt;Solid&lt;/button&gt;
+&lt;button class="bp-btn bp-btn--ghost"&gt;Ghost&lt;/button&gt;
+&lt;button class="bp-btn bp-btn--icon" aria-label="Add"&gt;&lt;svg …&gt;&lt;/button&gt;</code></pre>
+      <h4>Sizes, block, group</h4>
+      <div class="example">
+        <div class="bp-stack">
+          <div class="bp-row bp-wrap">
+            <button class="bp-btn bp-btn--sm" type="button">Small</button>
+            <button class="bp-btn" type="button">Default</button>
+            <button class="bp-btn bp-btn--lg" type="button">Large</button>
+            <div class="bp-btn-group">
+              <button class="bp-btn bp-btn--sm" type="button">Day</button>
+              <button class="bp-btn bp-btn--sm bp-btn--solid" type="button">Week</button>
+              <button class="bp-btn bp-btn--sm" type="button">Month</button>
+            </div>
+          </div>
+          <button class="bp-btn bp-btn--block" type="button">Block</button>
+        </div>
+      </div>
+      <pre><code>&lt;button class="bp-btn bp-btn--sm"&gt;Small&lt;/button&gt;
+&lt;button class="bp-btn bp-btn--lg"&gt;Large&lt;/button&gt;
+&lt;button class="bp-btn bp-btn--block"&gt;Block&lt;/button&gt;
+&lt;div class="bp-btn-group"&gt;…buttons…&lt;/div&gt;</code></pre>
+    </section>
+
+    <section class="doc" id="field" data-keywords="field input text textarea select label hint invalid error disabled readonly placeholder form unit prefix group">
+      <h2>Field</h2>
+      <p class="bp-prose">A label, a control, an optional hint. Inputs are drafted boxes. An invalid field gets a 2px edge and the hint turns to full ink; no red.</p>
+      <div class="example">
+        <div class="form-grid">
+          <div class="bp-field">
+            <label class="bp-field__label" for="f-name">Drawing title</label>
+            <input class="bp-input" id="f-name" placeholder="Pump house, level 1">
+            <p class="bp-field__hint">Shown in the title block.</p>
+          </div>
+          <div class="bp-field bp-field--invalid">
+            <label class="bp-field__label" for="f-rev">Revision</label>
+            <input class="bp-input" id="f-rev" value="B2" aria-invalid="true" aria-describedby="f-rev-hint">
+            <p class="bp-field__hint" id="f-rev-hint">Revision B2 already exists on sheet 3.</p>
+          </div>
+          <div class="bp-field">
+            <label class="bp-field__label" for="f-scale">Scale</label>
+            <select class="bp-select" id="f-scale">
+              <option>1 : 50</option><option selected>1 : 100</option><option>1 : 200</option>
+            </select>
+          </div>
+          <div class="bp-field">
+            <label class="bp-field__label" for="f-w">Width</label>
+            <div class="bp-input-group"><input class="bp-input" id="f-w" value="2400" inputmode="numeric"><span class="bp-input-group__add">mm</span></div>
+          </div>
+          <div class="bp-field" style="grid-column:1/-1">
+            <label class="bp-field__label" for="f-notes">Notes</label>
+            <textarea class="bp-textarea" id="f-notes" placeholder="Anything the fabricator should know."></textarea>
+          </div>
+          <div class="bp-field">
+            <label class="bp-field__label" for="f-ro">Read only</label>
+            <input class="bp-input" id="f-ro" value="Issued 2026-10-28" readonly>
+          </div>
+          <div class="bp-field">
+            <label class="bp-field__label" for="f-dis">Disabled</label>
+            <input class="bp-input" id="f-dis" value="Locked" disabled>
+          </div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="bp-field"&gt;
+  &lt;label class="bp-field__label" for="title"&gt;Drawing title&lt;/label&gt;
+  &lt;input class="bp-input" id="title"&gt;
+  &lt;p class="bp-field__hint"&gt;Shown in the title block.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="bp-field bp-field--invalid"&gt;…&lt;/div&gt;
+&lt;select class="bp-select"&gt;…&lt;/select&gt;
+&lt;textarea class="bp-textarea"&gt;&lt;/textarea&gt;
+&lt;div class="bp-input-group"&gt;&lt;input class="bp-input"&gt;&lt;span class="bp-input-group__add"&gt;mm&lt;/span&gt;&lt;/div&gt;</code></pre>
+    </section>
+
+    <section class="doc" id="choice" data-keywords="checkbox radio choice check tick option group indeterminate">
+      <h2>Checkbox &amp; radio</h2>
+      <p class="bp-prose">Same rule as the switch: hollow is off, filled is on. Checkboxes are square, radios are round, both are native inputs.</p>
+      <div class="example">
+        <div class="bp-row bp-wrap" style="gap:48px;align-items:flex-start">
+          <div class="bp-choice-group">
+            <label class="bp-choice"><input type="checkbox" class="bp-checkbox" checked> Dimensions</label>
+            <label class="bp-choice"><input type="checkbox" class="bp-checkbox"> Section marks</label>
+            <label class="bp-choice"><input type="checkbox" class="bp-checkbox" id="ind"> Annotations</label>
+            <label class="bp-choice"><input type="checkbox" class="bp-checkbox" disabled checked> Title block</label>
+          </div>
+          <div class="bp-choice-group">
+            <label class="bp-choice"><input type="radio" class="bp-radio" name="paper" checked> A1</label>
+            <label class="bp-choice"><input type="radio" class="bp-radio" name="paper"> A2</label>
+            <label class="bp-choice"><input type="radio" class="bp-radio" name="paper"> A3</label>
+            <label class="bp-choice"><input type="radio" class="bp-radio" name="paper" disabled> A4</label>
+          </div>
+          <div class="bp-choice-group">
+            <label class="bp-choice"><input type="checkbox" class="bp-checkbox bp-checkbox--lg" checked> Large</label>
+            <label class="bp-choice"><input type="radio" class="bp-radio bp-radio--lg" name="lg" checked> Large</label>
+          </div>
+        </div>
+      </div>
+      <pre><code>&lt;label class="bp-choice"&gt;&lt;input type="checkbox" class="bp-checkbox"&gt; Dimensions&lt;/label&gt;
+&lt;label class="bp-choice"&gt;&lt;input type="radio" class="bp-radio" name="paper"&gt; A1&lt;/label&gt;
+&lt;div class="bp-choice-group"&gt;…&lt;/div&gt;   add --row for a horizontal group</code></pre>
+    </section>
+
+    <section class="doc" id="card" data-keywords="card panel title block header footer list rows row">
+      <h2>Card &amp; list</h2>
+      <p class="bp-prose">A card's header is a title block: cells that share edges, the way the corner of a drawing is laid out. A list is rows that share edges too.</p>
+      <div class="example">
+        <section class="bp-card">
+          <header class="bp-card__title">
+            <div><span class="bp-label-s bp-dim">Sheet 3</span><h3>Pump house, level 1</h3></div>
+            <div><span class="bp-label-s bp-dim">Rev</span><span class="bp-label">B1</span></div>
+            <div><span class="bp-label-s bp-dim">Scale</span><span class="bp-label">1:100</span></div>
+          </header>
+          <div class="bp-card__body bp-card__body--flush">
+            <div class="bp-list">
+              <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Pump A</span><span class="bp-text-s bp-dim">Running since 06:40</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Pump A" checked><span class="bp-switch__track"></span></label></div>
+              <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Pump B</span><span class="bp-text-s bp-dim">Standby</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Pump B"><span class="bp-switch__track"></span></label></div>
+              <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Pump C</span><span class="bp-text-s bp-dim">Not installed</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Pump C" disabled><span class="bp-switch__track"></span></label></div>
+            </div>
+          </div>
+          <footer class="bp-card__footer">
+            <button class="bp-btn bp-btn--sm bp-btn--ghost" type="button">Revert</button>
+            <button class="bp-btn bp-btn--sm bp-btn--solid" type="button">Issue</button>
+          </footer>
+        </section>
+      </div>
+      <pre><code>&lt;section class="bp-card"&gt;
+  &lt;header class="bp-card__title"&gt;
+    &lt;div&gt;&lt;span class="bp-label-s bp-dim"&gt;Sheet 3&lt;/span&gt;&lt;h3&gt;Pump house&lt;/h3&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;span class="bp-label-s bp-dim"&gt;Rev&lt;/span&gt;&lt;span class="bp-label"&gt;B1&lt;/span&gt;&lt;/div&gt;
+  &lt;/header&gt;
+  &lt;div class="bp-card__body"&gt;…&lt;/div&gt;
+  &lt;footer class="bp-card__footer"&gt;…&lt;/footer&gt;
+&lt;/section&gt;
+
+&lt;div class="bp-list"&gt;
+  &lt;div class="bp-list__row"&gt;&lt;div class="bp-grow"&gt;…&lt;/div&gt;&lt;label class="bp-switch"&gt;…&lt;/label&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section class="doc" id="table" data-keywords="table parts list rows columns data grid">
+      <h2>Table</h2>
+      <p class="bp-prose">Styled as a parts list. Numbers are tabular and right-aligned with <code>.num</code>.</p>
+      <div class="example">
+        <div class="bp-table-wrap"><table class="bp-table">
+          <caption>Parts list · sheet 3</caption>
+          <thead><tr><th>No.</th><th>Part</th><th>Material</th><th class="num">Qty</th><th class="num">Mass kg</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Pump, centrifugal</td><td>Cast iron</td><td class="num">2</td><td class="num">184.0</td></tr>
+            <tr><td>2</td><td>Flange, DN100</td><td>S235</td><td class="num">8</td><td class="num">3.2</td></tr>
+            <tr><td>3</td><td>Gasket, DN100</td><td>EPDM</td><td class="num">8</td><td class="num">0.1</td></tr>
+            <tr><td>4</td><td>Base frame</td><td>S355</td><td class="num">1</td><td class="num">96.5</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <pre><code>&lt;div class="bp-table-wrap"&gt;
+  &lt;table class="bp-table"&gt;…&lt;/table&gt;     add --heavy for full ink edges, --lines for rows only
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section class="doc" id="badge" data-keywords="badge tag chip stamp status label pill">
+      <h2>Badge</h2>
+      <p class="bp-prose">A small bordered label. The stamp is for rare emphasis, like an approval on a drawing.</p>
+      <div class="example">
+        <div class="bp-row bp-wrap">
+          <span class="bp-badge">Draft</span>
+          <span class="bp-badge bp-badge--solid">Issued</span>
+          <span class="bp-badge bp-badge--dim">Superseded</span>
+          <span class="bp-stamp">Approved</span>
+        </div>
+      </div>
+      <pre><code>&lt;span class="bp-badge"&gt;Draft&lt;/span&gt;
+&lt;span class="bp-badge bp-badge--solid"&gt;Issued&lt;/span&gt;
+&lt;span class="bp-stamp"&gt;Approved&lt;/span&gt;</code></pre>
+    </section>
+
+    <section class="doc" id="roadmap" data-keywords="roadmap plan versions releases changelog contributing react radix">
+      <h2>Roadmap</h2>
+      <ol class="notes bp-prose">
+        <li><b>v0.1</b> Tokens, typography, switch, button, field, checkbox, radio, card, list, table, badge. This page.</li>
+        <li><b>v0.2</b> Tabs, accordion, dialog, tooltip, alert. Whiteprint (light) theme. Automated screenshots and accessibility checks on every change.</li>
+        <li><b>v0.3</b> Dropdown menu, popover, drawer, toast. These need JavaScript for behaviour; a thin optional layer, nothing more.</li>
+        <li><b>v1.0</b> Names frozen. Contributing guide. Optional React registry (shadcn-style) if there is demand.</li>
+      </ol>
+    </section>
+
+    <footer class="foot bp-label-s bp-dim">
+      <span>Blueprint Paper · MIT</span>
+      <a href="https://github.com/streamlinedesign/blueprint-paper">github.com/streamlinedesign/blueprint-paper</a>
+    </footer>
+  </main>
+</div>
+<script src="docs.js"></script>
+</body>
+</html>

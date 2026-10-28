@@ -1,0 +1,84 @@
+/* Blueprint Paper · base
+   The sheet, typography, rules and a light reset. Put .bp-sheet on <body> or any container. */
+.bp-sheet {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: var(--bp-ground);
+  background-image:
+    linear-gradient(var(--bp-ink-09) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-ink-09) 1px, transparent 1px);
+  background-size: var(--bp-grid) var(--bp-grid);
+  background-position: -1px -1px;
+  color: var(--bp-ink);
+  font-family: var(--bp-font);
+  font-size: var(--bp-text);
+  line-height: var(--bp-leading);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+.bp-sheet--plain { background-image: none; }
+.bp-sheet *, .bp-sheet *::before, .bp-sheet *::after { box-sizing: border-box; }
+.bp-sheet ::selection { background: var(--bp-ink); color: var(--bp-ground); }
+.bp-sheet :focus-visible { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 3px; }
+
+/* corner registration marks: two <i> inside a position:relative container */
+.bp-marks { position: absolute; left: 12px; right: 12px; top: 12px; height: 14px; pointer-events: none; }
+.bp-marks::before, .bp-marks::after {
+  content: ""; position: absolute; top: 0; width: 14px; height: 14px;
+  border-top: var(--bp-stroke) solid var(--bp-ink);
+}
+.bp-marks::before { left: 0;  border-left:  var(--bp-stroke) solid var(--bp-ink); }
+.bp-marks::after  { right: 0; border-right: var(--bp-stroke) solid var(--bp-ink); }
+.bp-marks--b { top: auto; bottom: 12px; }
+.bp-marks--b::before, .bp-marks--b::after { border-top: 0; border-bottom: var(--bp-stroke) solid var(--bp-ink); }
+
+/* typography */
+.bp-sheet h1, .bp-sheet h2, .bp-sheet h3, .bp-sheet h4, .bp-sheet p, .bp-sheet ul, .bp-sheet ol { margin: 0; }
+.bp-sheet h1, .bp-sheet .bp-display { font-weight: 300; line-height: 1.05; letter-spacing: -.02em; text-wrap: balance; }
+.bp-sheet h1 { font-size: var(--bp-display-l); }
+.bp-sheet h2 { font-size: var(--bp-display-m); font-weight: 300; line-height: 1.1; letter-spacing: -.015em; text-wrap: balance; }
+.bp-sheet h3 { font-size: var(--bp-display-s); font-weight: 400; line-height: 1.3; }
+.bp-sheet h4 { font-size: var(--bp-label); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
+.bp-display--xl { font-size: var(--bp-display-xl); }
+.bp-display--l  { font-size: var(--bp-display-l); }
+.bp-display--m  { font-size: var(--bp-display-m); }
+.bp-display--s  { font-size: var(--bp-display-s); }
+.bp-label   { font-size: var(--bp-label);   font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
+.bp-label-s { font-size: var(--bp-label-s); font-weight: 400; letter-spacing: var(--bp-track); text-transform: uppercase; }
+.bp-text    { font-size: var(--bp-text); }
+.bp-text-s  { font-size: var(--bp-text-s); }
+.bp-dim     { color: var(--bp-ink-72); }
+.bp-faint   { color: var(--bp-ink-55); }
+.bp-prose   { max-width: 62ch; }
+.bp-num     { font-variant-numeric: tabular-nums; }
+.bp-fig     { display: flex; justify-content: space-between; align-items: baseline; gap: var(--bp-3); }
+
+.bp-sheet a { color: inherit; text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: var(--bp-stroke); }
+.bp-sheet a:hover { text-decoration-thickness: var(--bp-stroke-2); }
+.bp-sheet code, .bp-sheet kbd {
+  font-family: var(--bp-font); font-size: .92em; padding: 0 .35em;
+  border: var(--bp-stroke) solid var(--bp-ink-55);
+}
+.bp-sheet pre {
+  margin: 0; padding: var(--bp-4); overflow-x: auto;
+  border: var(--bp-stroke) solid var(--bp-ink-55); font-size: var(--bp-text-s); line-height: 1.55;
+}
+.bp-sheet pre code { border: 0; padding: 0; font-size: inherit; }
+
+/* rules */
+.bp-rule { border: 0; border-top: var(--bp-stroke) solid var(--bp-ink); margin: 0; }
+.bp-rule--light { border-top-color: var(--bp-ink-55); }
+.bp-rule--dash  { border-top-style: dashed; border-top-color: var(--bp-ink-55); }
+.bp-rule--heavy { border-top-width: var(--bp-stroke-2); }
+
+/* layout helpers */
+.bp-stack { display: flex; flex-direction: column; gap: var(--bp-4); }
+.bp-row   { display: flex; align-items: center; gap: var(--bp-4); }
+.bp-grow  { flex: 1; min-width: 0; }
+.bp-wrap  { flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bp-sheet *, .bp-sheet *::before, .bp-sheet *::after { transition: none !important; animation: none !important; }
+}

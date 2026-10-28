@@ -1,0 +1,31 @@
+/* Blueprint Paper · card and list rows
+   <section class="bp-card">
+     <header class="bp-card__title"><div><span class="bp-label-s bp-dim">Sheet</span><h3>Name</h3></div></header>
+     <div class="bp-card__body">…</div>
+     <footer class="bp-card__footer">…</footer>
+   </section>
+   The header is a drawing's title block: cells that share edges. */
+.bp-card { border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground); display: flex; flex-direction: column; min-width: 0; }
+.bp-card__title { display: flex; align-items: stretch; border-bottom: var(--bp-stroke) solid var(--bp-ink); }
+.bp-card__title > * { padding: var(--bp-3) var(--bp-4); border-left: var(--bp-stroke) solid var(--bp-ink); display: flex; flex-direction: column; gap: var(--bp-1); min-width: 0; }
+.bp-card__title > :first-child { border-left: 0; flex: 1; }
+.bp-card__title > .bp-card__spacer { flex: 1; border-left: 0; padding: 0; }
+.bp-card__body { padding: var(--bp-4); display: flex; flex-direction: column; gap: var(--bp-4); }
+.bp-card__body--flush { padding: 0; gap: 0; }
+.bp-card__footer { display: flex; align-items: center; justify-content: flex-end; gap: var(--bp-3); padding: var(--bp-3) var(--bp-4); border-top: var(--bp-stroke) solid var(--bp-ink); }
+.bp-card--heavy { border-width: var(--bp-stroke-2); }
+
+/* rows: a list where each item shares edges with the next */
+.bp-list { display: flex; flex-direction: column; }
+.bp-list__row {
+  display: flex; align-items: center; gap: var(--bp-4);
+  padding: var(--bp-4); margin-top: calc(-1 * var(--bp-stroke));
+  border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground);
+}
+.bp-list__row:first-child { margin-top: 0; }
+.bp-list__row > .bp-grow { display: flex; flex-direction: column; gap: var(--bp-1); }
+.bp-list--light .bp-list__row { border-width: 0 0 var(--bp-stroke); border-color: var(--bp-ink-55); background: transparent; padding-left: 0; padding-right: 0; margin-top: 0; }
+.bp-list--light .bp-list__row:first-child { border-top-width: var(--bp-stroke); }
+.bp-card__body--flush > .bp-list .bp-list__row { border-left: 0; border-right: 0; }
+.bp-card__body--flush > .bp-list .bp-list__row:first-child { border-top: 0; }
+.bp-card__body--flush > .bp-list .bp-list__row:last-child { border-bottom: 0; }

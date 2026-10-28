@@ -1,0 +1,390 @@
+/*! Blueprint Paper v0.1.0 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
+@layer bp.tokens, bp.base, bp.components;
+@layer bp.tokens {
+/* Blueprint Paper · tokens
+   Every color, size and curve the components use. Change these, not the components. */
+:root {
+  /* paper and ink */
+  --bp-ground:     #0F2E5C;
+  --bp-ink:        #E6EEFF;
+  --bp-ink-72:     rgba(230, 238, 255, .72);   /* secondary text */
+  --bp-ink-55:     rgba(230, 238, 255, .55);   /* light rules, placeholders */
+  --bp-ink-20:     rgba(230, 238, 255, .20);   /* hover fill */
+  --bp-ink-09:     rgba(230, 238, 255, .09);   /* grid */
+
+  /* type */
+  --bp-font:       'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  --bp-track:      .14em;                      /* letter-spacing for uppercase labels */
+  --bp-text:       14px;
+  --bp-text-s:     12px;
+  --bp-label:      11px;
+  --bp-label-s:    10px;
+  --bp-display-xl: 56px;
+  --bp-display-l:  40px;
+  --bp-display-m:  32px;
+  --bp-display-s:  18px;
+  --bp-leading:    1.6;
+
+  /* space */
+  --bp-1: 4px;  --bp-2: 8px;  --bp-3: 12px; --bp-4: 16px;
+  --bp-5: 24px; --bp-6: 32px; --bp-7: 48px; --bp-8: 64px;
+
+  /* line work */
+  --bp-stroke:     1px;
+  --bp-stroke-2:   2px;
+  --bp-grid:       26px;
+  --bp-control:    48px;                       /* standard control height */
+  --bp-control-s:  36px;
+
+  /* motion: fast, ease-out, never ease-in-out */
+  --bp-speed:      180ms;
+  --bp-speed-s:    120ms;
+  --bp-ease:       cubic-bezier(.25, 1, .5, 1);
+
+  color-scheme: dark;
+}
+}
+@layer bp.base {
+/* Blueprint Paper · base
+   The sheet, typography, rules and a light reset. Put .bp-sheet on <body> or any container. */
+.bp-sheet {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: var(--bp-ground);
+  background-image:
+    linear-gradient(var(--bp-ink-09) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-ink-09) 1px, transparent 1px);
+  background-size: var(--bp-grid) var(--bp-grid);
+  background-position: -1px -1px;
+  color: var(--bp-ink);
+  font-family: var(--bp-font);
+  font-size: var(--bp-text);
+  line-height: var(--bp-leading);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+.bp-sheet--plain { background-image: none; }
+.bp-sheet *, .bp-sheet *::before, .bp-sheet *::after { box-sizing: border-box; }
+.bp-sheet ::selection { background: var(--bp-ink); color: var(--bp-ground); }
+.bp-sheet :focus-visible { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 3px; }
+
+/* corner registration marks: two <i> inside a position:relative container */
+.bp-marks { position: absolute; left: 12px; right: 12px; top: 12px; height: 14px; pointer-events: none; }
+.bp-marks::before, .bp-marks::after {
+  content: ""; position: absolute; top: 0; width: 14px; height: 14px;
+  border-top: var(--bp-stroke) solid var(--bp-ink);
+}
+.bp-marks::before { left: 0;  border-left:  var(--bp-stroke) solid var(--bp-ink); }
+.bp-marks::after  { right: 0; border-right: var(--bp-stroke) solid var(--bp-ink); }
+.bp-marks--b { top: auto; bottom: 12px; }
+.bp-marks--b::before, .bp-marks--b::after { border-top: 0; border-bottom: var(--bp-stroke) solid var(--bp-ink); }
+
+/* typography */
+.bp-sheet h1, .bp-sheet h2, .bp-sheet h3, .bp-sheet h4, .bp-sheet p, .bp-sheet ul, .bp-sheet ol { margin: 0; }
+.bp-sheet h1, .bp-sheet .bp-display { font-weight: 300; line-height: 1.05; letter-spacing: -.02em; text-wrap: balance; }
+.bp-sheet h1 { font-size: var(--bp-display-l); }
+.bp-sheet h2 { font-size: var(--bp-display-m); font-weight: 300; line-height: 1.1; letter-spacing: -.015em; text-wrap: balance; }
+.bp-sheet h3 { font-size: var(--bp-display-s); font-weight: 400; line-height: 1.3; }
+.bp-sheet h4 { font-size: var(--bp-label); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
+.bp-display--xl { font-size: var(--bp-display-xl); }
+.bp-display--l  { font-size: var(--bp-display-l); }
+.bp-display--m  { font-size: var(--bp-display-m); }
+.bp-display--s  { font-size: var(--bp-display-s); }
+.bp-label   { font-size: var(--bp-label);   font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
+.bp-label-s { font-size: var(--bp-label-s); font-weight: 400; letter-spacing: var(--bp-track); text-transform: uppercase; }
+.bp-text    { font-size: var(--bp-text); }
+.bp-text-s  { font-size: var(--bp-text-s); }
+.bp-dim     { color: var(--bp-ink-72); }
+.bp-faint   { color: var(--bp-ink-55); }
+.bp-prose   { max-width: 62ch; }
+.bp-num     { font-variant-numeric: tabular-nums; }
+.bp-fig     { display: flex; justify-content: space-between; align-items: baseline; gap: var(--bp-3); }
+
+.bp-sheet a { color: inherit; text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: var(--bp-stroke); }
+.bp-sheet a:hover { text-decoration-thickness: var(--bp-stroke-2); }
+.bp-sheet code, .bp-sheet kbd {
+  font-family: var(--bp-font); font-size: .92em; padding: 0 .35em;
+  border: var(--bp-stroke) solid var(--bp-ink-55);
+}
+.bp-sheet pre {
+  margin: 0; padding: var(--bp-4); overflow-x: auto;
+  border: var(--bp-stroke) solid var(--bp-ink-55); font-size: var(--bp-text-s); line-height: 1.55;
+}
+.bp-sheet pre code { border: 0; padding: 0; font-size: inherit; }
+
+/* rules */
+.bp-rule { border: 0; border-top: var(--bp-stroke) solid var(--bp-ink); margin: 0; }
+.bp-rule--light { border-top-color: var(--bp-ink-55); }
+.bp-rule--dash  { border-top-style: dashed; border-top-color: var(--bp-ink-55); }
+.bp-rule--heavy { border-top-width: var(--bp-stroke-2); }
+
+/* layout helpers */
+.bp-stack { display: flex; flex-direction: column; gap: var(--bp-4); }
+.bp-row   { display: flex; align-items: center; gap: var(--bp-4); }
+.bp-grow  { flex: 1; min-width: 0; }
+.bp-wrap  { flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bp-sheet *, .bp-sheet *::before, .bp-sheet *::after { transition: none !important; animation: none !important; }
+}
+}
+@layer bp.components {
+/* Blueprint Paper · switch
+   <label class="bp-switch">
+     <input type="checkbox" role="switch">
+     <span class="bp-switch__track"></span>
+   </label>
+   Track: solid, always. State is the thumb: hollow = off, filled = on.
+   Horizontal (default): off left, on right.  .bp-switch--vertical: off down, on up.
+   Thumb width: --2 --4 --12 --16 (8 default). Track weight: --light (1px). */
+.bp-switch {
+  --w: 52px; --h: 28px; --pad: 4px;
+  --track-stroke: var(--bp-stroke-2);
+  --thumb-stroke: var(--bp-stroke);
+  --thumb: 8px;
+  --stretch: 0px;                                   /* extra thumb length while pressed */
+  --travel: calc(var(--w) - var(--thumb) - 2 * var(--pad) - 2 * var(--track-stroke));
+  position: relative; display: inline-block; flex: none; vertical-align: middle;
+  width: var(--w); height: var(--h);
+  cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+}
+.bp-switch input {
+  position: absolute; opacity: 0; margin: 0; cursor: pointer;
+  top: 50%; left: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%);
+}
+.bp-switch__track {
+  position: absolute; inset: 0;
+  border: var(--track-stroke) solid var(--bp-ink);
+  background: var(--bp-ground);
+  pointer-events: none;
+}
+.bp-switch__track::after {
+  content: ""; position: absolute;
+  top: var(--pad); bottom: var(--pad); left: var(--pad);
+  width: calc(var(--thumb) + var(--stretch));
+  border: var(--thumb-stroke) solid var(--bp-ink); background: transparent;
+  transform: translateX(0);
+  transition:
+    transform  var(--bp-speed) var(--bp-ease),
+    width      var(--bp-speed) var(--bp-ease),
+    height     var(--bp-speed) var(--bp-ease),
+    background var(--bp-speed-s) linear;
+}
+.bp-switch input:checked + .bp-switch__track::after {
+  background: var(--bp-ink);
+  transform: translateX(calc(var(--travel) - var(--stretch)));
+}
+/* press: the thumb stretches toward where it is about to go, then snaps back as it slides */
+.bp-switch:active { --stretch: 6px; }
+.bp-switch:has(input:disabled) { --stretch: 0px; cursor: default; }
+.bp-switch input:disabled { cursor: default; }
+.bp-switch input:disabled + .bp-switch__track { opacity: .4; }
+/* keyboard: flip instantly, a keyboard action should never wait on motion */
+.bp-switch input:focus-visible + .bp-switch__track { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 3px; }
+.bp-switch input:focus-visible + .bp-switch__track::after { transition-duration: 0s; }
+
+/* vertical: up is on */
+.bp-switch--vertical { --w: 28px; --h: 52px; --travel: calc(var(--h) - var(--thumb) - 2 * var(--pad) - 2 * var(--track-stroke)); }
+.bp-switch--vertical .bp-switch__track::after {
+  top: auto; left: var(--pad); right: var(--pad); bottom: var(--pad);
+  width: auto; height: calc(var(--thumb) + var(--stretch));
+  transform: translateY(0);
+}
+.bp-switch--vertical input:checked + .bp-switch__track::after {
+  transform: translateY(calc(-1 * (var(--travel) - var(--stretch))));
+}
+
+/* sizes */
+.bp-switch--2  { --thumb: 2px; }
+.bp-switch--4  { --thumb: 4px; }
+.bp-switch--12 { --thumb: 12px; }
+.bp-switch--16 { --thumb: 16px; }
+.bp-switch--light { --track-stroke: var(--bp-stroke); }
+.bp-switch--lg { --w: 78px; --h: 42px; --pad: 6px; --thumb: 12px; }
+.bp-switch--lg.bp-switch--vertical { --w: 42px; --h: 78px; }
+.bp-switch--lg:active { --stretch: 9px; }
+
+/* with a label: <label class="bp-switch-field"><span class="bp-switch">…</span><span>Text</span></label> */
+.bp-switch-field { display: inline-flex; align-items: center; gap: var(--bp-3); cursor: pointer; }
+.bp-switch-field > .bp-switch { cursor: inherit; }
+}
+@layer bp.components {
+/* Blueprint Paper · button
+   <button class="bp-btn">Label</button>
+   Variants: --solid --ghost   Sizes: --sm --lg   Width: --block   Icon only: --icon */
+.bp-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--bp-3);
+  min-height: var(--bp-control); padding: 0 var(--bp-5);
+  border: var(--bp-stroke) solid var(--bp-ink);
+  background: transparent; color: var(--bp-ink);
+  font: 500 var(--bp-label)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition: background var(--bp-speed-s) linear, color var(--bp-speed-s) linear, transform var(--bp-speed-s) var(--bp-ease);
+}
+.bp-btn:hover { background: var(--bp-ink-20); }
+.bp-btn:active { transform: scale(.97); }
+.bp-btn--solid { background: var(--bp-ink); color: var(--bp-ground); }
+.bp-btn--solid:hover { background: var(--bp-ink-72); }
+.bp-btn--ghost { border-color: transparent; }
+.bp-btn--ghost:hover { border-color: var(--bp-ink-55); background: transparent; }
+.bp-btn--sm { min-height: var(--bp-control-s); padding: 0 var(--bp-4); font-size: var(--bp-label-s); }
+.bp-btn--lg { min-height: 56px; padding: 0 var(--bp-6); }
+.bp-btn--block { display: flex; width: 100%; }
+.bp-btn--icon { padding: 0; width: var(--bp-control); }
+.bp-btn--icon.bp-btn--sm { width: var(--bp-control-s); }
+.bp-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.25; flex: none; }
+.bp-btn:disabled, .bp-btn[aria-disabled="true"] { opacity: .4; cursor: default; transform: none; }
+.bp-btn:disabled:hover { background: transparent; }
+.bp-btn--solid:disabled:hover { background: var(--bp-ink); }
+
+/* a row of buttons sharing edges */
+.bp-btn-group { display: inline-flex; }
+.bp-btn-group > .bp-btn { margin-left: calc(-1 * var(--bp-stroke)); }
+.bp-btn-group > .bp-btn:first-child { margin-left: 0; }
+.bp-btn-group > .bp-btn:hover, .bp-btn-group > .bp-btn:focus-visible { position: relative; z-index: 1; }
+}
+@layer bp.components {
+/* Blueprint Paper · field (label, input, textarea, select, hint)
+   <div class="bp-field">
+     <label class="bp-field__label" for="x">Label</label>
+     <input class="bp-input" id="x">
+     <p class="bp-field__hint">Hint</p>
+   </div> */
+.bp-field { display: flex; flex-direction: column; gap: var(--bp-2); min-width: 0; }
+.bp-field__label { font-size: var(--bp-label); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
+.bp-field__hint { font-size: var(--bp-text-s); color: var(--bp-ink-72); }
+.bp-field--invalid .bp-field__hint { color: var(--bp-ink); }
+.bp-field--invalid .bp-input, .bp-field--invalid .bp-select, .bp-field--invalid .bp-textarea { border-width: var(--bp-stroke-2); }
+
+.bp-input, .bp-textarea, .bp-select {
+  width: 100%; min-height: var(--bp-control); padding: 0 var(--bp-4);
+  border: var(--bp-stroke) solid var(--bp-ink); border-radius: 0;
+  background: var(--bp-ground); color: var(--bp-ink);
+  font: 400 var(--bp-text)/1.4 var(--bp-font);
+  -webkit-appearance: none; appearance: none;
+  transition: border-color var(--bp-speed-s) linear;
+}
+.bp-input::placeholder, .bp-textarea::placeholder { color: var(--bp-ink-55); }
+.bp-input:hover, .bp-textarea:hover, .bp-select:hover { border-color: var(--bp-ink); }
+.bp-input:focus-visible, .bp-textarea:focus-visible, .bp-select:focus-visible { outline-offset: 2px; }
+.bp-input:disabled, .bp-textarea:disabled, .bp-select:disabled { opacity: .4; cursor: default; }
+.bp-input:read-only:not(:disabled) { border-style: dashed; border-color: var(--bp-ink-55); }
+.bp-input--sm, .bp-select--sm { min-height: var(--bp-control-s); padding: 0 var(--bp-3); font-size: var(--bp-text-s); }
+.bp-textarea { min-height: 120px; padding: var(--bp-3) var(--bp-4); resize: vertical; }
+.bp-select {
+  padding-right: calc(var(--bp-4) * 2 + 12px); cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23E6EEFF' stroke-width='1.25'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right var(--bp-4) center;
+}
+.bp-select option { background: var(--bp-ground); color: var(--bp-ink); }
+
+/* input with a unit or prefix: <div class="bp-input-group"><span class="bp-input-group__add">mm</span><input class="bp-input"></div> */
+.bp-input-group { display: flex; }
+.bp-input-group > .bp-input { flex: 1; min-width: 0; }
+.bp-input-group > .bp-input:not(:first-child) { margin-left: calc(-1 * var(--bp-stroke)); }
+.bp-input-group__add {
+  display: inline-flex; align-items: center; padding: 0 var(--bp-3);
+  border: var(--bp-stroke) solid var(--bp-ink); color: var(--bp-ink-72);
+  font-size: var(--bp-label-s); letter-spacing: var(--bp-track); text-transform: uppercase; white-space: nowrap;
+}
+.bp-input-group__add + .bp-input { margin-left: calc(-1 * var(--bp-stroke)); }
+}
+@layer bp.components {
+/* Blueprint Paper · checkbox and radio
+   <label class="bp-choice"><input type="checkbox" class="bp-checkbox"> Text</label>
+   <label class="bp-choice"><input type="radio" class="bp-radio" name="n"> Text</label>
+   Same rule as the switch: hollow = off, filled = on. */
+.bp-choice { display: inline-flex; align-items: center; gap: var(--bp-3); cursor: pointer; font-size: var(--bp-text); -webkit-tap-highlight-color: transparent; }
+.bp-choice:has(:disabled) { opacity: .4; cursor: default; }
+.bp-checkbox, .bp-radio {
+  -webkit-appearance: none; appearance: none;
+  position: relative; flex: none; width: 18px; height: 18px; margin: 0;
+  border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground); cursor: pointer;
+  transition: transform var(--bp-speed-s) var(--bp-ease);
+}
+.bp-radio { border-radius: 50%; }
+.bp-checkbox::after, .bp-radio::after {
+  content: ""; position: absolute; inset: 4px;
+  background: var(--bp-ink); border-radius: inherit;
+  transform: scale(.6); opacity: 0;
+  transition: transform var(--bp-speed) var(--bp-ease), opacity var(--bp-speed-s) linear;
+}
+.bp-checkbox:checked::after, .bp-radio:checked::after { transform: scale(1); opacity: 1; }
+.bp-checkbox:indeterminate::after { opacity: 1; transform: scale(1); inset: 8px 4px; }
+.bp-checkbox:active, .bp-radio:active { transform: scale(.9); }
+.bp-checkbox:disabled, .bp-radio:disabled { cursor: default; }
+.bp-checkbox:focus-visible, .bp-radio:focus-visible { outline-offset: 3px; }
+.bp-checkbox--lg, .bp-radio--lg { width: 24px; height: 24px; }
+.bp-checkbox--lg::after, .bp-radio--lg::after { inset: 6px; }
+
+/* a stacked group */
+.bp-choice-group { display: flex; flex-direction: column; gap: var(--bp-3); }
+.bp-choice-group--row { flex-direction: row; flex-wrap: wrap; gap: var(--bp-5); }
+}
+@layer bp.components {
+/* Blueprint Paper · card and list rows
+   <section class="bp-card">
+     <header class="bp-card__title"><div><span class="bp-label-s bp-dim">Sheet</span><h3>Name</h3></div></header>
+     <div class="bp-card__body">…</div>
+     <footer class="bp-card__footer">…</footer>
+   </section>
+   The header is a drawing's title block: cells that share edges. */
+.bp-card { border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground); display: flex; flex-direction: column; min-width: 0; }
+.bp-card__title { display: flex; align-items: stretch; border-bottom: var(--bp-stroke) solid var(--bp-ink); }
+.bp-card__title > * { padding: var(--bp-3) var(--bp-4); border-left: var(--bp-stroke) solid var(--bp-ink); display: flex; flex-direction: column; gap: var(--bp-1); min-width: 0; }
+.bp-card__title > :first-child { border-left: 0; flex: 1; }
+.bp-card__title > .bp-card__spacer { flex: 1; border-left: 0; padding: 0; }
+.bp-card__body { padding: var(--bp-4); display: flex; flex-direction: column; gap: var(--bp-4); }
+.bp-card__body--flush { padding: 0; gap: 0; }
+.bp-card__footer { display: flex; align-items: center; justify-content: flex-end; gap: var(--bp-3); padding: var(--bp-3) var(--bp-4); border-top: var(--bp-stroke) solid var(--bp-ink); }
+.bp-card--heavy { border-width: var(--bp-stroke-2); }
+
+/* rows: a list where each item shares edges with the next */
+.bp-list { display: flex; flex-direction: column; }
+.bp-list__row {
+  display: flex; align-items: center; gap: var(--bp-4);
+  padding: var(--bp-4); margin-top: calc(-1 * var(--bp-stroke));
+  border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground);
+}
+.bp-list__row:first-child { margin-top: 0; }
+.bp-list__row > .bp-grow { display: flex; flex-direction: column; gap: var(--bp-1); }
+.bp-list--light .bp-list__row { border-width: 0 0 var(--bp-stroke); border-color: var(--bp-ink-55); background: transparent; padding-left: 0; padding-right: 0; margin-top: 0; }
+.bp-list--light .bp-list__row:first-child { border-top-width: var(--bp-stroke); }
+.bp-card__body--flush > .bp-list .bp-list__row { border-left: 0; border-right: 0; }
+.bp-card__body--flush > .bp-list .bp-list__row:first-child { border-top: 0; }
+.bp-card__body--flush > .bp-list .bp-list__row:last-child { border-bottom: 0; }
+}
+@layer bp.components {
+/* Blueprint Paper · table, styled as a drawing's parts list
+   <div class="bp-table-wrap"><table class="bp-table">…</table></div> */
+.bp-table-wrap { overflow-x: auto; max-width: 100%; }
+.bp-table { width: 100%; border-collapse: collapse; font-size: var(--bp-text-s); font-variant-numeric: tabular-nums; }
+.bp-table th, .bp-table td { padding: var(--bp-3) var(--bp-4); text-align: left; vertical-align: middle; border: var(--bp-stroke) solid var(--bp-ink-55); }
+.bp-table th { font-size: var(--bp-label-s); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-72); border-bottom-color: var(--bp-ink); }
+.bp-table .num { text-align: right; }
+.bp-table tbody tr:hover { background: var(--bp-ink-09); }
+.bp-table--heavy th, .bp-table--heavy td { border-color: var(--bp-ink); }
+.bp-table--lines th, .bp-table--lines td { border-left: 0; border-right: 0; }
+.bp-table caption { caption-side: bottom; padding-top: var(--bp-2); font-size: var(--bp-label-s); letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-72); text-align: left; }
+}
+@layer bp.components {
+/* Blueprint Paper · badge and stamp
+   <span class="bp-badge">Draft</span>   <span class="bp-badge bp-badge--solid">Issued</span>
+   <span class="bp-stamp">Approved</span>  (a tilted rubber stamp, for rare emphasis) */
+.bp-badge {
+  display: inline-flex; align-items: center; gap: var(--bp-1);
+  padding: 3px var(--bp-2); border: var(--bp-stroke) solid var(--bp-ink);
+  font-size: var(--bp-label-s); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1.2; white-space: nowrap;
+}
+.bp-badge--solid { background: var(--bp-ink); color: var(--bp-ground); }
+.bp-badge--dim { border-color: var(--bp-ink-55); color: var(--bp-ink-72); }
+.bp-stamp {
+  display: inline-block; padding: var(--bp-1) var(--bp-3);
+  border: var(--bp-stroke-2) solid var(--bp-ink);
+  font-size: var(--bp-label); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase;
+  transform: rotate(-4deg);
+}
+}

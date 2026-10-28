@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blueprint Paper · Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="blueprint-paper.css">
+<style>
+  /* demo page only: a plant control sheet built from the kit */
+  html, body { margin: 0; min-height: 100%; }
+  .page { max-width: 960px; margin: 0 auto; padding: 56px max(16px, env(safe-area-inset-right, 0px)) 64px max(16px, env(safe-area-inset-left, 0px)); display: flex; flex-direction: column; gap: var(--bp-6); }
+  .head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--bp-4); }
+  .cols { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--bp-5); align-items: start; }
+  .vert { display: flex; gap: var(--bp-5); padding: var(--bp-4); }
+  .vert > label { display: flex; flex-direction: column; align-items: center; gap: var(--bp-3); cursor: pointer; }
+  .figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .figs > div { padding: var(--bp-4); border-left: var(--bp-stroke) solid var(--bp-ink-55); display: flex; flex-direction: column; gap: var(--bp-1); }
+  .figs > div:first-child { border-left: 0; }
+  .form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--bp-4); }
+  @media (max-width: 720px) { .cols { grid-template-columns: minmax(0, 1fr); } .form { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body class="bp-sheet">
+<i class="bp-marks" aria-hidden="true"></i>
+<i class="bp-marks bp-marks--b" aria-hidden="true"></i>
+<main class="page">
+
+  <div class="head">
+    <div class="bp-stack" style="gap:8px">
+      <span class="bp-label-s bp-dim">Pump house · control sheet · demo</span>
+      <h1 class="bp-display bp-display--xl">Level 1</h1>
+    </div>
+    <div class="bp-row bp-wrap">
+      <span class="bp-badge">Rev B1</span>
+      <span class="bp-badge bp-badge--solid">Live</span>
+      <a class="bp-btn bp-btn--sm" href="./">Docs</a>
+    </div>
+  </div>
+
+  <div class="figs bp-card">
+    <div><span class="bp-label-s bp-dim">Flow</span><span class="bp-display bp-display--m bp-num">412 <span class="bp-label-s bp-dim">m³/h</span></span></div>
+    <div><span class="bp-label-s bp-dim">Head</span><span class="bp-display bp-display--m bp-num">38.5 <span class="bp-label-s bp-dim">m</span></span></div>
+    <div><span class="bp-label-s bp-dim">Power</span><span class="bp-display bp-display--m bp-num">61 <span class="bp-label-s bp-dim">kW</span></span></div>
+  </div>
+
+  <div class="cols">
+    <section class="bp-card">
+      <header class="bp-card__title">
+        <div><span class="bp-label-s bp-dim">Sheet 3</span><h3>Pumps</h3></div>
+        <div><span class="bp-label-s bp-dim">Mode</span><span class="bp-label">Manual</span></div>
+      </header>
+      <div class="bp-card__body bp-card__body--flush">
+        <div class="bp-list">
+          <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Pump A</span><span class="bp-text-s bp-dim">Running since 06:40 · 1480 rpm</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Pump A" checked><span class="bp-switch__track"></span></label></div>
+          <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Pump B</span><span class="bp-text-s bp-dim">Standby</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Pump B"><span class="bp-switch__track"></span></label></div>
+          <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Pump C</span><span class="bp-text-s bp-dim">Not installed</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Pump C" disabled><span class="bp-switch__track"></span></label></div>
+          <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Auto changeover</span><span class="bp-text-s bp-dim">Swap A and B every 24 h</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Auto changeover" checked><span class="bp-switch__track"></span></label></div>
+        </div>
+      </div>
+      <footer class="bp-card__footer">
+        <button class="bp-btn bp-btn--sm bp-btn--ghost" type="button">Revert</button>
+        <button class="bp-btn bp-btn--sm bp-btn--solid" type="button">Apply</button>
+      </footer>
+    </section>
+
+    <div class="bp-stack" style="gap:24px">
+      <section class="bp-card">
+        <header class="bp-card__title"><div><span class="bp-label-s bp-dim">Panel</span><h3>Breakers</h3></div></header>
+        <div class="vert">
+          <label><span class="bp-switch bp-switch--lg bp-switch--vertical"><input type="checkbox" role="switch" checked><span class="bp-switch__track"></span></span><span class="bp-label-s">Main</span></label>
+          <label><span class="bp-switch bp-switch--lg bp-switch--vertical"><input type="checkbox" role="switch" checked><span class="bp-switch__track"></span></span><span class="bp-label-s">L1</span></label>
+          <label><span class="bp-switch bp-switch--lg bp-switch--vertical"><input type="checkbox" role="switch"><span class="bp-switch__track"></span></span><span class="bp-label-s">L2</span></label>
+          <label><span class="bp-switch bp-switch--lg bp-switch--vertical"><input type="checkbox" role="switch"><span class="bp-switch__track"></span></span><span class="bp-label-s">Aux</span></label>
+        </div>
+      </section>
+
+      <section class="bp-card">
+        <header class="bp-card__title"><div><span class="bp-label-s bp-dim">Options</span><h3>Alarms</h3></div></header>
+        <div class="bp-card__body">
+          <div class="bp-choice-group">
+            <label class="bp-choice"><input type="checkbox" class="bp-checkbox" checked> Low level</label>
+            <label class="bp-choice"><input type="checkbox" class="bp-checkbox" checked> High pressure</label>
+            <label class="bp-choice"><input type="checkbox" class="bp-checkbox"> Vibration</label>
+          </div>
+          <hr class="bp-rule bp-rule--light">
+          <div class="bp-choice-group bp-choice-group--row">
+            <label class="bp-choice"><input type="radio" class="bp-radio" name="notify" checked> Alarm</label>
+            <label class="bp-choice"><input type="radio" class="bp-radio" name="notify"> Log only</label>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="bp-card">
+    <header class="bp-card__title">
+      <div><span class="bp-label-s bp-dim">Setpoints</span><h3>Pump A</h3></div>
+      <div><span class="bp-label-s bp-dim">Last issued</span><span class="bp-label">2026-10-28</span></div>
+    </header>
+    <div class="bp-card__body">
+      <div class="form">
+        <div class="bp-field">
+          <label class="bp-field__label" for="sp-speed">Speed</label>
+          <div class="bp-input-group"><input class="bp-input" id="sp-speed" value="1480" inputmode="numeric"><span class="bp-input-group__add">rpm</span></div>
+        </div>
+        <div class="bp-field">
+          <label class="bp-field__label" for="sp-mode">Control</label>
+          <select class="bp-select" id="sp-mode"><option>Fixed speed</option><option selected>Pressure</option><option>Flow</option></select>
+        </div>
+        <div class="bp-field bp-field--invalid">
+          <label class="bp-field__label" for="sp-target">Target pressure</label>
+          <div class="bp-input-group"><input class="bp-input" id="sp-target" value="9.5" aria-invalid="true" aria-describedby="sp-target-hint"><span class="bp-input-group__add">bar</span></div>
+          <p class="bp-field__hint" id="sp-target-hint">Above the 8.0 bar rating of the DN100 flanges.</p>
+        </div>
+        <div class="bp-field">
+          <label class="bp-field__label" for="sp-note">Note</label>
+          <input class="bp-input" id="sp-note" placeholder="Reason for change">
+        </div>
+      </div>
+    </div>
+    <footer class="bp-card__footer">
+      <span class="bp-label-s bp-dim bp-grow">Changes are logged against your name.</span>
+      <button class="bp-btn bp-btn--sm" type="button">Save draft</button>
+      <button class="bp-btn bp-btn--sm bp-btn--solid" type="button">Issue</button>
+    </footer>
+  </section>
+
+  <div class="bp-table-wrap"><table class="bp-table">
+    <caption>Event log · today</caption>
+    <thead><tr><th>Time</th><th>Source</th><th>Event</th><th class="num">Value</th><th>State</th></tr></thead>
+    <tbody>
+      <tr><td class="bp-num">22:08</td><td>Pump B</td><td>Stopped by operator</td><td class="num">0 rpm</td><td><span class="bp-badge bp-badge--dim">Standby</span></td></tr>
+      <tr><td class="bp-num">14:12</td><td>Pump A</td><td>Pressure setpoint changed</td><td class="num">8.0 bar</td><td><span class="bp-badge bp-badge--solid">Issued</span></td></tr>
+      <tr><td class="bp-num">06:40</td><td>Pump A</td><td>Started, auto changeover</td><td class="num">1480 rpm</td><td><span class="bp-badge">Running</span></td></tr>
+    </tbody>
+  </table></div>
+
+</main>
+</body>
+</html>

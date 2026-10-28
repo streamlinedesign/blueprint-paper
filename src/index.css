@@ -1,0 +1,14 @@
+/* Blueprint Paper · entry point
+   Layer order lets you override any component rule without !important:
+   your own unlayered CSS always wins over these layers. */
+@layer bp.tokens, bp.base, bp.components;
+
+@import url("tokens.css") layer(bp.tokens);
+@import url("base.css") layer(bp.base);
+@import url("components/switch.css") layer(bp.components);
+@import url("components/button.css") layer(bp.components);
+@import url("components/field.css") layer(bp.components);
+@import url("components/choice.css") layer(bp.components);
+@import url("components/card.css") layer(bp.components);
+@import url("components/table.css") layer(bp.components);
+@import url("components/badge.css") layer(bp.components);
