@@ -1,4 +1,4 @@
-/*! Blueprint Paper v0.2.0 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
+/*! Blueprint Paper v0.3.0 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
 @layer bp.tokens, bp.base, bp.components, bp.themes;
 @layer bp.tokens {
 /* Blueprint Paper · tokens
@@ -550,6 +550,128 @@
 .bp-dialog[open]::backdrop { animation: bp-fade-in var(--bp-speed) linear; }
 @keyframes bp-dialog-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
 @keyframes bp-fade-in { from { opacity: 0; } to { opacity: 1; } }
+}
+@layer bp.components {
+/* Blueprint Paper · dropdown menu and popover, on native <details>
+   <details class="bp-menu">
+     <summary class="bp-btn bp-btn--sm">Actions</summary>
+     <div class="bp-menu__list" role="menu">
+       <button class="bp-menu__item" role="menuitem">Duplicate</button>
+       <hr class="bp-menu__rule">
+       <button class="bp-menu__item" role="menuitem">Delete</button>
+     </div>
+   </details>
+   Popover: same, with .bp-menu__panel instead of __list for free content.
+   Alignment: --right (panel aligns to the right edge), --up (opens upward).
+   No script needed. Light-dismiss (click outside closes) is the one thing <details> lacks; see docs. */
+.bp-menu { position: relative; display: inline-block; }
+.bp-menu > summary { list-style: none; }
+.bp-menu > summary::-webkit-details-marker { display: none; }
+.bp-menu > summary::after {
+  content: ""; width: 7px; height: 7px; margin-left: var(--bp-1);
+  border-right: var(--bp-stroke) solid currentColor; border-bottom: var(--bp-stroke) solid currentColor;
+  transform: translateY(-2px) rotate(45deg); transition: transform var(--bp-speed) var(--bp-ease);
+}
+.bp-menu[open] > summary::after { transform: translateY(2px) rotate(225deg); }
+.bp-menu > summary.bp-btn--icon::after { display: none; }
+.bp-menu__list, .bp-menu__panel {
+  position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; min-width: 180px;
+  border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground);
+  transform-origin: top left;
+  animation: bp-menu-in var(--bp-speed-s) var(--bp-ease);
+}
+.bp-menu__list { display: flex; flex-direction: column; padding: var(--bp-1) 0; }
+.bp-menu__panel { padding: var(--bp-4); width: max-content; max-width: min(320px, calc(100vw - 32px)); font-size: var(--bp-text-s); }
+.bp-menu--right .bp-menu__list, .bp-menu--right .bp-menu__panel { left: auto; right: 0; transform-origin: top right; }
+.bp-menu--up .bp-menu__list, .bp-menu--up .bp-menu__panel { top: auto; bottom: calc(100% + 6px); transform-origin: bottom left; }
+.bp-menu--right.bp-menu--up .bp-menu__list, .bp-menu--right.bp-menu--up .bp-menu__panel { transform-origin: bottom right; }
+.bp-menu__item {
+  display: flex; align-items: center; gap: var(--bp-3); width: 100%; min-height: var(--bp-control-s); padding: 0 var(--bp-4);
+  border: 0; background: transparent; color: var(--bp-ink); text-align: left; text-decoration: none; cursor: pointer;
+  font: 500 var(--bp-label)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase; white-space: nowrap;
+}
+.bp-menu__item:hover, .bp-menu__item:focus-visible { background: var(--bp-ink); color: var(--bp-ground); outline: none; }
+.bp-menu__item[aria-disabled="true"], .bp-menu__item:disabled { opacity: .4; cursor: default; }
+.bp-menu__item:disabled:hover { background: transparent; color: var(--bp-ink); }
+.bp-menu__item svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.25; flex: none; }
+.bp-menu__item kbd { margin-left: auto; border-color: currentColor; opacity: .7; font-size: var(--bp-label-s); }
+.bp-menu__rule { border: 0; border-top: var(--bp-stroke) solid var(--bp-ink-55); margin: var(--bp-1) 0; }
+.bp-menu__heading { padding: var(--bp-2) var(--bp-4) var(--bp-1); font-size: var(--bp-label-s); letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-72); }
+@keyframes bp-menu-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+}
+@layer bp.components {
+/* Blueprint Paper · drawer, on native <dialog>
+   <dialog class="bp-drawer" id="dr">
+     <form method="dialog" class="bp-drawer__frame">
+       <header class="bp-drawer__title"><div><span class="bp-label-s bp-dim">Sheet 3</span><h3>Pump A</h3></div><button class="bp-btn bp-btn--sm bp-btn--icon bp-btn--ghost" value="close" aria-label="Close">×</button></header>
+       <div class="bp-drawer__body">…</div>
+       <footer class="bp-drawer__footer">…</footer>
+     </form>
+   </dialog>
+   Open with showModal(). Slides in from the right; --left, --bottom for the other edges. */
+.bp-drawer {
+  position: fixed; inset: 0 0 0 auto; margin: 0; padding: 0; max-width: none; max-height: none;
+  width: min(420px, 100vw); height: 100vh; height: 100dvh;
+  border: 0; border-left: var(--bp-stroke-2) solid var(--bp-ink);
+  background: var(--bp-ground); color: var(--bp-ink); font-family: var(--bp-font); font-size: var(--bp-text);
+}
+.bp-drawer::backdrop { background: rgba(5, 18, 40, .6); }
+.bp-drawer__frame { display: flex; flex-direction: column; height: 100%; margin: 0; }
+.bp-drawer__title { display: flex; align-items: center; gap: var(--bp-3); padding: var(--bp-3) var(--bp-4); border-bottom: var(--bp-stroke) solid var(--bp-ink); }
+.bp-drawer__title > :first-child { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--bp-1); }
+.bp-drawer__body { flex: 1; overflow-y: auto; padding: var(--bp-4); display: flex; flex-direction: column; gap: var(--bp-4); }
+.bp-drawer__footer { display: flex; justify-content: flex-end; gap: var(--bp-2); padding: var(--bp-3) var(--bp-4); border-top: var(--bp-stroke) solid var(--bp-ink); }
+
+.bp-drawer--left { inset: 0 auto 0 0; border-left: 0; border-right: var(--bp-stroke-2) solid var(--bp-ink); }
+.bp-drawer--bottom {
+  inset: auto 0 0 0; width: 100vw; height: auto; max-height: 85vh; max-height: 85dvh;
+  border-left: 0; border-top: var(--bp-stroke-2) solid var(--bp-ink);
+}
+
+/* enter: 220ms slide on the ease-out curve; exit is instant */
+.bp-drawer[open] { animation: bp-drawer-right 220ms var(--bp-ease); }
+.bp-drawer--left[open] { animation-name: bp-drawer-left; }
+.bp-drawer--bottom[open] { animation-name: bp-drawer-bottom; }
+.bp-drawer[open]::backdrop { animation: bp-fade-in 220ms linear; }
+@keyframes bp-drawer-right  { from { transform: translateX(24px);  opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes bp-drawer-left   { from { transform: translateX(-24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes bp-drawer-bottom { from { transform: translateY(24px);  opacity: 0; } to { transform: none; opacity: 1; } }
+}
+@layer bp.components {
+/* Blueprint Paper · toast
+   A toast is shown by script by nature, so the kit styles it and leaves the showing to you.
+   Markup (one region on the page, toasts appended inside):
+     <div class="bp-toasts" role="status" aria-live="polite">
+       <div class="bp-toast"><span class="bp-toast__title">Saved</span><span class="bp-toast__text">Rev B2 issued.</span></div>
+     </div>
+   Showing one, in five lines:
+     const t = Object.assign(document.createElement('div'), { className: 'bp-toast', innerHTML: '<span class="bp-toast__title">Saved</span>' });
+     document.querySelector('.bp-toasts').append(t);
+     setTimeout(() => { t.classList.add('is-leaving'); t.addEventListener('animationend', () => t.remove()); }, 4000);
+   Region position: default bottom right; --top, --left, --center. */
+.bp-toasts {
+  position: fixed; z-index: 30; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  display: flex; flex-direction: column; align-items: flex-end; gap: var(--bp-2);
+  width: min(360px, calc(100vw - 32px)); pointer-events: none;
+}
+.bp-toasts--top { bottom: auto; top: max(16px, env(safe-area-inset-top, 0px)); flex-direction: column-reverse; }
+.bp-toasts--left { right: auto; left: max(16px, env(safe-area-inset-left, 0px)); align-items: flex-start; }
+.bp-toasts--center { right: 50%; transform: translateX(50%); align-items: center; }
+.bp-toast {
+  display: flex; flex-direction: column; gap: 2px; width: 100%; pointer-events: auto;
+  padding: var(--bp-3) var(--bp-4);
+  border: var(--bp-stroke) solid var(--bp-ink); border-left-width: 4px;
+  background: var(--bp-ground); color: var(--bp-ink); font-size: var(--bp-text-s); line-height: 1.5;
+  box-shadow: 4px 4px 0 var(--bp-ground), 5px 5px 0 var(--bp-ink);   /* a second sheet behind */
+  animation: bp-toast-in var(--bp-speed) var(--bp-ease);
+}
+.bp-toast--solid { background: var(--bp-ink); color: var(--bp-ground); box-shadow: 4px 4px 0 var(--bp-ink), 5px 5px 0 var(--bp-ground); }
+.bp-toast__title { font-size: var(--bp-label); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
+.bp-toast__row { display: flex; align-items: center; gap: var(--bp-3); }
+.bp-toast__row .bp-btn { margin-left: auto; }
+.bp-toast.is-leaving { animation: bp-toast-out var(--bp-speed-s) linear forwards; }
+@keyframes bp-toast-in  { from { opacity: 0; transform: translateY(8px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes bp-toast-out { to { opacity: 0; } }
 }
 @layer bp.themes {
 /* Blueprint Paper · whiteprint theme

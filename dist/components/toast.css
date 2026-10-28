@@ -1,0 +1,34 @@
+/* Blueprint Paper · toast
+   A toast is shown by script by nature, so the kit styles it and leaves the showing to you.
+   Markup (one region on the page, toasts appended inside):
+     <div class="bp-toasts" role="status" aria-live="polite">
+       <div class="bp-toast"><span class="bp-toast__title">Saved</span><span class="bp-toast__text">Rev B2 issued.</span></div>
+     </div>
+   Showing one, in five lines:
+     const t = Object.assign(document.createElement('div'), { className: 'bp-toast', innerHTML: '<span class="bp-toast__title">Saved</span>' });
+     document.querySelector('.bp-toasts').append(t);
+     setTimeout(() => { t.classList.add('is-leaving'); t.addEventListener('animationend', () => t.remove()); }, 4000);
+   Region position: default bottom right; --top, --left, --center. */
+.bp-toasts {
+  position: fixed; z-index: 30; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  display: flex; flex-direction: column; align-items: flex-end; gap: var(--bp-2);
+  width: min(360px, calc(100vw - 32px)); pointer-events: none;
+}
+.bp-toasts--top { bottom: auto; top: max(16px, env(safe-area-inset-top, 0px)); flex-direction: column-reverse; }
+.bp-toasts--left { right: auto; left: max(16px, env(safe-area-inset-left, 0px)); align-items: flex-start; }
+.bp-toasts--center { right: 50%; transform: translateX(50%); align-items: center; }
+.bp-toast {
+  display: flex; flex-direction: column; gap: 2px; width: 100%; pointer-events: auto;
+  padding: var(--bp-3) var(--bp-4);
+  border: var(--bp-stroke) solid var(--bp-ink); border-left-width: 4px;
+  background: var(--bp-ground); color: var(--bp-ink); font-size: var(--bp-text-s); line-height: 1.5;
+  box-shadow: 4px 4px 0 var(--bp-ground), 5px 5px 0 var(--bp-ink);   /* a second sheet behind */
+  animation: bp-toast-in var(--bp-speed) var(--bp-ease);
+}
+.bp-toast--solid { background: var(--bp-ink); color: var(--bp-ground); box-shadow: 4px 4px 0 var(--bp-ink), 5px 5px 0 var(--bp-ground); }
+.bp-toast__title { font-size: var(--bp-label); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
+.bp-toast__row { display: flex; align-items: center; gap: var(--bp-3); }
+.bp-toast__row .bp-btn { margin-left: auto; }
+.bp-toast.is-leaving { animation: bp-toast-out var(--bp-speed-s) linear forwards; }
+@keyframes bp-toast-in  { from { opacity: 0; transform: translateY(8px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes bp-toast-out { to { opacity: 0; } }

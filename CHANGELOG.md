@@ -2,6 +2,14 @@
 
 All notable changes to this project are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/). Until 1.0, minor versions may rename things.
 
+## [0.3.0] - 2026-10-28
+
+### Added
+- Dropdown menu and popover on native `<details>`: items, headings, rules, shortcuts, `--right` and `--up` alignment.
+- Drawer on native `<dialog>`: right (default), left and bottom, with a 220ms slide.
+- Toast: region plus toast styles, solid variant, enter and leave animations; showing is five lines of your own script.
+- Docs sections for each, with a working toast button.
+
 ## [0.2.0] - 2026-10-28
 
 ### Added
