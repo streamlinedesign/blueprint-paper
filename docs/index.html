@@ -15,7 +15,7 @@
 <a class="skip" href="#content">Skip to content</a>
 
 <header class="top">
-  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.3.0</span></a>
+  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.4.0</span></a>
   <form class="search" role="search" onsubmit="return false">
     <label class="bp-label-s bp-dim" for="q">Search</label>
     <input class="bp-input bp-input--sm" id="q" type="search" placeholder="Search components, classes, tokens… ( / )" autocomplete="off">
@@ -85,7 +85,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
     <section class="doc" id="tokens" data-keywords="tokens variables custom properties color ink ground spacing stroke motion easing speed">
       <h2>Tokens</h2>
       <p class="bp-prose">Every color, size and curve is a custom property on <code>:root</code>. Components only use tokens, so changing the look means changing these.</p>
-      <div class="bp-table-wrap"><table class="bp-table">
+      <div class="bp-table-wrap" tabindex="0"><table class="bp-table">
         <thead><tr><th>Token</th><th>Value</th><th>Used for</th></tr></thead>
         <tbody>
           <tr><td><code>--bp-ground</code></td><td><span class="swatch" style="background:#0F2E5C"></span>#0F2E5C</td><td>Paper</td></tr>
@@ -335,7 +335,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
       <h2>Table</h2>
       <p class="bp-prose">Styled as a parts list. Numbers are tabular and right-aligned with <code>.num</code>.</p>
       <div class="example">
-        <div class="bp-table-wrap"><table class="bp-table">
+        <div class="bp-table-wrap" tabindex="0"><table class="bp-table">
           <caption>Parts list · sheet 3</caption>
           <thead><tr><th>No.</th><th>Part</th><th>Material</th><th class="num">Qty</th><th class="num">Mass kg</th></tr></thead>
           <tbody>
@@ -346,7 +346,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           </tbody>
         </table></div>
       </div>
-      <pre><code>&lt;div class="bp-table-wrap"&gt;
+      <pre><code>&lt;div class="bp-table-wrap" tabindex="0"&gt;
   &lt;table class="bp-table"&gt;…&lt;/table&gt;     add --heavy for full ink edges, --lines for rows only
 &lt;/div&gt;</code></pre>
     </section>

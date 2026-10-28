@@ -2,6 +2,14 @@
 
 All notable changes to this project are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/). Until 1.0, minor versions may rename things.
 
+## [0.4.0] - 2026-10-28
+
+### Added
+- `npm test`: renders the docs and demo in Chromium at 1100px and 390px in both themes, and fails on horizontal overflow, console errors, or serious axe-core accessibility violations. Runs in CI.
+
+### Fixed
+- Scrollable table wrappers and code blocks are keyboard-focusable (`tabindex="0"`), which the new check caught.
+
 ## [0.3.0] - 2026-10-28
 
 ### Added

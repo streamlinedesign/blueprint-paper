@@ -61,7 +61,7 @@
   font-family: var(--bp-font); font-size: .92em; padding: 0 .35em;
   border: var(--bp-stroke) solid var(--bp-ink-55);
 }
-.bp-sheet pre {
+.bp-sheet pre {                      /* give long ones tabindex="0" so keyboards can scroll them */
   margin: 0; padding: var(--bp-4); overflow-x: auto;
   border: var(--bp-stroke) solid var(--bp-ink-55); font-size: var(--bp-text-s); line-height: 1.55;
 }

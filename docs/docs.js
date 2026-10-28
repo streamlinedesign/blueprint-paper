@@ -47,6 +47,10 @@
     docs.forEach(function (d) { if (d.id) io.observe(d); });
   }
 
+  // code blocks scroll sideways, so they need to be reachable by keyboard
+  var pres = document.querySelectorAll('pre');
+  for (var k = 0; k < pres.length; k++) pres[k].tabIndex = 0;
+
   var ind = document.getElementById('ind');
   if (ind) ind.indeterminate = true;
 

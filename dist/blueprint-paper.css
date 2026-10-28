@@ -1,4 +1,4 @@
-/*! Blueprint Paper v0.3.0 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
+/*! Blueprint Paper v0.4.0 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
 @layer bp.tokens, bp.base, bp.components, bp.themes;
 @layer bp.tokens {
 /* Blueprint Paper · tokens
@@ -111,7 +111,7 @@
   font-family: var(--bp-font); font-size: .92em; padding: 0 .35em;
   border: var(--bp-stroke) solid var(--bp-ink-55);
 }
-.bp-sheet pre {
+.bp-sheet pre {                      /* give long ones tabindex="0" so keyboards can scroll them */
   margin: 0; padding: var(--bp-4); overflow-x: auto;
   border: var(--bp-stroke) solid var(--bp-ink-55); font-size: var(--bp-text-s); line-height: 1.55;
 }
@@ -362,7 +362,8 @@
 }
 @layer bp.components {
 /* Blueprint Paper · table, styled as a drawing's parts list
-   <div class="bp-table-wrap"><table class="bp-table">…</table></div> */
+   <div class="bp-table-wrap" tabindex="0"><table class="bp-table">…</table></div>
+   The tabindex lets keyboard users scroll a wide table. */
 .bp-table-wrap { overflow-x: auto; max-width: 100%; }
 .bp-table { width: 100%; border-collapse: collapse; font-size: var(--bp-text-s); font-variant-numeric: tabular-nums; }
 .bp-table th, .bp-table td { padding: var(--bp-3) var(--bp-4); text-align: left; vertical-align: middle; border: var(--bp-stroke) solid var(--bp-ink-55); }

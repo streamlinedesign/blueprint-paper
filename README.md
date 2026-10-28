@@ -49,6 +49,7 @@ Blueprint (navy paper) is the default. For whiteprint (pale paper, navy ink), pu
 npm install
 npm run build     # src/ -> dist/ and docs/blueprint-paper.css
 npm run dev       # serve docs/ on http://localhost:4321
+npm test          # overflow, console and accessibility checks (needs: npx playwright install chromium)
 ```
 
 Source lives in `src/`: `tokens.css`, `base.css`, and one file per component in `src/components/`. The build inlines them into one stylesheet inside cascade layers (`bp.tokens`, `bp.base`, `bp.components`), so your own CSS always wins without `!important`. Commit `dist/` with your change; CI checks it is up to date.

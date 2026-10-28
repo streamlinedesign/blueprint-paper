@@ -1,5 +1,6 @@
 /* Blueprint Paper · table, styled as a drawing's parts list
-   <div class="bp-table-wrap"><table class="bp-table">…</table></div> */
+   <div class="bp-table-wrap" tabindex="0"><table class="bp-table">…</table></div>
+   The tabindex lets keyboard users scroll a wide table. */
 .bp-table-wrap { overflow-x: auto; max-width: 100%; }
 .bp-table { width: 100%; border-collapse: collapse; font-size: var(--bp-text-s); font-variant-numeric: tabular-nums; }
 .bp-table th, .bp-table td { padding: var(--bp-3) var(--bp-4); text-align: left; vertical-align: middle; border: var(--bp-stroke) solid var(--bp-ink-55); }
