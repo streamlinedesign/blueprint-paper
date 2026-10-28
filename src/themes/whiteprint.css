@@ -1,0 +1,19 @@
+/* Blueprint Paper · whiteprint theme
+   Pale paper, navy ink. Put data-theme="whiteprint" on <html> (or the class on any .bp-sheet).
+   Only the color tokens change; every component follows. */
+:root[data-theme="whiteprint"], .bp-whiteprint {
+  --bp-ground:  #F3F6FB;
+  --bp-ink:     #0F2E5C;
+  --bp-ink-72:  rgba(15, 46, 92, .72);
+  --bp-ink-55:  rgba(15, 46, 92, .55);
+  --bp-ink-20:  rgba(15, 46, 92, .16);
+  --bp-ink-09:  rgba(15, 46, 92, .09);
+  --bp-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%230F2E5C' stroke-width='1.25'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  color-scheme: light;
+}
+:root[data-theme="whiteprint"] .bp-dialog::backdrop, .bp-whiteprint .bp-dialog::backdrop {
+  background-color: rgba(15, 46, 92, .45);
+  background-image:
+    linear-gradient(rgba(243, 246, 251, .12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243, 246, 251, .12) 1px, transparent 1px);
+}

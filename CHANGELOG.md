@@ -2,6 +2,21 @@
 
 All notable changes to this project are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/). Until 1.0, minor versions may rename things.
 
+## [0.2.0] - 2026-10-28
+
+### Added
+- Tabs: styling for scripted tabs, and a CSS-only `.bp-tabset` on radio inputs.
+- Accordion on native `<details>`.
+- Alert, drawn as a revision note: default, solid, dim, row.
+- Tooltip, pure CSS, four positions.
+- Dialog on native `<dialog>` with a gridded backdrop and a 180ms enter.
+- Whiteprint theme (pale paper, navy ink) via `data-theme="whiteprint"` or `.bp-whiteprint`.
+- Docs: theme switch in the header, sections for every new component.
+
+### Changed
+- Card title block is now a flex row, so the first cell fills the width.
+- Select arrow is a token (`--bp-select-arrow`) so themes can recolor it.
+
 ## [0.1.0] - 2026-10-28
 
 ### Added

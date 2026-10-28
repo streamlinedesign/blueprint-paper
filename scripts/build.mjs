@@ -35,6 +35,8 @@ writeFileSync(join(dist, 'blueprint-paper.min.css'), banner + minify(full, 'blue
 copyFileSync(join(src, 'tokens.css'), join(dist, 'tokens.css'));
 copyFileSync(join(src, 'base.css'), join(dist, 'base.css'));
 for (const f of readdirSync(join(src, 'components'))) copyFileSync(join(src, 'components', f), join(dist, 'components', f));
+mkdirSync(join(dist, 'themes'), { recursive: true });
+for (const f of readdirSync(join(src, 'themes'))) copyFileSync(join(src, 'themes', f), join(dist, 'themes', f));
 
 copyFileSync(join(dist, 'blueprint-paper.css'), join(root, 'docs', 'blueprint-paper.css'));
 

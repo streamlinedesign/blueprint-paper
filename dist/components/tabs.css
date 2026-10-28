@@ -1,0 +1,40 @@
+/* Blueprint Paper · tabs
+   Styling only (switch panels with your own script):
+     <div class="bp-tabs" role="tablist"><button class="bp-tab" role="tab" aria-selected="true">…</button>…</div>
+   CSS-only tabset (radio inputs, no script):
+     <div class="bp-tabset">
+       <input type="radio" name="t" id="t1" checked><label class="bp-tab" for="t1">Power</label>
+       <input type="radio" name="t" id="t2"><label class="bp-tab" for="t2">Network</label>
+       <div class="bp-tabset__panels">
+         <section class="bp-tabpanel">…</section>
+         <section class="bp-tabpanel">…</section>
+       </div>
+     </div> */
+.bp-tabs, .bp-tabset { display: flex; flex-wrap: wrap; }
+.bp-tab {
+  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: var(--bp-2);
+  min-height: var(--bp-control); padding: 0 var(--bp-4); margin-left: calc(-1 * var(--bp-stroke));
+  border: var(--bp-stroke) solid var(--bp-ink-55); background: transparent; color: inherit;
+  font: 500 var(--bp-label)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
+  text-decoration: none; cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent;
+  transition: background var(--bp-speed-s) linear, color var(--bp-speed-s) linear;
+}
+.bp-tab:first-of-type, .bp-tabset > input:first-of-type + .bp-tab { margin-left: 0; }
+.bp-tab:hover { border-color: var(--bp-ink); position: relative; z-index: 1; }
+.bp-tab[aria-selected="true"], .bp-tabset > input:checked + .bp-tab {
+  background: var(--bp-ink); color: var(--bp-ground); border-color: var(--bp-ink); position: relative; z-index: 1;
+}
+.bp-tabs--sm .bp-tab, .bp-tabset--sm .bp-tab { min-height: var(--bp-control-s); font-size: var(--bp-label-s); }
+.bp-tabs--fit .bp-tab, .bp-tabset--fit .bp-tab { flex: none; }
+
+.bp-tabset > input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+.bp-tabset > input:focus-visible + .bp-tab { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 3px; z-index: 2; }
+.bp-tabset__panels { flex-basis: 100%; }
+.bp-tabpanel { display: none; padding-top: var(--bp-4); }
+.bp-tabpanel--boxed { padding: var(--bp-4); border: var(--bp-stroke) solid var(--bp-ink-55); border-top: 0; }
+.bp-tabset:has(> input:nth-of-type(1):checked) .bp-tabpanel:nth-of-type(1),
+.bp-tabset:has(> input:nth-of-type(2):checked) .bp-tabpanel:nth-of-type(2),
+.bp-tabset:has(> input:nth-of-type(3):checked) .bp-tabpanel:nth-of-type(3),
+.bp-tabset:has(> input:nth-of-type(4):checked) .bp-tabpanel:nth-of-type(4),
+.bp-tabset:has(> input:nth-of-type(5):checked) .bp-tabpanel:nth-of-type(5),
+.bp-tabset:has(> input:nth-of-type(6):checked) .bp-tabpanel:nth-of-type(6) { display: block; }

@@ -49,4 +49,16 @@
 
   var ind = document.getElementById('ind');
   if (ind) ind.indeterminate = true;
+
+  // theme switch, remembered per browser
+  var theme = document.getElementById('theme');
+  var root = document.documentElement;
+  function setTheme(white) {
+    if (white) root.setAttribute('data-theme', 'whiteprint'); else root.removeAttribute('data-theme');
+    try { localStorage.setItem('bp-theme', white ? 'whiteprint' : 'blueprint'); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('bp-theme'); } catch (e) {}
+  if (saved === 'whiteprint') { theme.checked = true; setTheme(true); }
+  theme.addEventListener('change', function () { setTheme(theme.checked); });
 })();

@@ -1,6 +1,6 @@
 {
   "name": "@blueprint-paper/css",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A blueprint-themed, CSS-first UI kit. Interfaces drawn like technical drawings.",
   "license": "MIT",
   "homepage": "https://streamlinedesign.github.io/blueprint-paper/",
@@ -14,7 +14,8 @@
     "./min": "./dist/blueprint-paper.min.css",
     "./tokens": "./dist/tokens.css",
     "./base": "./dist/base.css",
-    "./components/*": "./dist/components/*"
+    "./components/*": "./dist/components/*",
+    "./themes/*": "./dist/themes/*"
   },
   "files": ["dist", "src", "README.md", "CHANGELOG.md", "LICENSE"],
   "sideEffects": true,

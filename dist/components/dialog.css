@@ -1,0 +1,34 @@
+/* Blueprint Paper · dialog, on native <dialog>
+   <dialog class="bp-dialog" id="d">
+     <form method="dialog" class="bp-dialog__frame">
+       <header class="bp-dialog__title"><div><span class="bp-label-s bp-dim">Confirm</span><h3>Issue revision B2?</h3></div></header>
+       <div class="bp-dialog__body">…</div>
+       <footer class="bp-dialog__footer"><button class="bp-btn bp-btn--sm" value="cancel">Cancel</button><button class="bp-btn bp-btn--sm bp-btn--solid" value="ok">Issue</button></footer>
+     </form>
+   </dialog>
+   Open with document.getElementById('d').showModal(). The browser handles focus, Escape and the backdrop. */
+.bp-dialog {
+  margin: auto; padding: 0; border: var(--bp-stroke-2) solid var(--bp-ink);
+  background: var(--bp-ground); color: var(--bp-ink); font-family: var(--bp-font); font-size: var(--bp-text);
+  width: min(480px, calc(100vw - 32px)); max-height: calc(100vh - 32px);
+}
+.bp-dialog--wide { width: min(720px, calc(100vw - 32px)); }
+.bp-dialog::backdrop {
+  background-color: rgba(5, 18, 40, .7);
+  background-image:
+    linear-gradient(rgba(230, 238, 255, .06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(230, 238, 255, .06) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+.bp-dialog__frame { display: flex; flex-direction: column; margin: 0; }
+.bp-dialog__title { display: flex; border-bottom: var(--bp-stroke) solid var(--bp-ink); }
+.bp-dialog__title > * { padding: var(--bp-3) var(--bp-4); border-left: var(--bp-stroke) solid var(--bp-ink); display: flex; flex-direction: column; gap: var(--bp-1); min-width: 0; }
+.bp-dialog__title > :first-child { border-left: 0; flex: 1; }
+.bp-dialog__body { padding: var(--bp-4); display: flex; flex-direction: column; gap: var(--bp-3); overflow-y: auto; }
+.bp-dialog__footer { display: flex; justify-content: flex-end; gap: var(--bp-2); padding: var(--bp-3) var(--bp-4); border-top: var(--bp-stroke) solid var(--bp-ink); }
+
+/* enter: scale from .96 (never from 0), 180ms ease-out; exit is instant */
+.bp-dialog[open] { animation: bp-dialog-in var(--bp-speed) var(--bp-ease); }
+.bp-dialog[open]::backdrop { animation: bp-fade-in var(--bp-speed) linear; }
+@keyframes bp-dialog-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes bp-fade-in { from { opacity: 0; } to { opacity: 1; } }

@@ -1,0 +1,32 @@
+/* Blueprint Paper · accordion, on native <details>
+   <div class="bp-accordion">
+     <details class="bp-accordion__item" open>
+       <summary class="bp-accordion__summary">Title</summary>
+       <div class="bp-accordion__body">…</div>
+     </details>
+   </div>
+   Add name="group" to each <details> for one-open-at-a-time (Chrome 120+, Safari 17.2+). */
+.bp-accordion { display: flex; flex-direction: column; }
+.bp-accordion__item { border: var(--bp-stroke) solid var(--bp-ink); margin-top: calc(-1 * var(--bp-stroke)); }
+.bp-accordion__item:first-child { margin-top: 0; }
+.bp-accordion__summary {
+  display: flex; align-items: center; gap: var(--bp-3); list-style: none; cursor: pointer;
+  min-height: var(--bp-control); padding: var(--bp-3) var(--bp-4);
+  font: 500 var(--bp-label)/1.3 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
+}
+.bp-accordion__summary::-webkit-details-marker { display: none; }
+.bp-accordion__summary::after {
+  content: ""; margin-left: auto; flex: none; width: 10px; height: 10px;
+  border-right: var(--bp-stroke) solid var(--bp-ink); border-bottom: var(--bp-stroke) solid var(--bp-ink);
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform var(--bp-speed) var(--bp-ease);
+}
+.bp-accordion__item[open] > .bp-accordion__summary::after { transform: translateY(3px) rotate(225deg); }
+.bp-accordion__summary:hover { background: var(--bp-ink-09); }
+.bp-accordion__summary:focus-visible { outline-offset: -4px; }
+.bp-accordion__body { padding: 0 var(--bp-4) var(--bp-4); display: flex; flex-direction: column; gap: var(--bp-3); }
+.bp-accordion--light .bp-accordion__item { border-width: 0 0 var(--bp-stroke); border-color: var(--bp-ink-55); margin-top: 0; }
+.bp-accordion--light .bp-accordion__item:first-child { border-top-width: var(--bp-stroke); }
+.bp-accordion--light .bp-accordion__summary, .bp-accordion--light .bp-accordion__body { padding-left: 0; padding-right: 0; }
+.bp-accordion--light .bp-accordion__summary:hover { background: transparent; text-decoration: underline; text-underline-offset: .25em; }

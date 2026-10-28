@@ -35,9 +35,13 @@ import '@blueprint-paper/css/components/switch.css';
 
 Add `bp-switch--vertical` for a vertical switch where up is on.
 
-## Components (v0.1)
+## Components
 
-Tokens, typography, switch, button, field (input, textarea, select), checkbox, radio, card, list, table, badge.
+Tokens, typography, switch, button, field (input, textarea, select), checkbox, radio, card, list, table, badge, tabs, accordion, alert, tooltip, dialog.
+
+## Themes
+
+Blueprint (navy paper) is the default. For whiteprint (pale paper, navy ink), put `data-theme="whiteprint"` on `<html>`, or `bp-whiteprint` on any `.bp-sheet`.
 
 ## Develop
 

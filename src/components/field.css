@@ -27,7 +27,7 @@
 .bp-textarea { min-height: 120px; padding: var(--bp-3) var(--bp-4); resize: vertical; }
 .bp-select {
   padding-right: calc(var(--bp-4) * 2 + 12px); cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23E6EEFF' stroke-width='1.25'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-image: var(--bp-select-arrow);
   background-repeat: no-repeat; background-position: right var(--bp-4) center;
 }
 .bp-select option { background: var(--bp-ground); color: var(--bp-ink); }

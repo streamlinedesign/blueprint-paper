@@ -15,13 +15,14 @@
 <a class="skip" href="#content">Skip to content</a>
 
 <header class="top">
-  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.1.0</span></a>
+  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.2.0</span></a>
   <form class="search" role="search" onsubmit="return false">
     <label class="bp-label-s bp-dim" for="q">Search</label>
     <input class="bp-input bp-input--sm" id="q" type="search" placeholder="Search components, classes, tokens… ( / )" autocomplete="off">
     <output class="bp-label-s bp-dim" id="q-count" for="q" aria-live="polite"></output>
   </form>
   <nav class="top-links bp-label-s">
+    <label class="bp-switch-field bp-tip bp-tip--below" data-tip="Whiteprint theme"><span class="bp-switch bp-switch--light"><input type="checkbox" role="switch" id="theme" aria-label="Whiteprint theme"><span class="bp-switch__track"></span></span><span class="bp-label-s">White</span></label>
     <a href="demo.html">Demo</a>
     <a href="https://github.com/streamlinedesign/blueprint-paper">GitHub</a>
   </nav>
@@ -41,6 +42,13 @@
     <a href="#card">Card &amp; list</a>
     <a href="#table">Table</a>
     <a href="#badge">Badge</a>
+    <a href="#tabs">Tabs</a>
+    <a href="#accordion">Accordion</a>
+    <a href="#alert">Alert</a>
+    <a href="#tooltip">Tooltip</a>
+    <a href="#dialog">Dialog</a>
+    <span class="bp-label-s bp-dim">Themes</span>
+    <a href="#themes">Whiteprint</a>
     <span class="bp-label-s bp-dim">Project</span>
     <a href="#roadmap">Roadmap</a>
   </nav>
@@ -356,13 +364,148 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
 &lt;span class="bp-stamp"&gt;Approved&lt;/span&gt;</code></pre>
     </section>
 
-    <section class="doc" id="roadmap" data-keywords="roadmap plan versions releases changelog contributing react radix">
+    <section class="doc" id="tabs" data-keywords="tabs tab tabset tablist panel radio css-only">
+      <h2>Tabs</h2>
+      <p class="bp-prose">Two ways. <code>.bp-tabs</code> styles a tab list you switch with your own script via <code>aria-selected</code>. <code>.bp-tabset</code> needs no script: radio inputs drive the panels.</p>
+      <div class="example">
+        <div class="bp-tabset">
+          <input type="radio" name="ts" id="ts1" checked><label class="bp-tab" for="ts1">Power</label>
+          <input type="radio" name="ts" id="ts2"><label class="bp-tab" for="ts2">Network</label>
+          <input type="radio" name="ts" id="ts3"><label class="bp-tab" for="ts3">Log</label>
+          <div class="bp-tabset__panels">
+            <section class="bp-tabpanel bp-tabpanel--boxed"><span class="bp-label">Power</span><p class="bp-text-s bp-dim">Main bus 230 V · 3 circuits · all closed.</p></section>
+            <section class="bp-tabpanel bp-tabpanel--boxed"><span class="bp-label">Network</span><p class="bp-text-s bp-dim">2 links up · 1 planned.</p></section>
+            <section class="bp-tabpanel bp-tabpanel--boxed"><span class="bp-label">Log</span><p class="bp-text-s bp-dim">Last change 22:08 · Pump B stopped.</p></section>
+          </div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="bp-tabset"&gt;
+  &lt;input type="radio" name="t" id="t1" checked&gt;&lt;label class="bp-tab" for="t1"&gt;Power&lt;/label&gt;
+  &lt;input type="radio" name="t" id="t2"&gt;&lt;label class="bp-tab" for="t2"&gt;Network&lt;/label&gt;
+  &lt;div class="bp-tabset__panels"&gt;
+    &lt;section class="bp-tabpanel bp-tabpanel--boxed"&gt;…&lt;/section&gt;
+    &lt;section class="bp-tabpanel bp-tabpanel--boxed"&gt;…&lt;/section&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="bp-tabs" role="tablist"&gt;&lt;button class="bp-tab" role="tab" aria-selected="true"&gt;…&lt;/button&gt;&lt;/div&gt;   scripted</code></pre>
+      <p class="bp-prose bp-dim">Add <code>--sm</code> for 36px tabs and <code>--fit</code> so tabs size to their text instead of filling the row.</p>
+    </section>
+
+    <section class="doc" id="accordion" data-keywords="accordion details summary collapse expand disclosure">
+      <h2>Accordion</h2>
+      <p class="bp-prose">Native <code>&lt;details&gt;</code>, so it works without script and the browser handles keyboard and state. Give each item the same <code>name</code> to allow one open at a time.</p>
+      <div class="example">
+        <div class="bp-accordion">
+          <details class="bp-accordion__item" name="acc" open>
+            <summary class="bp-accordion__summary">General notes</summary>
+            <div class="bp-accordion__body"><p class="bp-text-s">All dimensions in millimetres unless noted. Do not scale from this drawing.</p></div>
+          </details>
+          <details class="bp-accordion__item" name="acc">
+            <summary class="bp-accordion__summary">Materials</summary>
+            <div class="bp-accordion__body"><p class="bp-text-s">Structural steel S355 to EN 10025. Fasteners grade 8.8, hot-dip galvanised.</p></div>
+          </details>
+          <details class="bp-accordion__item" name="acc">
+            <summary class="bp-accordion__summary">Revisions</summary>
+            <div class="bp-accordion__body"><p class="bp-text-s">B1: pump B relocated. B2: flange rating corrected.</p></div>
+          </details>
+        </div>
+      </div>
+      <pre><code>&lt;div class="bp-accordion"&gt;
+  &lt;details class="bp-accordion__item" name="acc" open&gt;
+    &lt;summary class="bp-accordion__summary"&gt;General notes&lt;/summary&gt;
+    &lt;div class="bp-accordion__body"&gt;…&lt;/div&gt;
+  &lt;/details&gt;
+&lt;/div&gt;   add --light for rules instead of boxes</code></pre>
+    </section>
+
+    <section class="doc" id="alert" data-keywords="alert notice message warning error status note banner">
+      <h2>Alert</h2>
+      <p class="bp-prose">Drawn as a revision note with a heavy left edge. Solid is for the one message that must be read. No red and green; the weight carries the urgency.</p>
+      <div class="example">
+        <div class="bp-stack">
+          <div class="bp-alert" role="status"><span class="bp-alert__title">Rev B2 issued</span><p class="bp-alert__text">Flange rating corrected to PN16. Sheets 3 and 7 affected.</p></div>
+          <div class="bp-alert bp-alert--solid" role="alert"><span class="bp-alert__title">Target pressure above rating</span><p class="bp-alert__text">9.5 bar exceeds the 8.0 bar rating of the DN100 flanges. The setpoint was not applied.</p><div class="bp-alert__actions"><button class="bp-btn bp-btn--sm" type="button">Review</button></div></div>
+          <div class="bp-alert bp-alert--dim bp-alert--row"><span class="bp-alert__title">Autosave</span><p class="bp-alert__text">Draft saved 22:08.</p><div class="bp-alert__actions"><button class="bp-btn bp-btn--sm bp-btn--ghost" type="button">Dismiss</button></div></div>
+        </div>
+      </div>
+      <pre><code>&lt;div class="bp-alert" role="status"&gt;
+  &lt;span class="bp-alert__title"&gt;Rev B2 issued&lt;/span&gt;
+  &lt;p class="bp-alert__text"&gt;…&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="bp-alert bp-alert--solid" role="alert"&gt;…&lt;/div&gt;
+&lt;div class="bp-alert bp-alert--dim bp-alert--row"&gt;…&lt;/div&gt;</code></pre>
+    </section>
+
+    <section class="doc" id="tooltip" data-keywords="tooltip tip hint hover title data-tip">
+      <h2>Tooltip</h2>
+      <p class="bp-prose">Pure CSS from a <code>data-tip</code> attribute. Shows after 300ms on hover, instantly on keyboard focus. Keep it to a few words; anything longer belongs on the page. Touch screens don't hover, so never put required information in one.</p>
+      <div class="example">
+        <div class="bp-row bp-wrap" style="gap:24px;padding:28px 0">
+          <button class="bp-btn bp-btn--sm bp-tip" type="button" data-tip="Issue revision B2">Above</button>
+          <button class="bp-btn bp-btn--sm bp-tip bp-tip--below" type="button" data-tip="Save without issuing">Below</button>
+          <button class="bp-btn bp-btn--sm bp-tip bp-tip--right" type="button" data-tip="Open sheet 3">Right</button>
+          <button class="bp-btn bp-btn--sm bp-btn--icon bp-tip" type="button" data-tip="Add part" aria-label="Add part"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg></button>
+        </div>
+      </div>
+      <pre><code>&lt;button class="bp-btn bp-tip" data-tip="Issue revision B2"&gt;Issue&lt;/button&gt;
+&lt;button class="bp-btn bp-tip bp-tip--below" data-tip="…"&gt;…&lt;/button&gt;   --left --right</code></pre>
+    </section>
+
+    <section class="doc" id="dialog" data-keywords="dialog modal confirm popup overlay backdrop showModal">
+      <h2>Dialog</h2>
+      <p class="bp-prose">Native <code>&lt;dialog&gt;</code>. One line of script opens it; the browser traps focus, closes on Escape, and returns focus. A <code>method="dialog"</code> form closes it from any button.</p>
+      <div class="example">
+        <button class="bp-btn" type="button" onclick="document.getElementById('dlg').showModal()">Open dialog</button>
+        <dialog class="bp-dialog" id="dlg" aria-labelledby="dlg-title">
+          <form method="dialog" class="bp-dialog__frame">
+            <header class="bp-dialog__title"><div><span class="bp-label-s bp-dim">Confirm</span><h3 id="dlg-title">Issue revision B2?</h3></div><div><span class="bp-label-s bp-dim">Sheets</span><span class="bp-label">3, 7</span></div></header>
+            <div class="bp-dialog__body">
+              <p class="bp-text-s">Issuing replaces B1 on the site set. Fabrication has already started from B1; they will be notified.</p>
+              <label class="bp-choice"><input type="checkbox" class="bp-checkbox" checked> Notify the fabricator</label>
+            </div>
+            <footer class="bp-dialog__footer"><button class="bp-btn bp-btn--sm bp-btn--ghost" value="cancel">Cancel</button><button class="bp-btn bp-btn--sm bp-btn--solid" value="ok">Issue B2</button></footer>
+          </form>
+        </dialog>
+      </div>
+      <pre><code>&lt;button class="bp-btn" onclick="document.getElementById('d').showModal()"&gt;Open&lt;/button&gt;
+&lt;dialog class="bp-dialog" id="d"&gt;
+  &lt;form method="dialog" class="bp-dialog__frame"&gt;
+    &lt;header class="bp-dialog__title"&gt;&lt;div&gt;&lt;span class="bp-label-s bp-dim"&gt;Confirm&lt;/span&gt;&lt;h3&gt;Issue revision B2?&lt;/h3&gt;&lt;/div&gt;&lt;/header&gt;
+    &lt;div class="bp-dialog__body"&gt;…&lt;/div&gt;
+    &lt;footer class="bp-dialog__footer"&gt;
+      &lt;button class="bp-btn bp-btn--sm bp-btn--ghost" value="cancel"&gt;Cancel&lt;/button&gt;
+      &lt;button class="bp-btn bp-btn--sm bp-btn--solid" value="ok"&gt;Issue&lt;/button&gt;
+    &lt;/footer&gt;
+  &lt;/form&gt;
+&lt;/dialog&gt;</code></pre>
+    </section>
+
+    <section class="doc" id="themes" data-keywords="theme themes whiteprint light dark mode paper color-scheme">
+      <h2>Whiteprint</h2>
+      <p class="bp-prose">Pale paper, navy ink. Same tokens, swapped. Try the switch in the header. Set it for a whole page with <code>data-theme="whiteprint"</code> on <code>&lt;html&gt;</code>, or for one area with <code>bp-whiteprint</code> on a <code>.bp-sheet</code>.</p>
+      <div class="example" style="padding:0">
+        <div class="bp-sheet bp-whiteprint" style="padding:24px;display:flex;flex-wrap:wrap;gap:24px;align-items:center">
+          <label class="bp-switch"><input type="checkbox" role="switch" aria-label="Whiteprint switch" checked><span class="bp-switch__track"></span></label>
+          <label class="bp-switch bp-switch--vertical"><input type="checkbox" role="switch" aria-label="Whiteprint vertical switch"><span class="bp-switch__track"></span></label>
+          <button class="bp-btn bp-btn--sm" type="button">Outline</button>
+          <button class="bp-btn bp-btn--sm bp-btn--solid" type="button">Solid</button>
+          <span class="bp-badge">Draft</span>
+          <label class="bp-choice"><input type="checkbox" class="bp-checkbox" checked> Checked</label>
+          <select class="bp-select bp-select--sm" style="width:140px" aria-label="Scale"><option>1 : 100</option></select>
+        </div>
+      </div>
+      <pre><code>&lt;html data-theme="whiteprint"&gt;            whole page
+&lt;div class="bp-sheet bp-whiteprint"&gt;…&lt;/div&gt;   one area</code></pre>
+    </section>
+
+    <section class="doc" id="roadmap" data-keywords="roadmap plan versions releases changelog contributing">
       <h2>Roadmap</h2>
       <ol class="notes bp-prose">
-        <li><b>v0.1</b> Tokens, typography, switch, button, field, checkbox, radio, card, list, table, badge. This page.</li>
-        <li><b>v0.2</b> Tabs, accordion, dialog, tooltip, alert. Whiteprint (light) theme. Automated screenshots and accessibility checks on every change.</li>
-        <li><b>v0.3</b> Dropdown menu, popover, drawer, toast. These need JavaScript for behaviour; a thin optional layer, nothing more.</li>
-        <li><b>v1.0</b> Names frozen. Contributing guide. Optional React registry (shadcn-style) if there is demand.</li>
+        <li><b>v0.1</b> Tokens, typography, switch, button, field, checkbox, radio, card, list, table, badge.</li>
+        <li><b>v0.2</b> Tabs, accordion, alert, tooltip, dialog. Whiteprint theme. This page.</li>
+        <li><b>v0.3</b> Dropdown menu, popover, drawer, toast, on the browser's <code>popover</code> attribute where it can. Screenshot and accessibility checks in CI. Automated releases to npm.</li>
+        <li><b>v1.0</b> Names frozen. Contributing guide. CSS only, by design.</li>
       </ol>
     </section>
 
