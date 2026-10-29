@@ -1,0 +1,21 @@
+/* Blueprint Paper · skeleton
+   A placeholder drawn as a draft: dashed outline, faint hatch, a slow pulse.
+   <span class="bp-skeleton bp-skeleton--line"></span>            one line of text (set width inline or let it fill)
+   <span class="bp-skeleton bp-skeleton--line bp-skeleton--sm"></span>
+   <div class="bp-skeleton" style="height: 120px"></div>          a block
+   <span class="bp-skeleton bp-skeleton--square" style="--size: 48px"></span>
+   Put aria-busy="true" on the region being loaded; the skeleton itself is decorative. */
+.bp-skeleton {
+  --size: 48px;
+  display: block; width: 100%; min-height: 12px;
+  border: var(--bp-stroke) dashed var(--bp-ink-62);
+  background: repeating-linear-gradient(-45deg, var(--bp-ink-09) 0 1px, transparent 1px 8px);
+  animation: bp-pulse 1.6s var(--bp-ease) infinite;
+  pointer-events: none; user-select: none;
+}
+.bp-skeleton--line { height: 1em; min-height: 0; margin: .2em 0; }
+.bp-skeleton--sm { height: .75em; }
+.bp-skeleton--square { width: var(--size); height: var(--size); }
+.bp-skeleton--circle { width: var(--size); height: var(--size); border-radius: 50%; }
+.bp-skeleton--solid { border-style: solid; }
+@keyframes bp-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }

@@ -52,6 +52,11 @@
     <a href="#toast">Toast</a>
     <a href="#measure">Measure</a>
     <a href="#code">Code</a>
+    <a href="#progress">Progress</a>
+    <a href="#skeleton">Skeleton</a>
+    <a href="#pagination">Pagination</a>
+    <a href="#breadcrumb">Breadcrumb</a>
+    <a href="#kbd">Kbd</a>
     <span class="bp-label--sm bp-dim">Script</span>
     <a href="#script">Optional script</a>
     <span class="bp-label--sm bp-dim">Themes</span>
@@ -654,6 +659,128 @@ standalone:
       <pre data-code><code>&lt;pre data-code&gt;&lt;code&gt;…&lt;/code&gt;&lt;/pre&gt;
 &lt;pre data-code="copy"&gt;&lt;code&gt;npm install blueprint-paper&lt;/code&gt;&lt;/pre&gt;</code></pre>
       <p class="bp-prose">From script: <code>bp.code(pre, { numbers: true, copy: true })</code>. Without the script, the same look is a <code>.bp-code</code> wrapper, one <code>.bp-code__line</code> span per line and a <code>.bp-code__copy</code> button, so a static site generator can produce it at build time.</p>
+    </section>
+
+    <section class="doc" id="progress" data-keywords="progress bar loading percent upload indeterminate hatched meter">
+      <h2>Progress</h2>
+      <p class="bp-prose">A bar with a solid fill, or section hatching the way a cut surface is marked on a drawing. The indeterminate one slides its hatch. Set the value as a custom property and in <code>aria-valuenow</code>.</p>
+      <div class="example">
+        <div class="bp-stack" style="gap:20px;max-width:420px">
+          <div class="bp-stack" style="gap:6px"><div class="bp-readout"><span class="bp-label--sm">Upload</span><span class="bp-label--sm bp-num">40%</span></div>
+            <div class="bp-progress" role="progressbar" aria-label="Upload" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="--value:40%"><span class="bp-progress__bar"></span></div></div>
+          <div class="bp-progress bp-progress--hatched" role="progressbar" aria-label="Hatched" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:65%"><span class="bp-progress__bar"></span></div>
+          <div class="bp-progress bp-progress--lg" role="progressbar" aria-label="Large with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="--value:25%"><span class="bp-progress__bar" data-label="25%"></span></div>
+          <div class="bp-progress bp-progress--sm" role="progressbar" aria-label="Small" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="--value:80%"><span class="bp-progress__bar"></span></div>
+          <div class="bp-progress bp-progress--indeterminate" role="progressbar" aria-label="Working"><span class="bp-progress__bar"></span></div>
+        </div>
+      </div>
+      <pre data-code><code>&lt;div class="bp-progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="--value: 40%"&gt;
+  &lt;span class="bp-progress__bar"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="bp-progress bp-progress--hatched" …&gt;            hatch fill
+&lt;div class="bp-progress bp-progress--indeterminate" …&gt;      no value: the hatch slides
+&lt;span class="bp-progress__bar" data-label="25%"&gt;            value drawn at the bar's end (--lg fits it best)</code></pre>
+      <p class="bp-prose bp-dim">Sizes: <code>--sm</code> (6px), default (12px), <code>--lg</code> (20px). The fill animates between values at 180ms.</p>
+    </section>
+
+    <section class="doc" id="skeleton" data-keywords="skeleton loading placeholder shimmer pulse draft busy">
+      <h2>Skeleton</h2>
+      <p class="bp-prose">A loading placeholder drawn as a draft: dashed outline, faint hatch, a slow pulse. One of the few places the kit uses a dashed line, because here it means "not yet drawn".</p>
+      <div class="example">
+        <div class="bp-row bp-wrap" style="gap:32px;align-items:flex-start">
+          <div class="bp-stack" style="gap:10px;width:260px" aria-busy="true">
+            <span class="bp-skeleton bp-skeleton--line" style="width:40%"></span>
+            <span class="bp-skeleton bp-skeleton--line"></span>
+            <span class="bp-skeleton bp-skeleton--line" style="width:85%"></span>
+            <span class="bp-skeleton bp-skeleton--line bp-skeleton--sm" style="width:60%"></span>
+          </div>
+          <div class="bp-row" style="gap:12px;align-items:flex-start" aria-busy="true">
+            <span class="bp-skeleton bp-skeleton--square"></span>
+            <div class="bp-skeleton" style="width:160px;height:96px"></div>
+          </div>
+        </div>
+      </div>
+      <pre data-code><code>&lt;div aria-busy="true"&gt;
+  &lt;span class="bp-skeleton bp-skeleton--line" style="width: 40%"&gt;&lt;/span&gt;
+  &lt;span class="bp-skeleton bp-skeleton--line"&gt;&lt;/span&gt;
+  &lt;div class="bp-skeleton" style="height: 96px"&gt;&lt;/div&gt;
+  &lt;span class="bp-skeleton bp-skeleton--square" style="--size: 48px"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+      <p class="bp-prose bp-dim"><code>--line</code>, <code>--sm</code>, <code>--square</code>, <code>--circle</code>, <code>--solid</code> (solid outline). The pulse stops under <code>prefers-reduced-motion</code>.</p>
+    </section>
+
+    <section class="doc" id="pagination" data-keywords="pagination pages pager next previous sheet numbers">
+      <h2>Pagination</h2>
+      <p class="bp-prose">Page links as sheet numbers. The current page is solid. Links or buttons both work; a count at the end reads like a title block.</p>
+      <div class="example">
+        <div class="bp-stack" style="gap:20px">
+          <nav class="bp-pagination" aria-label="Pages">
+            <a class="bp-pagination__item" href="#pagination" rel="prev" aria-label="Previous page">‹</a>
+            <a class="bp-pagination__item" href="#pagination">1</a>
+            <a class="bp-pagination__item" href="#pagination" aria-current="page">2</a>
+            <a class="bp-pagination__item" href="#pagination">3</a>
+            <span class="bp-pagination__gap">…</span>
+            <a class="bp-pagination__item" href="#pagination">12</a>
+            <a class="bp-pagination__item" href="#pagination" rel="next" aria-label="Next page">›</a>
+            <span class="bp-pagination__count">Sheet 2 of 12</span>
+          </nav>
+          <nav class="bp-pagination bp-pagination--sm" aria-label="Pages, compact">
+            <button class="bp-pagination__item" type="button" aria-label="Previous page" disabled>‹</button>
+            <button class="bp-pagination__item" type="button" aria-current="page">1</button>
+            <button class="bp-pagination__item" type="button">2</button>
+            <button class="bp-pagination__item" type="button">3</button>
+            <button class="bp-pagination__item" type="button" aria-label="Next page">›</button>
+          </nav>
+        </div>
+      </div>
+      <pre data-code><code>&lt;nav class="bp-pagination" aria-label="Pages"&gt;
+  &lt;a class="bp-pagination__item" href="…" rel="prev" aria-label="Previous page"&gt;‹&lt;/a&gt;
+  &lt;a class="bp-pagination__item" href="…"&gt;1&lt;/a&gt;
+  &lt;a class="bp-pagination__item" href="…" aria-current="page"&gt;2&lt;/a&gt;
+  &lt;span class="bp-pagination__gap"&gt;…&lt;/span&gt;
+  &lt;a class="bp-pagination__item" href="…"&gt;12&lt;/a&gt;
+  &lt;a class="bp-pagination__item" href="…" rel="next" aria-label="Next page"&gt;›&lt;/a&gt;
+  &lt;span class="bp-pagination__count"&gt;Sheet 2 of 12&lt;/span&gt;
+&lt;/nav&gt;</code></pre>
+    </section>
+
+    <section class="doc" id="breadcrumb" data-keywords="breadcrumb breadcrumbs path trail navigation location">
+      <h2>Breadcrumb</h2>
+      <p class="bp-prose">A sheet reference: uppercase labels with a slash between, the current one in full ink.</p>
+      <div class="example">
+        <div class="bp-stack" style="gap:16px">
+          <nav class="bp-breadcrumb" aria-label="Breadcrumb">
+            <ol><li><a href="#breadcrumb">Project</a></li><li><a href="#breadcrumb">Pump house</a></li><li><a href="#breadcrumb">Electrical</a></li><li><a href="#breadcrumb" aria-current="page">Sheet 3</a></li></ol>
+          </nav>
+          <nav class="bp-breadcrumb bp-breadcrumb--arrows" aria-label="Breadcrumb, arrows">
+            <ol><li><a href="#breadcrumb">Docs</a></li><li><a href="#breadcrumb">Components</a></li><li><a href="#breadcrumb" aria-current="page">Breadcrumb</a></li></ol>
+          </nav>
+        </div>
+      </div>
+      <pre data-code><code>&lt;nav class="bp-breadcrumb" aria-label="Breadcrumb"&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href="…"&gt;Project&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="…"&gt;Pump house&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="…" aria-current="page"&gt;Sheet 3&lt;/a&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;                                      --arrows for › instead of /</code></pre>
+    </section>
+
+    <section class="doc" id="kbd" data-keywords="kbd keyboard key shortcut hotkey cap command">
+      <h2>Kbd</h2>
+      <p class="bp-prose">A key cap with a heavier bottom edge. Nest keys for a shortcut and a + is drawn between them. Plain <code>&lt;kbd&gt;</code> stays the small inline box from the typography.</p>
+      <div class="example">
+        <div class="bp-row bp-wrap" style="gap:24px;align-items:center">
+          <kbd class="bp-kbd">Esc</kbd>
+          <kbd class="bp-kbd"><kbd>⌘</kbd><kbd>K</kbd></kbd>
+          <kbd class="bp-kbd"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>P</kbd></kbd>
+          <kbd class="bp-kbd bp-kbd--sm"><kbd>⌥</kbd><kbd>↵</kbd></kbd>
+          <span class="bp-text--sm bp-dim">Press <kbd>/</kbd> to search</span>
+        </div>
+      </div>
+      <pre data-code><code>&lt;kbd class="bp-kbd"&gt;Esc&lt;/kbd&gt;
+&lt;kbd class="bp-kbd"&gt;&lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;K&lt;/kbd&gt;&lt;/kbd&gt;
+&lt;kbd class="bp-kbd bp-kbd--sm"&gt;…&lt;/kbd&gt;</code></pre>
     </section>
 
     <section class="doc" id="script" data-keywords="script javascript js optional bp.toast bp.theme bp.measure light dismiss">

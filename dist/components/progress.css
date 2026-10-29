@@ -1,0 +1,39 @@
+/* Blueprint Paper · progress
+   <div class="bp-progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="--value: 40%">
+     <span class="bp-progress__bar"></span>
+   </div>
+   Fill: solid ink by default, --hatched for section hatching. --indeterminate slides the hatch
+   (leave out aria-valuenow). Sizes: --sm --lg. data-label on the bar shows a value: <span … data-label="40%"> */
+.bp-progress {
+  --value: 0%; --h: 12px;
+  position: relative; display: block; width: 100%; height: var(--h);
+  border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground);
+  overflow: hidden;
+}
+.bp-progress__bar {
+  position: absolute; top: 0; bottom: 0; left: 0; width: var(--value);
+  background: var(--bp-ink);
+  transition: width var(--bp-speed) var(--bp-ease);
+}
+.bp-progress--hatched .bp-progress__bar {
+  background: repeating-linear-gradient(-45deg, var(--bp-ink) 0 var(--bp-stroke), transparent var(--bp-stroke) 6px);
+  border-right: var(--bp-stroke) solid var(--bp-ink);
+}
+.bp-progress--indeterminate .bp-progress__bar {
+  width: 100%; border-right: 0;
+  background: repeating-linear-gradient(-45deg, var(--bp-ink) 0 var(--bp-stroke), transparent var(--bp-stroke) 8px);
+  background-size: 11.3px 100%;                 /* one hatch period, so the slide loops without a seam */
+  animation: bp-hatch 600ms linear infinite;
+}
+@keyframes bp-hatch { to { background-position: 11.3px 0; } }
+.bp-progress__bar[data-label]::after {
+  content: attr(data-label); position: absolute; left: 100%; top: 50%; transform: translateY(-50%);
+  margin-left: var(--bp-2); padding: 0 var(--bp-1);
+  font-size: var(--bp-label-sm); letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1;
+  color: var(--bp-ink); background: var(--bp-ground); white-space: nowrap;
+}
+.bp-progress--sm { --h: 6px; }
+.bp-progress--lg { --h: 20px; }
+.bp-progress--sm .bp-progress__bar[data-label]::after { display: none; }
+
+/* a label row above: <div class="bp-readout"><span class="bp-label--sm">Upload</span><span class="bp-label--sm bp-num">40%</span></div> */

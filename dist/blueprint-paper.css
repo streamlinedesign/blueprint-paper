@@ -803,6 +803,144 @@
 .bp-code__copy:active { opacity: .7; }
 .bp-code__copy[data-done] { background: var(--bp-ink); color: var(--bp-ground); border-color: var(--bp-ink); }
 }
+@layer bp.components {
+/* Blueprint Paper · progress
+   <div class="bp-progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="--value: 40%">
+     <span class="bp-progress__bar"></span>
+   </div>
+   Fill: solid ink by default, --hatched for section hatching. --indeterminate slides the hatch
+   (leave out aria-valuenow). Sizes: --sm --lg. data-label on the bar shows a value: <span … data-label="40%"> */
+.bp-progress {
+  --value: 0%; --h: 12px;
+  position: relative; display: block; width: 100%; height: var(--h);
+  border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground);
+  overflow: hidden;
+}
+.bp-progress__bar {
+  position: absolute; top: 0; bottom: 0; left: 0; width: var(--value);
+  background: var(--bp-ink);
+  transition: width var(--bp-speed) var(--bp-ease);
+}
+.bp-progress--hatched .bp-progress__bar {
+  background: repeating-linear-gradient(-45deg, var(--bp-ink) 0 var(--bp-stroke), transparent var(--bp-stroke) 6px);
+  border-right: var(--bp-stroke) solid var(--bp-ink);
+}
+.bp-progress--indeterminate .bp-progress__bar {
+  width: 100%; border-right: 0;
+  background: repeating-linear-gradient(-45deg, var(--bp-ink) 0 var(--bp-stroke), transparent var(--bp-stroke) 8px);
+  background-size: 11.3px 100%;                 /* one hatch period, so the slide loops without a seam */
+  animation: bp-hatch 600ms linear infinite;
+}
+@keyframes bp-hatch { to { background-position: 11.3px 0; } }
+.bp-progress__bar[data-label]::after {
+  content: attr(data-label); position: absolute; left: 100%; top: 50%; transform: translateY(-50%);
+  margin-left: var(--bp-2); padding: 0 var(--bp-1);
+  font-size: var(--bp-label-sm); letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1;
+  color: var(--bp-ink); background: var(--bp-ground); white-space: nowrap;
+}
+.bp-progress--sm { --h: 6px; }
+.bp-progress--lg { --h: 20px; }
+.bp-progress--sm .bp-progress__bar[data-label]::after { display: none; }
+
+/* a label row above: <div class="bp-readout"><span class="bp-label--sm">Upload</span><span class="bp-label--sm bp-num">40%</span></div> */
+}
+@layer bp.components {
+/* Blueprint Paper · skeleton
+   A placeholder drawn as a draft: dashed outline, faint hatch, a slow pulse.
+   <span class="bp-skeleton bp-skeleton--line"></span>            one line of text (set width inline or let it fill)
+   <span class="bp-skeleton bp-skeleton--line bp-skeleton--sm"></span>
+   <div class="bp-skeleton" style="height: 120px"></div>          a block
+   <span class="bp-skeleton bp-skeleton--square" style="--size: 48px"></span>
+   Put aria-busy="true" on the region being loaded; the skeleton itself is decorative. */
+.bp-skeleton {
+  --size: 48px;
+  display: block; width: 100%; min-height: 12px;
+  border: var(--bp-stroke) dashed var(--bp-ink-62);
+  background: repeating-linear-gradient(-45deg, var(--bp-ink-09) 0 1px, transparent 1px 8px);
+  animation: bp-pulse 1.6s var(--bp-ease) infinite;
+  pointer-events: none; user-select: none;
+}
+.bp-skeleton--line { height: 1em; min-height: 0; margin: .2em 0; }
+.bp-skeleton--sm { height: .75em; }
+.bp-skeleton--square { width: var(--size); height: var(--size); }
+.bp-skeleton--circle { width: var(--size); height: var(--size); border-radius: 50%; }
+.bp-skeleton--solid { border-style: solid; }
+@keyframes bp-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+}
+@layer bp.components {
+/* Blueprint Paper · pagination
+   <nav class="bp-pagination" aria-label="Pages">
+     <a class="bp-pagination__item" href="#" rel="prev" aria-label="Previous">‹</a>
+     <a class="bp-pagination__item" href="#">1</a>
+     <a class="bp-pagination__item" href="#" aria-current="page">2</a>
+     <span class="bp-pagination__gap">…</span>
+     <a class="bp-pagination__item" href="#">12</a>
+     <a class="bp-pagination__item" href="#" rel="next" aria-label="Next">›</a>
+     <span class="bp-pagination__count">Sheet 2 of 12</span>
+   </nav>
+   Buttons work in place of links. --sm for a compact row. */
+.bp-pagination { display: inline-flex; align-items: center; gap: var(--bp-2); flex-wrap: wrap; }
+.bp-pagination__item {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: var(--bp-control-sm); height: var(--bp-control-sm); padding: 0 var(--bp-2);
+  border: var(--bp-stroke) solid var(--bp-ink); background: transparent; color: var(--bp-ink);
+  font: 500 var(--bp-label)/1 var(--bp-font); letter-spacing: var(--bp-track); text-decoration: none;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: background var(--bp-speed-fast) linear;
+}
+.bp-pagination__item:hover { background: var(--bp-ink-20); text-decoration: none; }
+.bp-pagination__item[aria-current="page"] { background: var(--bp-ink); color: var(--bp-ground); cursor: default; }
+.bp-pagination__item:disabled, .bp-pagination__item[aria-disabled="true"] { opacity: .4; cursor: default; pointer-events: none; }
+.bp-pagination__item:focus-visible { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 2px; }
+.bp-pagination__gap { min-width: var(--bp-control-sm); text-align: center; color: var(--bp-ink-62); font-size: var(--bp-label); }
+.bp-pagination__count { margin-left: var(--bp-3); font-size: var(--bp-label-sm); letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-78); white-space: nowrap; }
+.bp-pagination--sm .bp-pagination__item { min-width: 28px; height: 28px; font-size: var(--bp-label-sm); }
+.bp-pagination--sm .bp-pagination__gap { min-width: 28px; }
+}
+@layer bp.components {
+/* Blueprint Paper · breadcrumb
+   <nav class="bp-breadcrumb" aria-label="Breadcrumb">
+     <ol>
+       <li><a href="#">Project</a></li>
+       <li><a href="#">Pump house</a></li>
+       <li><a href="#" aria-current="page">Sheet 3</a></li>
+     </ol>
+   </nav>
+   Drawn as a sheet reference: uppercase labels, a slash between. --arrows for › instead of /. */
+.bp-breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bp-2); margin: 0; padding: 0; list-style: none; }
+.bp-breadcrumb li { display: inline-flex; align-items: center; gap: var(--bp-2); font-size: var(--bp-label-sm); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-78); }
+.bp-breadcrumb li + li::before { content: "/"; color: var(--bp-ink-62); font-weight: 300; }
+.bp-breadcrumb--arrows li + li::before { content: "›"; }
+.bp-breadcrumb a { color: inherit; text-decoration: none; }
+.bp-breadcrumb a:hover { color: var(--bp-ink); text-decoration: underline; }
+.bp-breadcrumb [aria-current="page"] { color: var(--bp-ink); }
+.bp-breadcrumb a:focus-visible { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 2px; }
+}
+@layer bp.components {
+/* Blueprint Paper · kbd
+   A key cap: <kbd class="bp-kbd">Esc</kbd>
+   A shortcut: <kbd class="bp-kbd"><kbd>⌘</kbd><kbd>K</kbd></kbd>   nested keys are separate caps with a + between
+   --sm for menus and hints. A plain <kbd> inside .bp-sheet keeps the simple inline box from base.css. */
+.bp-kbd {
+  --cap: 24px;
+  display: inline-flex; align-items: center;
+  padding: 0; border: 0; vertical-align: middle; white-space: nowrap;
+  font-family: var(--bp-font); font-size: var(--bp-label-sm); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1;
+}
+.bp-kbd:not(:has(> kbd)), .bp-kbd > kbd {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  min-width: var(--cap); height: var(--cap); padding: 0 var(--bp-2);
+  border: var(--bp-stroke) solid var(--bp-ink); border-bottom-width: var(--bp-stroke-2);   /* the cap's shadow edge */
+  background: var(--bp-ground); color: var(--bp-ink);
+  font: inherit; line-height: 1;
+}
+.bp-kbd > kbd + kbd { margin-left: 16px; }
+.bp-kbd > kbd + kbd::before {                                /* the + between caps */
+  content: "+"; position: absolute; left: -16px; width: 16px; text-align: center;
+  color: var(--bp-ink-62); font-weight: 300;
+}
+.bp-kbd--sm { --cap: 20px; }
+}
 @layer bp.themes {
 /* Blueprint Paper · whiteprint theme
    Pale paper, navy ink. Put data-theme="whiteprint" on <html> (or the class on any .bp-sheet).

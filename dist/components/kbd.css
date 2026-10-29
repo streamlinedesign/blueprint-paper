@@ -1,0 +1,23 @@
+/* Blueprint Paper · kbd
+   A key cap: <kbd class="bp-kbd">Esc</kbd>
+   A shortcut: <kbd class="bp-kbd"><kbd>⌘</kbd><kbd>K</kbd></kbd>   nested keys are separate caps with a + between
+   --sm for menus and hints. A plain <kbd> inside .bp-sheet keeps the simple inline box from base.css. */
+.bp-kbd {
+  --cap: 24px;
+  display: inline-flex; align-items: center;
+  padding: 0; border: 0; vertical-align: middle; white-space: nowrap;
+  font-family: var(--bp-font); font-size: var(--bp-label-sm); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1;
+}
+.bp-kbd:not(:has(> kbd)), .bp-kbd > kbd {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  min-width: var(--cap); height: var(--cap); padding: 0 var(--bp-2);
+  border: var(--bp-stroke) solid var(--bp-ink); border-bottom-width: var(--bp-stroke-2);   /* the cap's shadow edge */
+  background: var(--bp-ground); color: var(--bp-ink);
+  font: inherit; line-height: 1;
+}
+.bp-kbd > kbd + kbd { margin-left: 16px; }
+.bp-kbd > kbd + kbd::before {                                /* the + between caps */
+  content: "+"; position: absolute; left: -16px; width: 16px; text-align: center;
+  color: var(--bp-ink-62); font-weight: 300;
+}
+.bp-kbd--sm { --cap: 20px; }

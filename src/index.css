@@ -22,4 +22,9 @@
 @import url("components/toast.css") layer(bp.components);
 @import url("components/measure.css") layer(bp.components);
 @import url("components/code.css") layer(bp.components);
+@import url("components/progress.css") layer(bp.components);
+@import url("components/skeleton.css") layer(bp.components);
+@import url("components/pagination.css") layer(bp.components);
+@import url("components/breadcrumb.css") layer(bp.components);
+@import url("components/kbd.css") layer(bp.components);
 @import url("themes/whiteprint.css") layer(bp.themes);

@@ -6,6 +6,13 @@ All notable changes to this project are listed here. The format follows [Keep a 
 
 The version stays at 0.9 until 1.0; changes land here in the meantime.
 
+### Added
+- Progress: solid or hatched fill, indeterminate sliding hatch, `--sm` `--lg`, value label.
+- Skeleton: dashed draft placeholder with a slow pulse; `--line` `--sm` `--square` `--circle` `--solid`.
+- Pagination: sheet-number links or buttons, gap, count, `--sm`.
+- Breadcrumb: uppercase sheet reference with `/` or `--arrows`.
+- Kbd: key caps with a heavier bottom edge; nested keys get a + between them; `--sm`.
+
 ### Fixed
 - Vertical switch moved the wrong edge first, so it squashed instead of stretching. It now moves exactly like the horizontal one turned 90°, and a keyboard flip is instant on it too.
 

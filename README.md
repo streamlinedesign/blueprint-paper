@@ -37,7 +37,7 @@ Add `bp-switch--vertical` for a vertical switch where up is on.
 
 ## Components
 
-Tokens, typography, switch, button, field (input, textarea, select), checkbox, radio, card, list, table, badge, tabs, accordion, alert, tooltip, dialog, menu, drawer, toast, measure (dimension lines), code (line numbers, copy).
+Tokens, typography, switch, button, field (input, textarea, select), checkbox, radio, card, list, table, badge, tabs, accordion, alert, tooltip, dialog, menu, drawer, toast, measure (dimension lines), code (line numbers, copy), progress, skeleton, pagination, breadcrumb, kbd.
 
 ## Optional script
 
