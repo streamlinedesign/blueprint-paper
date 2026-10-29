@@ -36,7 +36,7 @@
     }
     if (which.indexOf('h') !== -1) {
       lines.h = document.createElement('span');
-      lines.h.className = 'bp-measure bp-measure--v ' + (sides.indexOf('right') !== -1 ? 'bp-measure--right' : 'bp-measure--left');
+      lines.h.className = 'bp-measure bp-measure--vertical ' + (sides.indexOf('right') !== -1 ? 'bp-measure--right' : 'bp-measure--left');
       el.appendChild(lines.h);
     }
     function update() {

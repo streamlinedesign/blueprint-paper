@@ -5,7 +5,7 @@
    </label>
    Track: solid, always. State is the thumb: hollow = off, filled = on.
    Horizontal (default): off left, on right.  .bp-switch--vertical: off down, on up.
-   Thumb width: --2 --4 --12 --16 (8 default). Track weight: --light (1px).
+   Thumb width: --thumb-2 --thumb-4 --thumb-12 --thumb-16 (8px default). Track weight: --light (1px).
 
    Motion: the thumb's leading edge sets off first and its trailing edge follows 35ms later,
    so it stretches through the slide and settles at the far side, like a real lever under load.
@@ -42,7 +42,7 @@
     right      var(--bp-speed) var(--bp-ease) var(--lag),
     top        var(--bp-speed) var(--bp-ease),
     bottom     var(--bp-speed) var(--bp-ease) var(--lag),
-    background var(--bp-speed-s) linear;
+    background var(--bp-speed-fast) linear;
 }
 .bp-switch input:checked + .bp-switch__track::after {
   left: var(--far); right: var(--pad);                /* on: thumb at the right */
@@ -53,25 +53,45 @@
     left       var(--bp-speed) var(--bp-ease) var(--lag),
     bottom     var(--bp-speed) var(--bp-ease),
     top        var(--bp-speed) var(--bp-ease) var(--lag),
-    background var(--bp-speed-s) linear;
+    background var(--bp-speed-fast) linear;
 }
 .bp-switch:has(input:disabled) { cursor: default; }
 .bp-switch input:disabled { cursor: default; }
 .bp-switch input:disabled + .bp-switch__track { opacity: .4; }
-/* keyboard: flip instantly, a keyboard action should never wait on motion */
+/* vertical: up is on. Same motion turned 90°: the edge facing the destination leads. */
+.bp-switch--vertical { --w: 28px; --h: 52px; --far: calc(var(--h) - var(--thumb) - var(--pad) - 2 * var(--track-stroke)); }
+.bp-switch--vertical .bp-switch__track::after {
+  left: var(--pad); right: var(--pad);
+  bottom: var(--pad); top: var(--far);                 /* off: thumb at the bottom */
+  /* going off (down): bottom edge leads, top edge lags */
+  transition:
+    bottom     var(--bp-speed) var(--bp-ease),
+    top        var(--bp-speed) var(--bp-ease) var(--lag),
+    left       var(--bp-speed) var(--bp-ease),
+    right      var(--bp-speed) var(--bp-ease) var(--lag),
+    background var(--bp-speed-fast) linear;
+}
+.bp-switch--vertical input:checked + .bp-switch__track::after {
+  left: var(--pad); right: var(--pad);
+  top: var(--pad); bottom: var(--far);                 /* on: thumb at the top */
+  /* going on (up): top edge leads, bottom edge lags */
+  transition:
+    top        var(--bp-speed) var(--bp-ease),
+    bottom     var(--bp-speed) var(--bp-ease) var(--lag),
+    right      var(--bp-speed) var(--bp-ease),
+    left       var(--bp-speed) var(--bp-ease) var(--lag),
+    background var(--bp-speed-fast) linear;
+}
+
+/* keyboard: flip instantly, a keyboard action should never wait on motion (after the vertical rules so it wins) */
 .bp-switch input:focus-visible + .bp-switch__track { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 3px; }
 .bp-switch input:focus-visible + .bp-switch__track::after { transition-duration: 0s; transition-delay: 0s; }
 
-/* vertical: up is on */
-.bp-switch--vertical { --w: 28px; --h: 52px; --far: calc(var(--h) - var(--thumb) - var(--pad) - 2 * var(--track-stroke)); }
-.bp-switch--vertical .bp-switch__track::after { left: var(--pad); right: var(--pad); bottom: var(--pad); top: var(--far); }
-.bp-switch--vertical input:checked + .bp-switch__track::after { left: var(--pad); right: var(--pad); top: var(--pad); bottom: var(--far); }
-
 /* sizes */
-.bp-switch--2  { --thumb: 2px; }
-.bp-switch--4  { --thumb: 4px; }
-.bp-switch--12 { --thumb: 12px; }
-.bp-switch--16 { --thumb: 16px; }
+.bp-switch--thumb-2  { --thumb: 2px; }
+.bp-switch--thumb-4  { --thumb: 4px; }
+.bp-switch--thumb-12 { --thumb: 12px; }
+.bp-switch--thumb-16 { --thumb: 16px; }
 .bp-switch--light { --track-stroke: var(--bp-stroke); }
 .bp-switch--lg { --w: 78px; --h: 42px; --pad: 6px; --thumb: 12px; --lag: 40ms; }
 .bp-switch--lg.bp-switch--vertical { --w: 42px; --h: 78px; }

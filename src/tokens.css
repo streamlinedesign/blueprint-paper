@@ -5,9 +5,7 @@
   --bp-ground:     #0B2F6E;
   --bp-ink:        #F2F6FF;
   --bp-ink-78:     rgba(242, 246, 255, .78);   /* secondary text */
-  --bp-ink-72:     var(--bp-ink-78);             /* kept for older markup */
   --bp-ink-62:     rgba(242, 246, 255, .62);   /* light rules, placeholders */
-  --bp-ink-55:     var(--bp-ink-62);             /* kept for older markup */
   --bp-ink-20:     rgba(242, 246, 255, .20);   /* hover fill */
   --bp-ink-09:     rgba(242, 246, 255, .09);   /* grid */
 
@@ -15,13 +13,13 @@
   --bp-font:       'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
   --bp-track:      .14em;                      /* letter-spacing for uppercase labels */
   --bp-text:       14px;
-  --bp-text-s:     12px;
+  --bp-text-sm:    12px;
   --bp-label:      11px;
-  --bp-label-s:    10px;
+  --bp-label-sm:    10px;
   --bp-display-xl: 56px;
-  --bp-display-l:  40px;
-  --bp-display-m:  32px;
-  --bp-display-s:  18px;
+  --bp-display-lg:  40px;
+  --bp-display-md:  32px;
+  --bp-display-sm:  18px;
   --bp-leading:    1.6;
 
   /* space */
@@ -33,11 +31,11 @@
   --bp-stroke-2:   2px;
   --bp-grid:       26px;
   --bp-control:    48px;                       /* standard control height */
-  --bp-control-s:  36px;
+  --bp-control-sm:  36px;
 
   /* motion: fast, ease-out, never ease-in-out */
   --bp-speed:      180ms;
-  --bp-speed-s:    120ms;
+  --bp-speed-fast: 120ms;
   --bp-ease:       cubic-bezier(.25, 1, .5, 1);
 
   /* assets drawn in ink (themes override) */

@@ -4,10 +4,10 @@
 .bp-badge {
   display: inline-flex; align-items: center; gap: var(--bp-1);
   padding: 3px var(--bp-2); border: var(--bp-stroke) solid var(--bp-ink);
-  font-size: var(--bp-label-s); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1.2; white-space: nowrap;
+  font-size: var(--bp-label-sm); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1.2; white-space: nowrap;
 }
 .bp-badge--solid { background: var(--bp-ink); color: var(--bp-ground); }
-.bp-badge--dim { border-color: var(--bp-ink-55); color: var(--bp-ink-72); }
+.bp-badge--dim { border-color: var(--bp-ink-62); color: var(--bp-ink-78); }
 .bp-stamp {
   display: inline-block; padding: var(--bp-1) var(--bp-3);
   border: var(--bp-stroke-2) solid var(--bp-ink);

@@ -1,7 +1,7 @@
 /* Blueprint Paper · drawer, on native <dialog>
    <dialog class="bp-drawer" id="dr">
      <form method="dialog" class="bp-drawer__frame">
-       <header class="bp-drawer__title"><div><span class="bp-label-s bp-dim">Sheet 3</span><h3>Pump A</h3></div><button class="bp-btn bp-btn--sm bp-btn--icon bp-btn--ghost" value="close" aria-label="Close">×</button></header>
+       <header class="bp-drawer__title"><div><span class="bp-label--sm bp-dim">Sheet 3</span><h3>Pump A</h3></div><button class="bp-btn bp-btn--sm bp-btn--icon bp-btn--ghost" value="close" aria-label="Close">×</button></header>
        <div class="bp-drawer__body">…</div>
        <footer class="bp-drawer__footer">…</footer>
      </form>

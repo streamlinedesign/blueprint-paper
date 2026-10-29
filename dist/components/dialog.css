@@ -1,7 +1,7 @@
 /* Blueprint Paper · dialog, on native <dialog>
    <dialog class="bp-dialog" id="d">
      <form method="dialog" class="bp-dialog__frame">
-       <header class="bp-dialog__title"><div><span class="bp-label-s bp-dim">Confirm</span><h3>Issue revision B2?</h3></div></header>
+       <header class="bp-dialog__title"><div><span class="bp-label--sm bp-dim">Confirm</span><h3>Issue revision B2?</h3></div></header>
        <div class="bp-dialog__body">…</div>
        <footer class="bp-dialog__footer"><button class="bp-btn bp-btn--sm" value="cancel">Cancel</button><button class="bp-btn bp-btn--sm bp-btn--solid" value="ok">Issue</button></footer>
      </form>

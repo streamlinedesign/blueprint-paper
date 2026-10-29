@@ -8,14 +8,14 @@
   -webkit-appearance: none; appearance: none;
   position: relative; flex: none; width: 18px; height: 18px; margin: 0;
   border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground); cursor: pointer;
-  transition: transform var(--bp-speed-s) var(--bp-ease);
+  transition: transform var(--bp-speed-fast) var(--bp-ease);
 }
 .bp-radio { border-radius: 50%; }
 .bp-checkbox::after, .bp-radio::after {
   content: ""; position: absolute; inset: 4px;
   background: var(--bp-ink); border-radius: inherit;
   transform: scale(.6); opacity: 0;
-  transition: transform var(--bp-speed) var(--bp-ease), opacity var(--bp-speed-s) linear;
+  transition: transform var(--bp-speed) var(--bp-ease), opacity var(--bp-speed-fast) linear;
 }
 .bp-checkbox:checked::after, .bp-radio:checked::after { transform: scale(1); opacity: 1; }
 .bp-checkbox:indeterminate::after { opacity: 1; transform: scale(1); inset: 8px 4px; }

@@ -11,7 +11,7 @@
   display: flex; flex-direction: column; gap: 2px; width: 100%;
   padding: var(--bp-3) var(--bp-4);
   border: var(--bp-stroke) solid var(--bp-ink); border-left-width: 4px;
-  background: var(--bp-ground); color: var(--bp-ink); font-size: var(--bp-text-s); line-height: 1.5;
+  background: var(--bp-ground); color: var(--bp-ink); font-size: var(--bp-text-sm); line-height: 1.5;
   box-shadow: 4px 4px 0 var(--bp-ground), 5px 5px 0 var(--bp-ink);   /* a second sheet behind */
 }
 .bp-toast--solid { background: var(--bp-ink); color: var(--bp-ground); box-shadow: 4px 4px 0 var(--bp-ink), 5px 5px 0 var(--bp-ground); }
@@ -36,7 +36,7 @@
   position: absolute; left: 0; right: 0; bottom: 0; pointer-events: auto; touch-action: pan-x; user-select: none;
   transform: translate(var(--swipe-x), calc(var(--dir) * var(--index) * var(--peek) + var(--swipe-y))) scale(calc(1 - var(--index) * .05));
   transform-origin: center bottom;
-  transition: transform 220ms var(--bp-ease), opacity var(--bp-speed-s) linear;
+  transition: transform 220ms var(--bp-ease), opacity var(--bp-speed-fast) linear;
   animation: bp-toast-in var(--bp-speed) var(--bp-ease);
 }
 .bp-toasts--top > .bp-toast { bottom: auto; top: 0; transform-origin: center top; }
@@ -46,7 +46,7 @@
 .bp-toasts[data-expanded] > .bp-toast { transform: translate(var(--swipe-x), calc(var(--dir) * var(--offset) + var(--swipe-y))) scale(1); opacity: 1; pointer-events: auto; }
 .bp-toasts[data-expanded] > .bp-toast > * { visibility: visible; }
 .bp-toasts > .bp-toast.is-swiping { transition: none; }
-.bp-toasts > .bp-toast.is-leaving { animation: bp-toast-out var(--bp-speed-s) linear forwards; pointer-events: none; }
+.bp-toasts > .bp-toast.is-leaving { animation: bp-toast-out var(--bp-speed-fast) linear forwards; pointer-events: none; }
 .bp-toasts > .bp-toast.is-swiped { animation: bp-toast-swiped var(--bp-speed) var(--bp-ease) forwards; pointer-events: none; }
 @keyframes bp-toast-in  { from { opacity: 0; transform: translateY(calc(var(--dir) * -8px)) scale(.97); } }
 @keyframes bp-toast-out { to { opacity: 0; } }

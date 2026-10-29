@@ -1,6 +1,6 @@
 /* Blueprint Paper · card and list rows
    <section class="bp-card">
-     <header class="bp-card__title"><div><span class="bp-label-s bp-dim">Sheet</span><h3>Name</h3></div></header>
+     <header class="bp-card__title"><div><span class="bp-label--sm bp-dim">Sheet</span><h3>Name</h3></div></header>
      <div class="bp-card__body">…</div>
      <footer class="bp-card__footer">…</footer>
    </section>
@@ -24,7 +24,7 @@
 }
 .bp-list__row:first-child { margin-top: 0; }
 .bp-list__row > .bp-grow { display: flex; flex-direction: column; gap: var(--bp-1); }
-.bp-list--light .bp-list__row { border-width: 0 0 var(--bp-stroke); border-color: var(--bp-ink-55); background: transparent; padding-left: 0; padding-right: 0; margin-top: 0; }
+.bp-list--light .bp-list__row { border-width: 0 0 var(--bp-stroke); border-color: var(--bp-ink-62); background: transparent; padding-left: 0; padding-right: 0; margin-top: 0; }
 .bp-list--light .bp-list__row:first-child { border-top-width: var(--bp-stroke); }
 .bp-card__body--flush > .bp-list .bp-list__row { border-left: 0; border-right: 0; }
 .bp-card__body--flush > .bp-list .bp-list__row:first-child { border-top: 0; }

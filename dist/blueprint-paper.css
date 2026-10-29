@@ -8,9 +8,7 @@
   --bp-ground:     #0B2F6E;
   --bp-ink:        #F2F6FF;
   --bp-ink-78:     rgba(242, 246, 255, .78);   /* secondary text */
-  --bp-ink-72:     var(--bp-ink-78);             /* kept for older markup */
   --bp-ink-62:     rgba(242, 246, 255, .62);   /* light rules, placeholders */
-  --bp-ink-55:     var(--bp-ink-62);             /* kept for older markup */
   --bp-ink-20:     rgba(242, 246, 255, .20);   /* hover fill */
   --bp-ink-09:     rgba(242, 246, 255, .09);   /* grid */
 
@@ -18,13 +16,13 @@
   --bp-font:       'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
   --bp-track:      .14em;                      /* letter-spacing for uppercase labels */
   --bp-text:       14px;
-  --bp-text-s:     12px;
+  --bp-text-sm:    12px;
   --bp-label:      11px;
-  --bp-label-s:    10px;
+  --bp-label-sm:    10px;
   --bp-display-xl: 56px;
-  --bp-display-l:  40px;
-  --bp-display-m:  32px;
-  --bp-display-s:  18px;
+  --bp-display-lg:  40px;
+  --bp-display-md:  32px;
+  --bp-display-sm:  18px;
   --bp-leading:    1.6;
 
   /* space */
@@ -36,11 +34,11 @@
   --bp-stroke-2:   2px;
   --bp-grid:       26px;
   --bp-control:    48px;                       /* standard control height */
-  --bp-control-s:  36px;
+  --bp-control-sm:  36px;
 
   /* motion: fast, ease-out, never ease-in-out */
   --bp-speed:      180ms;
-  --bp-speed-s:    120ms;
+  --bp-speed-fast: 120ms;
   --bp-ease:       cubic-bezier(.25, 1, .5, 1);
 
   /* assets drawn in ink (themes override) */
@@ -83,46 +81,46 @@
 }
 .bp-marks::before { left: 0;  border-left:  var(--bp-stroke) solid var(--bp-ink); }
 .bp-marks::after  { right: 0; border-right: var(--bp-stroke) solid var(--bp-ink); }
-.bp-marks--b { top: auto; bottom: 12px; }
-.bp-marks--b::before, .bp-marks--b::after { border-top: 0; border-bottom: var(--bp-stroke) solid var(--bp-ink); }
+.bp-marks--bottom { top: auto; bottom: 12px; }
+.bp-marks--bottom::before, .bp-marks--bottom::after { border-top: 0; border-bottom: var(--bp-stroke) solid var(--bp-ink); }
 
 /* typography */
 .bp-sheet h1, .bp-sheet h2, .bp-sheet h3, .bp-sheet h4, .bp-sheet p, .bp-sheet ul, .bp-sheet ol { margin: 0; }
 .bp-sheet h1, .bp-sheet .bp-display { font-weight: 300; line-height: 1.05; letter-spacing: -.02em; text-wrap: balance; }
-.bp-sheet h1 { font-size: var(--bp-display-l); }
-.bp-sheet h2 { font-size: var(--bp-display-m); font-weight: 300; line-height: 1.1; letter-spacing: -.015em; text-wrap: balance; }
-.bp-sheet h3 { font-size: var(--bp-display-s); font-weight: 400; line-height: 1.3; }
+.bp-sheet h1 { font-size: var(--bp-display-lg); }
+.bp-sheet h2 { font-size: var(--bp-display-md); font-weight: 300; line-height: 1.1; letter-spacing: -.015em; text-wrap: balance; }
+.bp-sheet h3 { font-size: var(--bp-display-sm); font-weight: 400; line-height: 1.3; }
 .bp-sheet h4 { font-size: var(--bp-label); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
 .bp-display--xl { font-size: var(--bp-display-xl); }
-.bp-display--l  { font-size: var(--bp-display-l); }
-.bp-display--m  { font-size: var(--bp-display-m); }
-.bp-display--s  { font-size: var(--bp-display-s); }
+.bp-display--lg  { font-size: var(--bp-display-lg); }
+.bp-display--md  { font-size: var(--bp-display-md); }
+.bp-display--sm  { font-size: var(--bp-display-sm); }
 .bp-label   { font-size: var(--bp-label);   font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
-.bp-label-s { font-size: var(--bp-label-s); font-weight: 400; letter-spacing: var(--bp-track); text-transform: uppercase; }
+.bp-label--sm { font-size: var(--bp-label-sm); font-weight: 400; letter-spacing: var(--bp-track); text-transform: uppercase; }
 .bp-text    { font-size: var(--bp-text); }
-.bp-text-s  { font-size: var(--bp-text-s); }
-.bp-dim     { color: var(--bp-ink-72); }
-.bp-faint   { color: var(--bp-ink-55); }
+.bp-text--sm  { font-size: var(--bp-text-sm); }
+.bp-dim     { color: var(--bp-ink-78); }
+.bp-faint   { color: var(--bp-ink-62); }
 .bp-prose   { max-width: 62ch; }
 .bp-num     { font-variant-numeric: tabular-nums; }
-.bp-fig     { display: flex; justify-content: space-between; align-items: baseline; gap: var(--bp-3); }
+.bp-readout     { display: flex; justify-content: space-between; align-items: baseline; gap: var(--bp-3); }
 
 .bp-sheet a { color: inherit; text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: var(--bp-stroke); }
 .bp-sheet a:hover { text-decoration-thickness: var(--bp-stroke-2); }
 .bp-sheet code, .bp-sheet kbd {
   font-family: var(--bp-font); font-size: .92em; padding: 0 .35em;
-  border: var(--bp-stroke) solid var(--bp-ink-55);
+  border: var(--bp-stroke) solid var(--bp-ink-62);
 }
 .bp-sheet pre {                      /* give long ones tabindex="0" so keyboards can scroll them */
   margin: 0; padding: var(--bp-4); overflow-x: auto;
-  border: var(--bp-stroke) solid var(--bp-ink-55); font-size: var(--bp-text-s); line-height: 1.55;
+  border: var(--bp-stroke) solid var(--bp-ink-62); font-size: var(--bp-text-sm); line-height: 1.55;
 }
 .bp-sheet pre code { border: 0; padding: 0; font-size: inherit; }
 
 /* rules */
 .bp-rule { border: 0; border-top: var(--bp-stroke) solid var(--bp-ink); margin: 0; }
-.bp-rule--light { border-top-color: var(--bp-ink-55); }
-.bp-rule--dash  { border-top-style: dashed; border-top-color: var(--bp-ink-55); }
+.bp-rule--light { border-top-color: var(--bp-ink-62); }
+.bp-rule--dashed  { border-top-style: dashed; border-top-color: var(--bp-ink-62); }
 .bp-rule--heavy { border-top-width: var(--bp-stroke-2); }
 
 /* layout helpers */
@@ -143,7 +141,7 @@
    </label>
    Track: solid, always. State is the thumb: hollow = off, filled = on.
    Horizontal (default): off left, on right.  .bp-switch--vertical: off down, on up.
-   Thumb width: --2 --4 --12 --16 (8 default). Track weight: --light (1px).
+   Thumb width: --thumb-2 --thumb-4 --thumb-12 --thumb-16 (8px default). Track weight: --light (1px).
 
    Motion: the thumb's leading edge sets off first and its trailing edge follows 35ms later,
    so it stretches through the slide and settles at the far side, like a real lever under load.
@@ -180,7 +178,7 @@
     right      var(--bp-speed) var(--bp-ease) var(--lag),
     top        var(--bp-speed) var(--bp-ease),
     bottom     var(--bp-speed) var(--bp-ease) var(--lag),
-    background var(--bp-speed-s) linear;
+    background var(--bp-speed-fast) linear;
 }
 .bp-switch input:checked + .bp-switch__track::after {
   left: var(--far); right: var(--pad);                /* on: thumb at the right */
@@ -191,25 +189,45 @@
     left       var(--bp-speed) var(--bp-ease) var(--lag),
     bottom     var(--bp-speed) var(--bp-ease),
     top        var(--bp-speed) var(--bp-ease) var(--lag),
-    background var(--bp-speed-s) linear;
+    background var(--bp-speed-fast) linear;
 }
 .bp-switch:has(input:disabled) { cursor: default; }
 .bp-switch input:disabled { cursor: default; }
 .bp-switch input:disabled + .bp-switch__track { opacity: .4; }
-/* keyboard: flip instantly, a keyboard action should never wait on motion */
+/* vertical: up is on. Same motion turned 90°: the edge facing the destination leads. */
+.bp-switch--vertical { --w: 28px; --h: 52px; --far: calc(var(--h) - var(--thumb) - var(--pad) - 2 * var(--track-stroke)); }
+.bp-switch--vertical .bp-switch__track::after {
+  left: var(--pad); right: var(--pad);
+  bottom: var(--pad); top: var(--far);                 /* off: thumb at the bottom */
+  /* going off (down): bottom edge leads, top edge lags */
+  transition:
+    bottom     var(--bp-speed) var(--bp-ease),
+    top        var(--bp-speed) var(--bp-ease) var(--lag),
+    left       var(--bp-speed) var(--bp-ease),
+    right      var(--bp-speed) var(--bp-ease) var(--lag),
+    background var(--bp-speed-fast) linear;
+}
+.bp-switch--vertical input:checked + .bp-switch__track::after {
+  left: var(--pad); right: var(--pad);
+  top: var(--pad); bottom: var(--far);                 /* on: thumb at the top */
+  /* going on (up): top edge leads, bottom edge lags */
+  transition:
+    top        var(--bp-speed) var(--bp-ease),
+    bottom     var(--bp-speed) var(--bp-ease) var(--lag),
+    right      var(--bp-speed) var(--bp-ease),
+    left       var(--bp-speed) var(--bp-ease) var(--lag),
+    background var(--bp-speed-fast) linear;
+}
+
+/* keyboard: flip instantly, a keyboard action should never wait on motion (after the vertical rules so it wins) */
 .bp-switch input:focus-visible + .bp-switch__track { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 3px; }
 .bp-switch input:focus-visible + .bp-switch__track::after { transition-duration: 0s; transition-delay: 0s; }
 
-/* vertical: up is on */
-.bp-switch--vertical { --w: 28px; --h: 52px; --far: calc(var(--h) - var(--thumb) - var(--pad) - 2 * var(--track-stroke)); }
-.bp-switch--vertical .bp-switch__track::after { left: var(--pad); right: var(--pad); bottom: var(--pad); top: var(--far); }
-.bp-switch--vertical input:checked + .bp-switch__track::after { left: var(--pad); right: var(--pad); top: var(--pad); bottom: var(--far); }
-
 /* sizes */
-.bp-switch--2  { --thumb: 2px; }
-.bp-switch--4  { --thumb: 4px; }
-.bp-switch--12 { --thumb: 12px; }
-.bp-switch--16 { --thumb: 16px; }
+.bp-switch--thumb-2  { --thumb: 2px; }
+.bp-switch--thumb-4  { --thumb: 4px; }
+.bp-switch--thumb-12 { --thumb: 12px; }
+.bp-switch--thumb-16 { --thumb: 16px; }
 .bp-switch--light { --track-stroke: var(--bp-stroke); }
 .bp-switch--lg { --w: 78px; --h: 42px; --pad: 6px; --thumb: 12px; --lag: 40ms; }
 .bp-switch--lg.bp-switch--vertical { --w: 42px; --h: 78px; }
@@ -230,19 +248,19 @@
   font: 500 var(--bp-label)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
   text-decoration: none; cursor: pointer; white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
-  transition: background var(--bp-speed-s) linear, color var(--bp-speed-s) linear, transform var(--bp-speed-s) var(--bp-ease);
+  transition: background var(--bp-speed-fast) linear, color var(--bp-speed-fast) linear, transform var(--bp-speed-fast) var(--bp-ease);
 }
 .bp-btn:hover { background: var(--bp-ink-20); }
 .bp-btn:active { transform: scale(.97); }
 .bp-btn--solid { background: var(--bp-ink); color: var(--bp-ground); }
-.bp-btn--solid:hover { background: var(--bp-ink-72); }
+.bp-btn--solid:hover { background: var(--bp-ink-78); }
 .bp-btn--ghost { border-color: transparent; }
-.bp-btn--ghost:hover { border-color: var(--bp-ink-55); background: transparent; }
-.bp-btn--sm { min-height: var(--bp-control-s); padding: 0 var(--bp-4); font-size: var(--bp-label-s); }
+.bp-btn--ghost:hover { border-color: var(--bp-ink-62); background: transparent; }
+.bp-btn--sm { min-height: var(--bp-control-sm); padding: 0 var(--bp-4); font-size: var(--bp-label-sm); }
 .bp-btn--lg { min-height: 56px; padding: 0 var(--bp-6); }
 .bp-btn--block { display: flex; width: 100%; }
 .bp-btn--icon { padding: 0; width: var(--bp-control); }
-.bp-btn--icon.bp-btn--sm { width: var(--bp-control-s); }
+.bp-btn--icon.bp-btn--sm { width: var(--bp-control-sm); }
 .bp-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.25; flex: none; }
 .bp-btn:disabled, .bp-btn[aria-disabled="true"] { opacity: .4; cursor: default; transform: none; }
 .bp-btn:disabled:hover { background: transparent; }
@@ -263,7 +281,7 @@
    </div> */
 .bp-field { display: flex; flex-direction: column; gap: var(--bp-2); min-width: 0; }
 .bp-field__label { font-size: var(--bp-label); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
-.bp-field__hint { font-size: var(--bp-text-s); color: var(--bp-ink-72); }
+.bp-field__hint { font-size: var(--bp-text-sm); color: var(--bp-ink-78); }
 .bp-field--invalid .bp-field__hint { color: var(--bp-ink); }
 .bp-field--invalid .bp-input, .bp-field--invalid .bp-select, .bp-field--invalid .bp-textarea { border-width: var(--bp-stroke-2); }
 
@@ -273,14 +291,14 @@
   background: var(--bp-ground); color: var(--bp-ink);
   font: 400 var(--bp-text)/1.4 var(--bp-font);
   -webkit-appearance: none; appearance: none;
-  transition: border-color var(--bp-speed-s) linear;
+  transition: border-color var(--bp-speed-fast) linear;
 }
-.bp-input::placeholder, .bp-textarea::placeholder { color: var(--bp-ink-55); }
+.bp-input::placeholder, .bp-textarea::placeholder { color: var(--bp-ink-62); }
 .bp-input:hover, .bp-textarea:hover, .bp-select:hover { border-color: var(--bp-ink); }
 .bp-input:focus-visible, .bp-textarea:focus-visible, .bp-select:focus-visible { outline-offset: 2px; }
 .bp-input:disabled, .bp-textarea:disabled, .bp-select:disabled { opacity: .4; cursor: default; }
-.bp-input:read-only:not(:disabled) { border-style: dashed; border-color: var(--bp-ink-55); }
-.bp-input--sm, .bp-select--sm { min-height: var(--bp-control-s); padding: 0 var(--bp-3); font-size: var(--bp-text-s); }
+.bp-input:read-only:not(:disabled) { border-style: dashed; border-color: var(--bp-ink-62); }
+.bp-input--sm, .bp-select--sm { min-height: var(--bp-control-sm); padding: 0 var(--bp-3); font-size: var(--bp-text-sm); }
 .bp-textarea { min-height: 120px; padding: var(--bp-3) var(--bp-4); resize: vertical; }
 .bp-select {
   padding-right: calc(var(--bp-4) * 2 + 12px); cursor: pointer;
@@ -289,16 +307,16 @@
 }
 .bp-select option { background: var(--bp-ground); color: var(--bp-ink); }
 
-/* input with a unit or prefix: <div class="bp-input-group"><span class="bp-input-group__add">mm</span><input class="bp-input"></div> */
+/* input with a unit or prefix: <div class="bp-input-group"><span class="bp-input-group__addon">mm</span><input class="bp-input"></div> */
 .bp-input-group { display: flex; }
 .bp-input-group > .bp-input { flex: 1; min-width: 0; }
 .bp-input-group > .bp-input:not(:first-child) { margin-left: calc(-1 * var(--bp-stroke)); }
-.bp-input-group__add {
+.bp-input-group__addon {
   display: inline-flex; align-items: center; padding: 0 var(--bp-3);
-  border: var(--bp-stroke) solid var(--bp-ink); color: var(--bp-ink-72);
-  font-size: var(--bp-label-s); letter-spacing: var(--bp-track); text-transform: uppercase; white-space: nowrap;
+  border: var(--bp-stroke) solid var(--bp-ink); color: var(--bp-ink-78);
+  font-size: var(--bp-label-sm); letter-spacing: var(--bp-track); text-transform: uppercase; white-space: nowrap;
 }
-.bp-input-group__add + .bp-input { margin-left: calc(-1 * var(--bp-stroke)); }
+.bp-input-group__addon + .bp-input { margin-left: calc(-1 * var(--bp-stroke)); }
 }
 @layer bp.components {
 /* Blueprint Paper · checkbox and radio
@@ -311,14 +329,14 @@
   -webkit-appearance: none; appearance: none;
   position: relative; flex: none; width: 18px; height: 18px; margin: 0;
   border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground); cursor: pointer;
-  transition: transform var(--bp-speed-s) var(--bp-ease);
+  transition: transform var(--bp-speed-fast) var(--bp-ease);
 }
 .bp-radio { border-radius: 50%; }
 .bp-checkbox::after, .bp-radio::after {
   content: ""; position: absolute; inset: 4px;
   background: var(--bp-ink); border-radius: inherit;
   transform: scale(.6); opacity: 0;
-  transition: transform var(--bp-speed) var(--bp-ease), opacity var(--bp-speed-s) linear;
+  transition: transform var(--bp-speed) var(--bp-ease), opacity var(--bp-speed-fast) linear;
 }
 .bp-checkbox:checked::after, .bp-radio:checked::after { transform: scale(1); opacity: 1; }
 .bp-checkbox:indeterminate::after { opacity: 1; transform: scale(1); inset: 8px 4px; }
@@ -335,7 +353,7 @@
 @layer bp.components {
 /* Blueprint Paper · card and list rows
    <section class="bp-card">
-     <header class="bp-card__title"><div><span class="bp-label-s bp-dim">Sheet</span><h3>Name</h3></div></header>
+     <header class="bp-card__title"><div><span class="bp-label--sm bp-dim">Sheet</span><h3>Name</h3></div></header>
      <div class="bp-card__body">…</div>
      <footer class="bp-card__footer">…</footer>
    </section>
@@ -359,7 +377,7 @@
 }
 .bp-list__row:first-child { margin-top: 0; }
 .bp-list__row > .bp-grow { display: flex; flex-direction: column; gap: var(--bp-1); }
-.bp-list--light .bp-list__row { border-width: 0 0 var(--bp-stroke); border-color: var(--bp-ink-55); background: transparent; padding-left: 0; padding-right: 0; margin-top: 0; }
+.bp-list--light .bp-list__row { border-width: 0 0 var(--bp-stroke); border-color: var(--bp-ink-62); background: transparent; padding-left: 0; padding-right: 0; margin-top: 0; }
 .bp-list--light .bp-list__row:first-child { border-top-width: var(--bp-stroke); }
 .bp-card__body--flush > .bp-list .bp-list__row { border-left: 0; border-right: 0; }
 .bp-card__body--flush > .bp-list .bp-list__row:first-child { border-top: 0; }
@@ -370,14 +388,14 @@
    <div class="bp-table-wrap" tabindex="0"><table class="bp-table">…</table></div>
    The tabindex lets keyboard users scroll a wide table. */
 .bp-table-wrap { overflow-x: auto; max-width: 100%; }
-.bp-table { width: 100%; border-collapse: collapse; font-size: var(--bp-text-s); font-variant-numeric: tabular-nums; }
-.bp-table th, .bp-table td { padding: var(--bp-3) var(--bp-4); text-align: left; vertical-align: middle; border: var(--bp-stroke) solid var(--bp-ink-55); }
-.bp-table th { font-size: var(--bp-label-s); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-72); border-bottom-color: var(--bp-ink); }
+.bp-table { width: 100%; border-collapse: collapse; font-size: var(--bp-text-sm); font-variant-numeric: tabular-nums; }
+.bp-table th, .bp-table td { padding: var(--bp-3) var(--bp-4); text-align: left; vertical-align: middle; border: var(--bp-stroke) solid var(--bp-ink-62); }
+.bp-table th { font-size: var(--bp-label-sm); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-78); border-bottom-color: var(--bp-ink); }
 .bp-table .bp-num { text-align: right; }        /* numbers right-aligned, tabular (bp-num is in base.css) */
 .bp-table tbody tr:hover { background: var(--bp-ink-09); }
 .bp-table--heavy th, .bp-table--heavy td { border-color: var(--bp-ink); }
-.bp-table--lines th, .bp-table--lines td { border-left: 0; border-right: 0; }
-.bp-table caption { caption-side: bottom; padding-top: var(--bp-2); font-size: var(--bp-label-s); letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-72); text-align: left; }
+.bp-table--rows th, .bp-table--rows td { border-left: 0; border-right: 0; }
+.bp-table caption { caption-side: bottom; padding-top: var(--bp-2); font-size: var(--bp-label-sm); letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-78); text-align: left; }
 }
 @layer bp.components {
 /* Blueprint Paper · badge and stamp
@@ -386,10 +404,10 @@
 .bp-badge {
   display: inline-flex; align-items: center; gap: var(--bp-1);
   padding: 3px var(--bp-2); border: var(--bp-stroke) solid var(--bp-ink);
-  font-size: var(--bp-label-s); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1.2; white-space: nowrap;
+  font-size: var(--bp-label-sm); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1.2; white-space: nowrap;
 }
 .bp-badge--solid { background: var(--bp-ink); color: var(--bp-ground); }
-.bp-badge--dim { border-color: var(--bp-ink-55); color: var(--bp-ink-72); }
+.bp-badge--dim { border-color: var(--bp-ink-62); color: var(--bp-ink-78); }
 .bp-stamp {
   display: inline-block; padding: var(--bp-1) var(--bp-3);
   border: var(--bp-stroke-2) solid var(--bp-ink);
@@ -414,24 +432,24 @@
 .bp-tab {
   flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: var(--bp-2);
   min-height: var(--bp-control); padding: 0 var(--bp-4); margin-left: calc(-1 * var(--bp-stroke));
-  border: var(--bp-stroke) solid var(--bp-ink-55); background: transparent; color: inherit;
+  border: var(--bp-stroke) solid var(--bp-ink-62); background: transparent; color: inherit;
   font: 500 var(--bp-label)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
   text-decoration: none; cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent;
-  transition: background var(--bp-speed-s) linear, color var(--bp-speed-s) linear;
+  transition: background var(--bp-speed-fast) linear, color var(--bp-speed-fast) linear;
 }
 .bp-tab:first-of-type, .bp-tabset > input:first-of-type + .bp-tab { margin-left: 0; }
 .bp-tab:hover { border-color: var(--bp-ink); position: relative; z-index: 1; }
 .bp-tab[aria-selected="true"], .bp-tabset > input:checked + .bp-tab {
   background: var(--bp-ink); color: var(--bp-ground); border-color: var(--bp-ink); position: relative; z-index: 1;
 }
-.bp-tabs--sm .bp-tab, .bp-tabset--sm .bp-tab { min-height: var(--bp-control-s); font-size: var(--bp-label-s); }
+.bp-tabs--sm .bp-tab, .bp-tabset--sm .bp-tab { min-height: var(--bp-control-sm); font-size: var(--bp-label-sm); }
 .bp-tabs--fit .bp-tab, .bp-tabset--fit .bp-tab { flex: none; }
 
 .bp-tabset > input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
 .bp-tabset > input:focus-visible + .bp-tab { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 3px; z-index: 2; }
 .bp-tabset__panels { flex-basis: 100%; }
 .bp-tabpanel { display: none; padding-top: var(--bp-4); }
-.bp-tabpanel--boxed { padding: var(--bp-4); border: var(--bp-stroke) solid var(--bp-ink-55); border-top: 0; }
+.bp-tabpanel--boxed { padding: var(--bp-4); border: var(--bp-stroke) solid var(--bp-ink-62); border-top: 0; }
 .bp-tabset:has(> input:nth-of-type(1):checked) .bp-tabpanel:nth-of-type(1),
 .bp-tabset:has(> input:nth-of-type(2):checked) .bp-tabpanel:nth-of-type(2),
 .bp-tabset:has(> input:nth-of-type(3):checked) .bp-tabpanel:nth-of-type(3),
@@ -468,7 +486,7 @@
 .bp-accordion__summary:hover { background: var(--bp-ink-09); }
 .bp-accordion__summary:focus-visible { outline-offset: -4px; }
 .bp-accordion__body { padding: 0 var(--bp-4) var(--bp-4); display: flex; flex-direction: column; gap: var(--bp-3); }
-.bp-accordion--light .bp-accordion__item { border-width: 0 0 var(--bp-stroke); border-color: var(--bp-ink-55); margin-top: 0; }
+.bp-accordion--light .bp-accordion__item { border-width: 0 0 var(--bp-stroke); border-color: var(--bp-ink-62); margin-top: 0; }
 .bp-accordion--light .bp-accordion__item:first-child { border-top-width: var(--bp-stroke); }
 .bp-accordion--light .bp-accordion__summary, .bp-accordion--light .bp-accordion__body { padding-left: 0; padding-right: 0; }
 .bp-accordion--light .bp-accordion__summary:hover { background: transparent; text-decoration: underline; text-underline-offset: .25em; }
@@ -484,7 +502,7 @@
   display: flex; flex-direction: column; gap: var(--bp-1);
   padding: var(--bp-3) var(--bp-4);
   border: var(--bp-stroke) solid var(--bp-ink); border-left-width: 4px;
-  background: var(--bp-ground); color: var(--bp-ink); font-size: var(--bp-text-s); line-height: 1.5;
+  background: var(--bp-ground); color: var(--bp-ink); font-size: var(--bp-text-sm); line-height: 1.5;
 }
 .bp-alert__title { font-size: var(--bp-label); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
 .bp-alert__text { margin: 0; }
@@ -492,40 +510,40 @@
 .bp-alert--solid { background: var(--bp-ink); color: var(--bp-ground); border-color: var(--bp-ink); }
 .bp-alert--solid .bp-btn { border-color: var(--bp-ground); color: var(--bp-ground); }
 .bp-alert--solid .bp-btn:hover { background: var(--bp-ground); color: var(--bp-ink); }
-.bp-alert--dim { border-color: var(--bp-ink-55); border-left-width: var(--bp-stroke); color: var(--bp-ink-72); }
+.bp-alert--dim { border-color: var(--bp-ink-62); border-left-width: var(--bp-stroke); color: var(--bp-ink-78); }
 .bp-alert--row { flex-direction: row; align-items: center; gap: var(--bp-4); }
 .bp-alert--row .bp-alert__actions { margin: 0 0 0 auto; }
 }
 @layer bp.components {
 /* Blueprint Paper · tooltip, pure CSS
-   <button class="bp-btn bp-tip" data-tip="Issue this revision">Issue</button>
+   <button class="bp-btn bp-tooltip" data-tooltip="Issue this revision">Issue</button>
    Shows on hover and keyboard focus. Position: default above; --below --left --right.
    Short labels only; for anything longer, put the text on the page. */
-.bp-tip { position: relative; }
-.bp-tip::after {
-  content: attr(data-tip); position: absolute; z-index: 5; left: 50%; bottom: calc(100% + 8px);
+.bp-tooltip { position: relative; }
+.bp-tooltip::after {
+  content: attr(data-tooltip); position: absolute; z-index: 5; left: 50%; bottom: calc(100% + 8px);
   transform: translate(-50%, 4px);
   padding: 5px var(--bp-2); border: var(--bp-stroke) solid var(--bp-ink);
   background: var(--bp-ground); color: var(--bp-ink);
-  font: 400 var(--bp-label-s)/1.3 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase; white-space: nowrap;
+  font: 400 var(--bp-label-sm)/1.3 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase; white-space: nowrap;
   opacity: 0; pointer-events: none;
-  transition: opacity var(--bp-speed-s) linear, transform var(--bp-speed-s) var(--bp-ease);
+  transition: opacity var(--bp-speed-fast) linear, transform var(--bp-speed-fast) var(--bp-ease);
   transition-delay: 0s;
 }
-.bp-tip:hover::after, .bp-tip:focus-visible::after { opacity: 1; transform: translate(-50%, 0); transition-delay: 300ms; }
-.bp-tip:focus-visible::after { transition-delay: 0s; }
-.bp-tip--below::after { bottom: auto; top: calc(100% + 8px); transform: translate(-50%, -4px); }
-.bp-tip--below:hover::after, .bp-tip--below:focus-visible::after { transform: translate(-50%, 0); }
-.bp-tip--left::after { left: auto; right: calc(100% + 8px); bottom: auto; top: 50%; transform: translate(4px, -50%); }
-.bp-tip--left:hover::after, .bp-tip--left:focus-visible::after { transform: translate(0, -50%); }
-.bp-tip--right::after { left: calc(100% + 8px); bottom: auto; top: 50%; transform: translate(-4px, -50%); }
-.bp-tip--right:hover::after, .bp-tip--right:focus-visible::after { transform: translate(0, -50%); }
+.bp-tooltip:hover::after, .bp-tooltip:focus-visible::after { opacity: 1; transform: translate(-50%, 0); transition-delay: 300ms; }
+.bp-tooltip:focus-visible::after { transition-delay: 0s; }
+.bp-tooltip--below::after { bottom: auto; top: calc(100% + 8px); transform: translate(-50%, -4px); }
+.bp-tooltip--below:hover::after, .bp-tooltip--below:focus-visible::after { transform: translate(-50%, 0); }
+.bp-tooltip--left::after { left: auto; right: calc(100% + 8px); bottom: auto; top: 50%; transform: translate(4px, -50%); }
+.bp-tooltip--left:hover::after, .bp-tooltip--left:focus-visible::after { transform: translate(0, -50%); }
+.bp-tooltip--right::after { left: calc(100% + 8px); bottom: auto; top: 50%; transform: translate(-4px, -50%); }
+.bp-tooltip--right:hover::after, .bp-tooltip--right:focus-visible::after { transform: translate(0, -50%); }
 }
 @layer bp.components {
 /* Blueprint Paper · dialog, on native <dialog>
    <dialog class="bp-dialog" id="d">
      <form method="dialog" class="bp-dialog__frame">
-       <header class="bp-dialog__title"><div><span class="bp-label-s bp-dim">Confirm</span><h3>Issue revision B2?</h3></div></header>
+       <header class="bp-dialog__title"><div><span class="bp-label--sm bp-dim">Confirm</span><h3>Issue revision B2?</h3></div></header>
        <div class="bp-dialog__body">…</div>
        <footer class="bp-dialog__footer"><button class="bp-btn bp-btn--sm" value="cancel">Cancel</button><button class="bp-btn bp-btn--sm bp-btn--solid" value="ok">Issue</button></footer>
      </form>
@@ -584,15 +602,15 @@
   position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; min-width: 180px;
   border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground);
   transform-origin: top left;
-  animation: bp-menu-in var(--bp-speed-s) var(--bp-ease);
+  animation: bp-menu-in var(--bp-speed-fast) var(--bp-ease);
 }
 .bp-menu__list { display: flex; flex-direction: column; padding: var(--bp-1) 0; }
-.bp-menu__panel { padding: var(--bp-4); width: max-content; max-width: min(320px, calc(100vw - 32px)); font-size: var(--bp-text-s); }
+.bp-menu__panel { padding: var(--bp-4); width: max-content; max-width: min(320px, calc(100vw - 32px)); font-size: var(--bp-text-sm); }
 .bp-menu--right .bp-menu__list, .bp-menu--right .bp-menu__panel { left: auto; right: 0; transform-origin: top right; }
 .bp-menu--up .bp-menu__list, .bp-menu--up .bp-menu__panel { top: auto; bottom: calc(100% + 6px); transform-origin: bottom left; }
 .bp-menu--right.bp-menu--up .bp-menu__list, .bp-menu--right.bp-menu--up .bp-menu__panel { transform-origin: bottom right; }
 .bp-menu__item {
-  display: flex; align-items: center; gap: var(--bp-3); width: 100%; min-height: var(--bp-control-s); padding: 0 var(--bp-4);
+  display: flex; align-items: center; gap: var(--bp-3); width: 100%; min-height: var(--bp-control-sm); padding: 0 var(--bp-4);
   border: 0; background: transparent; color: var(--bp-ink); text-align: left; text-decoration: none; cursor: pointer;
   font: 500 var(--bp-label)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase; white-space: nowrap;
 }
@@ -600,16 +618,16 @@
 .bp-menu__item[aria-disabled="true"], .bp-menu__item:disabled { opacity: .4; cursor: default; }
 .bp-menu__item:disabled:hover { background: transparent; color: var(--bp-ink); }
 .bp-menu__item svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.25; flex: none; }
-.bp-menu__item kbd { margin-left: auto; border-color: currentColor; opacity: .7; font-size: var(--bp-label-s); }
-.bp-menu__rule { border: 0; border-top: var(--bp-stroke) solid var(--bp-ink-55); margin: var(--bp-1) 0; }
-.bp-menu__heading { padding: var(--bp-2) var(--bp-4) var(--bp-1); font-size: var(--bp-label-s); letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-72); }
+.bp-menu__item kbd { margin-left: auto; border-color: currentColor; opacity: .7; font-size: var(--bp-label-sm); }
+.bp-menu__rule { border: 0; border-top: var(--bp-stroke) solid var(--bp-ink-62); margin: var(--bp-1) 0; }
+.bp-menu__heading { padding: var(--bp-2) var(--bp-4) var(--bp-1); font-size: var(--bp-label-sm); letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-78); }
 @keyframes bp-menu-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
 }
 @layer bp.components {
 /* Blueprint Paper · drawer, on native <dialog>
    <dialog class="bp-drawer" id="dr">
      <form method="dialog" class="bp-drawer__frame">
-       <header class="bp-drawer__title"><div><span class="bp-label-s bp-dim">Sheet 3</span><h3>Pump A</h3></div><button class="bp-btn bp-btn--sm bp-btn--icon bp-btn--ghost" value="close" aria-label="Close">×</button></header>
+       <header class="bp-drawer__title"><div><span class="bp-label--sm bp-dim">Sheet 3</span><h3>Pump A</h3></div><button class="bp-btn bp-btn--sm bp-btn--icon bp-btn--ghost" value="close" aria-label="Close">×</button></header>
        <div class="bp-drawer__body">…</div>
        <footer class="bp-drawer__footer">…</footer>
      </form>
@@ -657,7 +675,7 @@
   display: flex; flex-direction: column; gap: 2px; width: 100%;
   padding: var(--bp-3) var(--bp-4);
   border: var(--bp-stroke) solid var(--bp-ink); border-left-width: 4px;
-  background: var(--bp-ground); color: var(--bp-ink); font-size: var(--bp-text-s); line-height: 1.5;
+  background: var(--bp-ground); color: var(--bp-ink); font-size: var(--bp-text-sm); line-height: 1.5;
   box-shadow: 4px 4px 0 var(--bp-ground), 5px 5px 0 var(--bp-ink);   /* a second sheet behind */
 }
 .bp-toast--solid { background: var(--bp-ink); color: var(--bp-ground); box-shadow: 4px 4px 0 var(--bp-ink), 5px 5px 0 var(--bp-ground); }
@@ -682,7 +700,7 @@
   position: absolute; left: 0; right: 0; bottom: 0; pointer-events: auto; touch-action: pan-x; user-select: none;
   transform: translate(var(--swipe-x), calc(var(--dir) * var(--index) * var(--peek) + var(--swipe-y))) scale(calc(1 - var(--index) * .05));
   transform-origin: center bottom;
-  transition: transform 220ms var(--bp-ease), opacity var(--bp-speed-s) linear;
+  transition: transform 220ms var(--bp-ease), opacity var(--bp-speed-fast) linear;
   animation: bp-toast-in var(--bp-speed) var(--bp-ease);
 }
 .bp-toasts--top > .bp-toast { bottom: auto; top: 0; transform-origin: center top; }
@@ -692,7 +710,7 @@
 .bp-toasts[data-expanded] > .bp-toast { transform: translate(var(--swipe-x), calc(var(--dir) * var(--offset) + var(--swipe-y))) scale(1); opacity: 1; pointer-events: auto; }
 .bp-toasts[data-expanded] > .bp-toast > * { visibility: visible; }
 .bp-toasts > .bp-toast.is-swiping { transition: none; }
-.bp-toasts > .bp-toast.is-leaving { animation: bp-toast-out var(--bp-speed-s) linear forwards; pointer-events: none; }
+.bp-toasts > .bp-toast.is-leaving { animation: bp-toast-out var(--bp-speed-fast) linear forwards; pointer-events: none; }
 .bp-toasts > .bp-toast.is-swiped { animation: bp-toast-swiped var(--bp-speed) var(--bp-ease) forwards; pointer-events: none; }
 @keyframes bp-toast-in  { from { opacity: 0; transform: translateY(calc(var(--dir) * -8px)) scale(.97); } }
 @keyframes bp-toast-out { to { opacity: 0; } }
@@ -709,7 +727,7 @@
      <div class="bp-measured">
        <img …>
        <span class="bp-measure bp-measure--top"  data-label="240 px"></span>
-       <span class="bp-measure bp-measure--v bp-measure--left" data-label="120 px"></span>
+       <span class="bp-measure bp-measure--vertical bp-measure--left" data-label="120 px"></span>
      </div>
    Around an element, measured for you (needs blueprint-paper.js):
      <div class="bp-measured" data-measure="w h" data-unit="mm"> … </div>
@@ -719,7 +737,7 @@
 .bp-measure {
   --len: 100%; --gap: 12px; --tick: 8px;
   position: relative; display: block; width: var(--len); height: var(--tick);
-  color: var(--bp-ink-72); font-family: var(--bp-font); white-space: nowrap;
+  color: var(--bp-ink-78); font-family: var(--bp-font); white-space: nowrap;
 }
 .bp-measure::before {                                      /* the line */
   content: ""; position: absolute; left: 0; right: 0; top: 50%;
@@ -730,27 +748,27 @@
   border-left: var(--bp-stroke) solid currentColor; border-right: var(--bp-stroke) solid currentColor;
 }
 .bp-measure[data-label]::before { content: attr(data-label); border: 0; top: 50%; left: 50%; right: auto; transform: translate(-50%, -50%);
-  padding: 0 6px; background: var(--bp-ground); font-size: var(--bp-label-s); letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1.2; z-index: 1; }
+  padding: 0 6px; background: var(--bp-ground); font-size: var(--bp-label-sm); letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1.2; z-index: 1; }
 .bp-measure[data-label] { background:
   linear-gradient(currentColor, currentColor) center / 100% var(--bp-stroke) no-repeat; }   /* line behind the label */
 
-.bp-measure--v { width: var(--tick); height: var(--len); }
-.bp-measure--v::before { left: 50%; right: auto; top: 0; bottom: 0; border-top: 0; border-left: var(--bp-stroke) solid currentColor; }
-.bp-measure--v::after { border-left: 0; border-right: 0; border-top: var(--bp-stroke) solid currentColor; border-bottom: var(--bp-stroke) solid currentColor; }
-.bp-measure--v[data-label]::before { border: 0; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-90deg); }
-.bp-measure--v[data-label] { background: linear-gradient(currentColor, currentColor) center / var(--bp-stroke) 100% no-repeat; }
+.bp-measure--vertical { width: var(--tick); height: var(--len); }
+.bp-measure--vertical::before { left: 50%; right: auto; top: 0; bottom: 0; border-top: 0; border-left: var(--bp-stroke) solid currentColor; }
+.bp-measure--vertical::after { border-left: 0; border-right: 0; border-top: var(--bp-stroke) solid currentColor; border-bottom: var(--bp-stroke) solid currentColor; }
+.bp-measure--vertical[data-label]::before { border: 0; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-90deg); }
+.bp-measure--vertical[data-label] { background: linear-gradient(currentColor, currentColor) center / var(--bp-stroke) 100% no-repeat; }
 
 /* placed around an element */
 .bp-measured { position: relative; display: inline-block; max-width: 100%; }
 .bp-measured > .bp-measure { position: absolute; }
-.bp-measured > .bp-measure:not(.bp-measure--v) { left: 0; width: 100%; }
+.bp-measured > .bp-measure:not(.bp-measure--vertical) { left: 0; width: 100%; }
 .bp-measured > .bp-measure--top    { bottom: calc(100% + var(--gap)); }
 .bp-measured > .bp-measure--bottom { top: calc(100% + var(--gap)); }
-.bp-measured > .bp-measure--v { top: 0; height: 100%; }
+.bp-measured > .bp-measure--vertical { top: 0; height: 100%; }
 .bp-measured > .bp-measure--left  { right: calc(100% + var(--gap)); }
 .bp-measured > .bp-measure--right { left: calc(100% + var(--gap)); }
-.bp-measured > .bp-measure:not(.bp-measure--v):not(.bp-measure--bottom) { bottom: calc(100% + var(--gap)); }
-.bp-measured > .bp-measure--v:not(.bp-measure--right) { right: calc(100% + var(--gap)); }
+.bp-measured > .bp-measure:not(.bp-measure--vertical):not(.bp-measure--bottom) { bottom: calc(100% + var(--gap)); }
+.bp-measured > .bp-measure--vertical:not(.bp-measure--right) { right: calc(100% + var(--gap)); }
 .bp-measure--ink { color: var(--bp-ink); }
 }
 @layer bp.components {
@@ -776,9 +794,9 @@
   position: absolute; top: var(--bp-2); right: var(--bp-2);
   min-height: 28px; padding: 0 var(--bp-3);
   border: var(--bp-stroke) solid var(--bp-ink-62); background: var(--bp-ground); color: var(--bp-ink);
-  font: 500 var(--bp-label-s)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
+  font: 500 var(--bp-label-sm)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
   cursor: pointer; -webkit-tap-highlight-color: transparent;
-  transition: border-color var(--bp-speed-s) linear, opacity var(--bp-speed-s) linear;
+  transition: border-color var(--bp-speed-fast) linear, opacity var(--bp-speed-fast) linear;
 }
 .bp-code__copy:hover, .bp-code__copy:focus-visible { border-color: var(--bp-ink); }
 .bp-code__copy:focus-visible { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 2px; }
@@ -793,9 +811,7 @@
   --bp-ground:  #F3F6FB;
   --bp-ink:     #0B2F6E;
   --bp-ink-78:  rgba(11, 47, 110, .78);
-  --bp-ink-72:  var(--bp-ink-78);
   --bp-ink-62:  rgba(11, 47, 110, .62);
-  --bp-ink-55:  var(--bp-ink-62);
   --bp-ink-20:  rgba(11, 47, 110, .16);
   --bp-ink-09:  rgba(11, 47, 110, .09);
   --bp-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%230B2F6E' stroke-width='1.25'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");

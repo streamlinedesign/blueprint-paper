@@ -20,9 +20,9 @@
   position: absolute; top: var(--bp-2); right: var(--bp-2);
   min-height: 28px; padding: 0 var(--bp-3);
   border: var(--bp-stroke) solid var(--bp-ink-62); background: var(--bp-ground); color: var(--bp-ink);
-  font: 500 var(--bp-label-s)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
+  font: 500 var(--bp-label-sm)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
   cursor: pointer; -webkit-tap-highlight-color: transparent;
-  transition: border-color var(--bp-speed-s) linear, opacity var(--bp-speed-s) linear;
+  transition: border-color var(--bp-speed-fast) linear, opacity var(--bp-speed-fast) linear;
 }
 .bp-code__copy:hover, .bp-code__copy:focus-visible { border-color: var(--bp-ink); }
 .bp-code__copy:focus-visible { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 2px; }

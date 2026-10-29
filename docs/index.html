@@ -15,14 +15,14 @@
 <a class="skip" href="#content">Skip to content</a>
 
 <header class="top">
-  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.9.0</span></a>
+  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label--sm bp-dim">v0.9.0</span></a>
   <form class="search" role="search" onsubmit="return false">
-    <label class="bp-label-s bp-dim" for="q">Search</label>
+    <label class="bp-label--sm bp-dim" for="q">Search</label>
     <input class="bp-input bp-input--sm" id="q" type="search" placeholder="Search components, classes, tokens… ( / )" autocomplete="off">
-    <output class="bp-label-s bp-dim" id="q-count" for="q" aria-live="polite"></output>
+    <output class="bp-label--sm bp-dim" id="q-count" for="q" aria-live="polite"></output>
   </form>
-  <nav class="top-links bp-label-s">
-    <label class="bp-switch-field bp-tip bp-tip--below" data-tip="Whiteprint theme"><span class="bp-switch bp-switch--light"><input type="checkbox" role="switch" id="theme" aria-label="Whiteprint theme"><span class="bp-switch__track"></span></span><span class="bp-label-s">White</span></label>
+  <nav class="top-links bp-label--sm">
+    <label class="bp-switch-field bp-tooltip bp-tooltip--below" data-tooltip="Whiteprint theme"><span class="bp-switch bp-switch--light"><input type="checkbox" role="switch" id="theme" aria-label="Whiteprint theme"><span class="bp-switch__track"></span></span><span class="bp-label--sm">White</span></label>
     <a href="demo.html">Demo</a>
     <a href="https://github.com/streamlinedesign/blueprint-paper">GitHub</a>
   </nav>
@@ -30,11 +30,11 @@
 
 <div class="shell">
   <nav class="side" aria-label="Sections">
-    <span class="bp-label-s bp-dim">Start</span>
+    <span class="bp-label--sm bp-dim">Start</span>
     <a href="#install">Install</a>
     <a href="#tokens">Tokens</a>
     <a href="#typography">Typography</a>
-    <span class="bp-label-s bp-dim">Components</span>
+    <span class="bp-label--sm bp-dim">Components</span>
     <a href="#switch">Switch</a>
     <a href="#button">Button</a>
     <a href="#field">Field</a>
@@ -52,16 +52,16 @@
     <a href="#toast">Toast</a>
     <a href="#measure">Measure</a>
     <a href="#code">Code</a>
-    <span class="bp-label-s bp-dim">Script</span>
+    <span class="bp-label--sm bp-dim">Script</span>
     <a href="#script">Optional script</a>
-    <span class="bp-label-s bp-dim">Themes</span>
+    <span class="bp-label--sm bp-dim">Themes</span>
     <a href="#themes">Whiteprint</a>
   </nav>
 
   <main class="content" id="content">
 
     <section class="doc hero" data-keywords="intro about blueprint paper css framework ui kit">
-      <span class="bp-label-s bp-dim">CSS-first UI kit · sheet 1</span>
+      <span class="bp-label--sm bp-dim">CSS-first UI kit · sheet 1</span>
       <h1 class="bp-display bp-display--xl">Interfaces drawn like technical drawings.</h1>
       <p class="bp-prose bp-dim">Blueprint Paper is a small stylesheet. Navy paper, pale ink, one monospace face, and controls whose state you can read from the line work: hollow is off, filled is on. No JavaScript required for any component.</p>
       <div class="bp-row bp-wrap">
@@ -98,9 +98,9 @@ import 'blueprint-paper/components/switch.css';</code></pre>
           <tr><td><code>--bp-ink-09</code></td><td><span class="swatch" style="background:rgba(242,246,255,.09)"></span>9% ink</td><td>Grid</td></tr>
           <tr><td><code>--bp-stroke</code> / <code>--bp-stroke-2</code></td><td>1px / 2px</td><td>Structure / interactive edges</td></tr>
           <tr><td><code>--bp-grid</code></td><td>26px</td><td>Paper grid</td></tr>
-          <tr><td><code>--bp-control</code> / <code>--bp-control-s</code></td><td>48px / 36px</td><td>Control heights</td></tr>
+          <tr><td><code>--bp-control</code> / <code>--bp-control-sm</code></td><td>48px / 36px</td><td>Control heights</td></tr>
           <tr><td><code>--bp-1</code> … <code>--bp-8</code></td><td>4, 8, 12, 16, 24, 32, 48, 64px</td><td>Spacing scale</td></tr>
-          <tr><td><code>--bp-speed</code> / <code>--bp-speed-s</code></td><td>180ms / 120ms</td><td>Motion durations</td></tr>
+          <tr><td><code>--bp-speed</code> / <code>--bp-speed-fast</code></td><td>180ms / 120ms</td><td>Motion durations</td></tr>
           <tr><td><code>--bp-ease</code></td><td>cubic-bezier(.25, 1, .5, 1)</td><td>Ease-out for every transition</td></tr>
         </tbody>
       </table></div>
@@ -112,16 +112,16 @@ import 'blueprint-paper/components/switch.css';</code></pre>
       <div class="example">
         <div class="bp-stack">
           <span class="bp-display bp-display--xl">Display XL 56</span>
-          <span class="bp-display bp-display--l">Display L 40</span>
-          <span class="bp-display bp-display--m">Display M 32</span>
-          <span class="bp-display bp-display--s">Display S 18</span>
+          <span class="bp-display bp-display--lg">Display L 40</span>
+          <span class="bp-display bp-display--md">Display M 32</span>
+          <span class="bp-display bp-display--sm">Display S 18</span>
           <p class="bp-prose">Body 14. The quick brown fox jumps over the lazy dog, then checks the drawing against the parts list and finds the pump on sheet 3.</p>
-          <p class="bp-text-s bp-dim">Small 12, dimmed. Used for hints and secondary rows.</p>
+          <p class="bp-text--sm bp-dim">Small 12, dimmed. Used for hints and secondary rows.</p>
           <span class="bp-label">Label 11 · medium · tracked</span>
-          <span class="bp-label-s bp-dim">Label small 10 · regular</span>
+          <span class="bp-label--sm bp-dim">Label small 10 · regular</span>
           <hr class="bp-rule">
           <hr class="bp-rule bp-rule--light">
-          <hr class="bp-rule bp-rule--dash">
+          <hr class="bp-rule bp-rule--dashed">
           <p>Inline <code>code</code> and <kbd>Ctrl</kbd> <kbd>K</kbd> get a hairline box. <a href="#typography">Links</a> are underlined ink.</p>
         </div>
       </div>
@@ -160,12 +160,12 @@ import 'blueprint-paper/components/switch.css';</code></pre>
       <h4>Thumb widths and track weight</h4>
       <div class="example">
         <div class="bp-row bp-wrap" style="gap:28px">
-          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--2"><input type="checkbox" role="switch" aria-label="Thumb 2"><span class="bp-switch__track"></span></label><span class="bp-label-s bp-dim">--2</span></span>
-          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--4"><input type="checkbox" role="switch" aria-label="Thumb 4" checked><span class="bp-switch__track"></span></label><span class="bp-label-s bp-dim">--4</span></span>
-          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Thumb 8"><span class="bp-switch__track"></span></label><span class="bp-label-s bp-dim">8</span></span>
-          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--12"><input type="checkbox" role="switch" aria-label="Thumb 12" checked><span class="bp-switch__track"></span></label><span class="bp-label-s bp-dim">--12</span></span>
-          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--16"><input type="checkbox" role="switch" aria-label="Thumb 16"><span class="bp-switch__track"></span></label><span class="bp-label-s bp-dim">--16</span></span>
-          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--light"><input type="checkbox" role="switch" aria-label="Light track" checked><span class="bp-switch__track"></span></label><span class="bp-label-s bp-dim">--light</span></span>
+          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--thumb-2"><input type="checkbox" role="switch" aria-label="Thumb 2"><span class="bp-switch__track"></span></label><span class="bp-label--sm bp-dim">--thumb-2</span></span>
+          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--thumb-4"><input type="checkbox" role="switch" aria-label="Thumb 4" checked><span class="bp-switch__track"></span></label><span class="bp-label--sm bp-dim">--thumb-4</span></span>
+          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Thumb 8"><span class="bp-switch__track"></span></label><span class="bp-label--sm bp-dim">8</span></span>
+          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--thumb-12"><input type="checkbox" role="switch" aria-label="Thumb 12" checked><span class="bp-switch__track"></span></label><span class="bp-label--sm bp-dim">--thumb-12</span></span>
+          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--thumb-16"><input type="checkbox" role="switch" aria-label="Thumb 16"><span class="bp-switch__track"></span></label><span class="bp-label--sm bp-dim">--thumb-16</span></span>
+          <span class="bp-stack" style="gap:8px;align-items:center"><label class="bp-switch bp-switch--light"><input type="checkbox" role="switch" aria-label="Light track" checked><span class="bp-switch__track"></span></label><span class="bp-label--sm bp-dim">--light</span></span>
         </div>
       </div>
       <h4>Motion</h4>
@@ -240,7 +240,7 @@ import 'blueprint-paper/components/switch.css';</code></pre>
           </div>
           <div class="bp-field">
             <label class="bp-field__label" for="f-w">Width</label>
-            <div class="bp-input-group"><input class="bp-input" id="f-w" value="2400" inputmode="numeric"><span class="bp-input-group__add">mm</span></div>
+            <div class="bp-input-group"><input class="bp-input" id="f-w" value="2400" inputmode="numeric"><span class="bp-input-group__addon">mm</span></div>
           </div>
           <div class="bp-field" style="grid-column:1/-1">
             <label class="bp-field__label" for="f-notes">Notes</label>
@@ -265,7 +265,7 @@ import 'blueprint-paper/components/switch.css';</code></pre>
 &lt;div class="bp-field bp-field--invalid"&gt;…&lt;/div&gt;
 &lt;select class="bp-select"&gt;…&lt;/select&gt;
 &lt;textarea class="bp-textarea"&gt;&lt;/textarea&gt;
-&lt;div class="bp-input-group"&gt;&lt;input class="bp-input"&gt;&lt;span class="bp-input-group__add"&gt;mm&lt;/span&gt;&lt;/div&gt;</code></pre>
+&lt;div class="bp-input-group"&gt;&lt;input class="bp-input"&gt;&lt;span class="bp-input-group__addon"&gt;mm&lt;/span&gt;&lt;/div&gt;</code></pre>
     </section>
 
     <section class="doc" id="choice" data-keywords="checkbox radio choice check tick option group indeterminate">
@@ -302,15 +302,15 @@ import 'blueprint-paper/components/switch.css';</code></pre>
       <div class="example">
         <section class="bp-card">
           <header class="bp-card__title">
-            <div><span class="bp-label-s bp-dim">Sheet 3</span><h3>Pump house, level 1</h3></div>
-            <div><span class="bp-label-s bp-dim">Rev</span><span class="bp-label">B1</span></div>
-            <div><span class="bp-label-s bp-dim">Scale</span><span class="bp-label">1:100</span></div>
+            <div><span class="bp-label--sm bp-dim">Sheet 3</span><h3>Pump house, level 1</h3></div>
+            <div><span class="bp-label--sm bp-dim">Rev</span><span class="bp-label">B1</span></div>
+            <div><span class="bp-label--sm bp-dim">Scale</span><span class="bp-label">1:100</span></div>
           </header>
           <div class="bp-card__body bp-card__body--flush">
             <div class="bp-list">
-              <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Pump A</span><span class="bp-text-s bp-dim">Running since 06:40</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Pump A" checked><span class="bp-switch__track"></span></label></div>
-              <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Pump B</span><span class="bp-text-s bp-dim">Standby</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Pump B"><span class="bp-switch__track"></span></label></div>
-              <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Pump C</span><span class="bp-text-s bp-dim">Not installed</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Pump C" disabled><span class="bp-switch__track"></span></label></div>
+              <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Pump A</span><span class="bp-text--sm bp-dim">Running since 06:40</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Pump A" checked><span class="bp-switch__track"></span></label></div>
+              <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Pump B</span><span class="bp-text--sm bp-dim">Standby</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Pump B"><span class="bp-switch__track"></span></label></div>
+              <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Pump C</span><span class="bp-text--sm bp-dim">Not installed</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Pump C" disabled><span class="bp-switch__track"></span></label></div>
             </div>
           </div>
           <footer class="bp-card__footer">
@@ -321,8 +321,8 @@ import 'blueprint-paper/components/switch.css';</code></pre>
       </div>
       <pre data-code><code>&lt;section class="bp-card"&gt;
   &lt;header class="bp-card__title"&gt;
-    &lt;div&gt;&lt;span class="bp-label-s bp-dim"&gt;Sheet 3&lt;/span&gt;&lt;h3&gt;Pump house&lt;/h3&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;span class="bp-label-s bp-dim"&gt;Rev&lt;/span&gt;&lt;span class="bp-label"&gt;B1&lt;/span&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;span class="bp-label--sm bp-dim"&gt;Sheet 3&lt;/span&gt;&lt;h3&gt;Pump house&lt;/h3&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;span class="bp-label--sm bp-dim"&gt;Rev&lt;/span&gt;&lt;span class="bp-label"&gt;B1&lt;/span&gt;&lt;/div&gt;
   &lt;/header&gt;
   &lt;div class="bp-card__body"&gt;…&lt;/div&gt;
   &lt;footer class="bp-card__footer"&gt;…&lt;/footer&gt;
@@ -378,9 +378,9 @@ import 'blueprint-paper/components/switch.css';</code></pre>
           <input type="radio" name="ts" id="ts2"><label class="bp-tab" for="ts2">Network</label>
           <input type="radio" name="ts" id="ts3"><label class="bp-tab" for="ts3">Log</label>
           <div class="bp-tabset__panels">
-            <section class="bp-tabpanel bp-tabpanel--boxed"><span class="bp-label">Power</span><p class="bp-text-s bp-dim">Main bus 230 V · 3 circuits · all closed.</p></section>
-            <section class="bp-tabpanel bp-tabpanel--boxed"><span class="bp-label">Network</span><p class="bp-text-s bp-dim">2 links up · 1 planned.</p></section>
-            <section class="bp-tabpanel bp-tabpanel--boxed"><span class="bp-label">Log</span><p class="bp-text-s bp-dim">Last change 22:08 · Pump B stopped.</p></section>
+            <section class="bp-tabpanel bp-tabpanel--boxed"><span class="bp-label">Power</span><p class="bp-text--sm bp-dim">Main bus 230 V · 3 circuits · all closed.</p></section>
+            <section class="bp-tabpanel bp-tabpanel--boxed"><span class="bp-label">Network</span><p class="bp-text--sm bp-dim">2 links up · 1 planned.</p></section>
+            <section class="bp-tabpanel bp-tabpanel--boxed"><span class="bp-label">Log</span><p class="bp-text--sm bp-dim">Last change 22:08 · Pump B stopped.</p></section>
           </div>
         </div>
       </div>
@@ -404,15 +404,15 @@ import 'blueprint-paper/components/switch.css';</code></pre>
         <div class="bp-accordion">
           <details class="bp-accordion__item" name="acc" open>
             <summary class="bp-accordion__summary">General notes</summary>
-            <div class="bp-accordion__body"><p class="bp-text-s">All dimensions in millimetres unless noted. Do not scale from this drawing.</p></div>
+            <div class="bp-accordion__body"><p class="bp-text--sm">All dimensions in millimetres unless noted. Do not scale from this drawing.</p></div>
           </details>
           <details class="bp-accordion__item" name="acc">
             <summary class="bp-accordion__summary">Materials</summary>
-            <div class="bp-accordion__body"><p class="bp-text-s">Structural steel S355 to EN 10025. Fasteners grade 8.8, hot-dip galvanised.</p></div>
+            <div class="bp-accordion__body"><p class="bp-text--sm">Structural steel S355 to EN 10025. Fasteners grade 8.8, hot-dip galvanised.</p></div>
           </details>
           <details class="bp-accordion__item" name="acc">
             <summary class="bp-accordion__summary">Revisions</summary>
-            <div class="bp-accordion__body"><p class="bp-text-s">B1: pump B relocated. B2: flange rating corrected.</p></div>
+            <div class="bp-accordion__body"><p class="bp-text--sm">B1: pump B relocated. B2: flange rating corrected.</p></div>
           </details>
         </div>
       </div>
@@ -442,19 +442,19 @@ import 'blueprint-paper/components/switch.css';</code></pre>
 &lt;div class="bp-alert bp-alert--dim bp-alert--row"&gt;…&lt;/div&gt;</code></pre>
     </section>
 
-    <section class="doc" id="tooltip" data-keywords="tooltip tip hint hover title data-tip">
+    <section class="doc" id="tooltip" data-keywords="tooltip tip hint hover title data-tooltip">
       <h2>Tooltip</h2>
-      <p class="bp-prose">Pure CSS from a <code>data-tip</code> attribute. Shows after 300ms on hover, instantly on keyboard focus. Keep it to a few words; anything longer belongs on the page. Touch screens don't hover, so never put required information in one.</p>
+      <p class="bp-prose">Pure CSS from a <code>data-tooltip</code> attribute. Shows after 300ms on hover, instantly on keyboard focus. Keep it to a few words; anything longer belongs on the page. Touch screens don't hover, so never put required information in one.</p>
       <div class="example">
         <div class="bp-row bp-wrap" style="gap:24px;padding:28px 0">
-          <button class="bp-btn bp-btn--sm bp-tip" type="button" data-tip="Issue revision B2">Above</button>
-          <button class="bp-btn bp-btn--sm bp-tip bp-tip--below" type="button" data-tip="Save without issuing">Below</button>
-          <button class="bp-btn bp-btn--sm bp-tip bp-tip--right" type="button" data-tip="Open sheet 3">Right</button>
-          <button class="bp-btn bp-btn--sm bp-btn--icon bp-tip" type="button" data-tip="Add part" aria-label="Add part"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg></button>
+          <button class="bp-btn bp-btn--sm bp-tooltip" type="button" data-tooltip="Issue revision B2">Above</button>
+          <button class="bp-btn bp-btn--sm bp-tooltip bp-tooltip--below" type="button" data-tooltip="Save without issuing">Below</button>
+          <button class="bp-btn bp-btn--sm bp-tooltip bp-tooltip--right" type="button" data-tooltip="Open sheet 3">Right</button>
+          <button class="bp-btn bp-btn--sm bp-btn--icon bp-tooltip" type="button" data-tooltip="Add part" aria-label="Add part"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg></button>
         </div>
       </div>
-      <pre data-code><code>&lt;button class="bp-btn bp-tip" data-tip="Issue revision B2"&gt;Issue&lt;/button&gt;
-&lt;button class="bp-btn bp-tip bp-tip--below" data-tip="…"&gt;…&lt;/button&gt;   --left --right</code></pre>
+      <pre data-code><code>&lt;button class="bp-btn bp-tooltip" data-tooltip="Issue revision B2"&gt;Issue&lt;/button&gt;
+&lt;button class="bp-btn bp-tooltip bp-tooltip--below" data-tooltip="…"&gt;…&lt;/button&gt;   --left --right</code></pre>
     </section>
 
     <section class="doc" id="dialog" data-keywords="dialog modal confirm popup overlay backdrop showModal">
@@ -464,9 +464,9 @@ import 'blueprint-paper/components/switch.css';</code></pre>
         <button class="bp-btn" type="button" onclick="document.getElementById('dlg').showModal()">Open dialog</button>
         <dialog class="bp-dialog" id="dlg" aria-labelledby="dlg-title">
           <form method="dialog" class="bp-dialog__frame">
-            <header class="bp-dialog__title"><div><span class="bp-label-s bp-dim">Confirm</span><h3 id="dlg-title">Issue revision B2?</h3></div><div><span class="bp-label-s bp-dim">Sheets</span><span class="bp-label">3, 7</span></div></header>
+            <header class="bp-dialog__title"><div><span class="bp-label--sm bp-dim">Confirm</span><h3 id="dlg-title">Issue revision B2?</h3></div><div><span class="bp-label--sm bp-dim">Sheets</span><span class="bp-label">3, 7</span></div></header>
             <div class="bp-dialog__body">
-              <p class="bp-text-s">Issuing replaces B1 on the site set. Fabrication has already started from B1; they will be notified.</p>
+              <p class="bp-text--sm">Issuing replaces B1 on the site set. Fabrication has already started from B1; they will be notified.</p>
               <label class="bp-choice"><input type="checkbox" class="bp-checkbox" checked> Notify the fabricator</label>
             </div>
             <footer class="bp-dialog__footer"><button class="bp-btn bp-btn--sm bp-btn--ghost" value="cancel">Cancel</button><button class="bp-btn bp-btn--sm bp-btn--solid" value="ok">Issue B2</button></footer>
@@ -476,7 +476,7 @@ import 'blueprint-paper/components/switch.css';</code></pre>
       <pre data-code><code>&lt;button class="bp-btn" onclick="document.getElementById('d').showModal()"&gt;Open&lt;/button&gt;
 &lt;dialog class="bp-dialog" id="d"&gt;
   &lt;form method="dialog" class="bp-dialog__frame"&gt;
-    &lt;header class="bp-dialog__title"&gt;&lt;div&gt;&lt;span class="bp-label-s bp-dim"&gt;Confirm&lt;/span&gt;&lt;h3&gt;Issue revision B2?&lt;/h3&gt;&lt;/div&gt;&lt;/header&gt;
+    &lt;header class="bp-dialog__title"&gt;&lt;div&gt;&lt;span class="bp-label--sm bp-dim"&gt;Confirm&lt;/span&gt;&lt;h3&gt;Issue revision B2?&lt;/h3&gt;&lt;/div&gt;&lt;/header&gt;
     &lt;div class="bp-dialog__body"&gt;…&lt;/div&gt;
     &lt;footer class="bp-dialog__footer"&gt;
       &lt;button class="bp-btn bp-btn--sm bp-btn--ghost" value="cancel"&gt;Cancel&lt;/button&gt;
@@ -541,15 +541,15 @@ import 'blueprint-paper/components/switch.css';</code></pre>
         </div>
         <dialog class="bp-drawer" id="drw" aria-labelledby="drw-title">
           <form method="dialog" class="bp-drawer__frame">
-            <header class="bp-drawer__title"><div><span class="bp-label-s bp-dim">Sheet 3</span><h3 id="drw-title">Pump A</h3></div><button class="bp-btn bp-btn--sm bp-btn--icon bp-btn--ghost" value="close" aria-label="Close">×</button></header>
+            <header class="bp-drawer__title"><div><span class="bp-label--sm bp-dim">Sheet 3</span><h3 id="drw-title">Pump A</h3></div><button class="bp-btn bp-btn--sm bp-btn--icon bp-btn--ghost" value="close" aria-label="Close">×</button></header>
             <div class="bp-drawer__body">
               <div class="bp-list bp-list--light">
-                <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Running</span><span class="bp-text-s bp-dim">Since 06:40</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Running" checked><span class="bp-switch__track"></span></label></div>
+                <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Running</span><span class="bp-text--sm bp-dim">Since 06:40</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Running" checked><span class="bp-switch__track"></span></label></div>
                 <div class="bp-list__row"><div class="bp-grow"><span class="bp-label">Auto changeover</span></div><label class="bp-switch"><input type="checkbox" role="switch" aria-label="Auto changeover" checked><span class="bp-switch__track"></span></label></div>
               </div>
               <div class="bp-field">
                 <label class="bp-field__label" for="drw-speed">Speed</label>
-                <div class="bp-input-group"><input class="bp-input" id="drw-speed" value="1480"><span class="bp-input-group__add">rpm</span></div>
+                <div class="bp-input-group"><input class="bp-input" id="drw-speed" value="1480"><span class="bp-input-group__addon">rpm</span></div>
               </div>
             </div>
             <footer class="bp-drawer__footer"><button class="bp-btn bp-btn--sm bp-btn--ghost" value="cancel">Cancel</button><button class="bp-btn bp-btn--sm bp-btn--solid" value="ok">Apply</button></footer>
@@ -557,7 +557,7 @@ import 'blueprint-paper/components/switch.css';</code></pre>
         </dialog>
         <dialog class="bp-drawer bp-drawer--bottom" id="drw-b" aria-labelledby="drw-b-title">
           <form method="dialog" class="bp-drawer__frame">
-            <header class="bp-drawer__title"><div><span class="bp-label-s bp-dim">Filter</span><h3 id="drw-b-title">Event log</h3></div><button class="bp-btn bp-btn--sm bp-btn--icon bp-btn--ghost" value="close" aria-label="Close">×</button></header>
+            <header class="bp-drawer__title"><div><span class="bp-label--sm bp-dim">Filter</span><h3 id="drw-b-title">Event log</h3></div><button class="bp-btn bp-btn--sm bp-btn--icon bp-btn--ghost" value="close" aria-label="Close">×</button></header>
             <div class="bp-drawer__body">
               <div class="bp-choice-group bp-choice-group--row">
                 <label class="bp-choice"><input type="checkbox" class="bp-checkbox" checked> Pump A</label>
@@ -608,10 +608,10 @@ bp.toast.dismiss();                 clears all; pass a toast element to clear on
       <div class="example" style="padding:48px 24px 32px 64px">
         <div class="bp-row bp-wrap" style="gap:64px 72px;align-items:flex-start">
           <div data-measure="w h">
-            <div class="bp-card" style="width:220px;height:120px"><div class="bp-card__body"><span class="bp-label-s bp-dim">Card</span><span class="bp-label">Pixels</span></div></div>
+            <div class="bp-card" style="width:220px;height:120px"><div class="bp-card__body"><span class="bp-label--sm bp-dim">Card</span><span class="bp-label">Pixels</span></div></div>
           </div>
           <div data-measure="w h" data-unit="mm" data-side="bottom right">
-            <div class="bp-card bp-card--heavy" style="width:190px;height:120px"><div class="bp-card__body"><span class="bp-label-s bp-dim">Plate</span><span class="bp-label">Millimetres</span></div></div>
+            <div class="bp-card bp-card--heavy" style="width:190px;height:120px"><div class="bp-card__body"><span class="bp-label--sm bp-dim">Plate</span><span class="bp-label">Millimetres</span></div></div>
           </div>
           <div data-measure="w" data-unit="cm" data-scale="1:50">
             <button class="bp-btn bp-btn--block" type="button" style="width:150px">Scale 1:50</button>
@@ -626,7 +626,7 @@ by hand, no script:
 &lt;div class="bp-measured"&gt;
   &lt;img …&gt;
   &lt;span class="bp-measure bp-measure--top" data-label="240 px"&gt;&lt;/span&gt;
-  &lt;span class="bp-measure bp-measure--v bp-measure--left" data-label="120 px"&gt;&lt;/span&gt;
+  &lt;span class="bp-measure bp-measure--vertical bp-measure--left" data-label="120 px"&gt;&lt;/span&gt;
 &lt;/div&gt;
 standalone:
 &lt;span class="bp-measure" style="--len: 240px" data-label="240 px"&gt;&lt;/span&gt;</code></pre>
@@ -636,7 +636,7 @@ standalone:
           <span class="bp-measure" style="--len:240px" data-label="240 px"></span>
           <span class="bp-measure bp-measure--ink" style="--len:160px" data-label="42.3 mm"></span>
           <span class="bp-measure" style="--len:320px"></span>
-          <span class="bp-measure bp-measure--v" style="--len:72px" data-label="72 px"></span>
+          <span class="bp-measure bp-measure--vertical" style="--len:72px" data-label="72 px"></span>
         </div>
       </div>
       <p class="bp-prose bp-dim"><code>data-measure</code> needs the optional script below. <code>--ink</code> draws the line in full ink; the default is 72% so measurements sit behind the content.</p>
@@ -691,7 +691,7 @@ import 'blueprint-paper/js';</code></pre>
     </section>
 
     <div class="bp-toasts" role="status" aria-live="polite"></div>
-    <footer class="foot bp-label-s bp-dim">
+    <footer class="foot bp-label--sm bp-dim">
       <span>Blueprint Paper · MIT</span>
       <a href="https://github.com/streamlinedesign/blueprint-paper">github.com/streamlinedesign/blueprint-paper</a>
     </footer>

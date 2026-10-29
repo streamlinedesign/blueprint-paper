@@ -6,6 +6,17 @@ All notable changes to this project are listed here. The format follows [Keep a 
 
 The version stays at 0.9 until 1.0; changes land here in the meantime.
 
+### Fixed
+- Vertical switch moved the wrong edge first, so it squashed instead of stretching. It now moves exactly like the horizontal one turned 90°, and a keyboard flip is instant on it too.
+
+### Changed
+- Naming freeze. Size modifiers are `--sm` `--md` `--lg` `--xl` everywhere, and short names are spelled out. Renames, old → new:
+  `bp-text-s` → `bp-text--sm` · `bp-label-s` → `bp-label--sm` · `bp-display--l/m/s` → `bp-display--lg/md/sm` ·
+  `bp-switch--2/4/12/16` → `bp-switch--thumb-2/4/12/16` · `bp-measure--v` → `bp-measure--vertical` · `bp-marks--b` → `bp-marks--bottom` ·
+  `bp-tip` + `data-tip` → `bp-tooltip` + `data-tooltip` · `bp-input-group__add` → `bp-input-group__addon` · `bp-rule--dash` → `bp-rule--dashed` ·
+  `bp-fig` → `bp-readout` · `bp-table--lines` → `bp-table--rows`.
+  Tokens: `--bp-text-s` → `--bp-text-sm` · `--bp-label-s` → `--bp-label-sm` · `--bp-display-l/m/s` → `--bp-display-lg/md/sm` · `--bp-control-s` → `--bp-control-sm` · `--bp-speed-s` → `--bp-speed-fast`. The `--bp-ink-72` and `--bp-ink-55` aliases are gone; use `--bp-ink-78` and `--bp-ink-62`.
+
 ## [0.9.0] - 2026-10-29
 
 ### Added
