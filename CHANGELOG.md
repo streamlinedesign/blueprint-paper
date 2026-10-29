@@ -2,6 +2,13 @@
 
 All notable changes to this project are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/). Until 1.0, minor versions may rename things.
 
+## [0.5.0] - 2026-10-29
+
+### Added
+- Measure: dimension lines with end ticks and a label, horizontal and vertical, standalone or placed around an element. Units px (default), mm, cm, in; `data-scale="1:50"`.
+- Optional script `blueprint-paper.js` (3 kB): auto-measured dimension lines, menu light-dismiss, `bp.toast()`, `bp.theme()`, `bp.format()`.
+- Docs: Measure and Optional script sections; the docs page now runs on the kit script.
+
 ## [0.4.0] - 2026-10-28
 
 ### Added

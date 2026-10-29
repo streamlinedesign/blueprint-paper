@@ -47,40 +47,15 @@
     docs.forEach(function (d) { if (d.id) io.observe(d); });
   }
 
-  // code blocks scroll sideways, so they need to be reachable by keyboard
-  var pres = document.querySelectorAll('pre');
-  for (var k = 0; k < pres.length; k++) pres[k].tabIndex = 0;
-
   var ind = document.getElementById('ind');
   if (ind) ind.indeterminate = true;
 
-  // menus: close when clicking elsewhere
-  document.addEventListener('click', function (e) {
-    var open = document.querySelectorAll('.bp-menu[open]');
-    for (var m = 0; m < open.length; m++) if (!open[m].contains(e.target)) open[m].removeAttribute('open');
-  });
-
-  // toast demo
-  function toast(title, text, solid) {
-    var t = document.createElement('div');
-    t.className = 'bp-toast' + (solid ? ' bp-toast--solid' : '');
-    t.innerHTML = '<span class="bp-toast__title"></span><span class="bp-toast__text"></span>';
-    t.children[0].textContent = title; t.children[1].textContent = text;
-    document.querySelector('.bp-toasts').appendChild(t);
-    setTimeout(function () { t.classList.add('is-leaving'); t.addEventListener('animationend', function () { t.remove(); }); }, 4000);
-  }
-  document.getElementById('toast-demo').addEventListener('click', function () { toast('Saved', 'Rev B2 issued on sheets 3 and 7.', false); });
-  document.getElementById('toast-demo-solid').addEventListener('click', function () { toast('Pump B stopped', 'Stopped by operator at 22:08.', true); });
+  document.getElementById('toast-demo').addEventListener('click', function () { bp.toast('Saved', 'Rev B2 issued on sheets 3 and 7.'); });
+  document.getElementById('toast-demo-solid').addEventListener('click', function () { bp.toast('Pump B stopped', 'Stopped by operator at 22:08.', { solid: true }); });
 
   // theme switch, remembered per browser
   var theme = document.getElementById('theme');
   var root = document.documentElement;
-  function setTheme(white) {
-    if (white) root.setAttribute('data-theme', 'whiteprint'); else root.removeAttribute('data-theme');
-    try { localStorage.setItem('bp-theme', white ? 'whiteprint' : 'blueprint'); } catch (e) {}
-  }
-  var saved = null;
-  try { saved = localStorage.getItem('bp-theme'); } catch (e) {}
-  if (saved === 'whiteprint') { theme.checked = true; setTheme(true); }
-  theme.addEventListener('change', function () { setTheme(theme.checked); });
+  theme.checked = bp.theme() === 'whiteprint';
+  theme.addEventListener('change', function () { bp.theme(theme.checked ? 'whiteprint' : 'blueprint'); });
 })();

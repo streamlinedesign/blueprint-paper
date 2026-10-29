@@ -15,7 +15,7 @@
 <a class="skip" href="#content">Skip to content</a>
 
 <header class="top">
-  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.4.0</span></a>
+  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.5.0</span></a>
   <form class="search" role="search" onsubmit="return false">
     <label class="bp-label-s bp-dim" for="q">Search</label>
     <input class="bp-input bp-input--sm" id="q" type="search" placeholder="Search components, classes, tokens… ( / )" autocomplete="off">
@@ -50,6 +50,9 @@
     <a href="#menu">Menu &amp; popover</a>
     <a href="#drawer">Drawer</a>
     <a href="#toast">Toast</a>
+    <a href="#measure">Measure</a>
+    <span class="bp-label-s bp-dim">Script</span>
+    <a href="#script">Optional script</a>
     <span class="bp-label-s bp-dim">Themes</span>
     <a href="#themes">Whiteprint</a>
     <span class="bp-label-s bp-dim">Project</span>
@@ -599,6 +602,61 @@ setTimeout(() =&gt; { t.classList.add('is-leaving'); t.addEventListener('animati
       <p class="bp-prose bp-dim">Region position: <code>--top</code>, <code>--left</code>, <code>--center</code> on <code>.bp-toasts</code>.</p>
     </section>
 
+    <section class="doc" id="measure" data-keywords="measure dimension line width height size mm cm inch px scale ruler annotation">
+      <h2>Measure</h2>
+      <p class="bp-prose">A dimension line with end ticks and a label, the way sizes are marked on a drawing. Pixels by default; mm, cm and inches are converted at CSS resolution (96 px per inch), so a screen millimetre, not a ruler one. A scale such as <code>1:50</code> multiplies the shown value.</p>
+      <div class="example" style="padding:48px 24px 32px 64px">
+        <div class="bp-row bp-wrap" style="gap:64px 72px;align-items:flex-start">
+          <div data-measure="w h">
+            <div class="bp-card" style="width:220px;height:120px"><div class="bp-card__body"><span class="bp-label-s bp-dim">Card</span><span class="bp-label">Pixels</span></div></div>
+          </div>
+          <div data-measure="w h" data-unit="mm" data-side="bottom right">
+            <div class="bp-card bp-card--heavy" style="width:190px;height:120px"><div class="bp-card__body"><span class="bp-label-s bp-dim">Plate</span><span class="bp-label">Millimetres</span></div></div>
+          </div>
+          <div data-measure="w" data-unit="cm" data-scale="1:50">
+            <button class="bp-btn bp-btn--block" type="button" style="width:150px">Scale 1:50</button>
+          </div>
+        </div>
+      </div>
+      <pre><code>&lt;div data-measure="w h"&gt;…one element…&lt;/div&gt;                       px, lines above and left
+&lt;div data-measure="w h" data-unit="mm" data-side="bottom right"&gt;…&lt;/div&gt;
+&lt;div data-measure="w" data-unit="cm" data-scale="1:50"&gt;…&lt;/div&gt;
+
+by hand, no script:
+&lt;div class="bp-measured"&gt;
+  &lt;img …&gt;
+  &lt;span class="bp-measure bp-measure--top" data-label="240 px"&gt;&lt;/span&gt;
+  &lt;span class="bp-measure bp-measure--v bp-measure--left" data-label="120 px"&gt;&lt;/span&gt;
+&lt;/div&gt;
+standalone:
+&lt;span class="bp-measure" style="--len: 240px" data-label="240 px"&gt;&lt;/span&gt;</code></pre>
+      <h4>Standalone lines</h4>
+      <div class="example">
+        <div class="bp-stack" style="gap:24px">
+          <span class="bp-measure" style="--len:240px" data-label="240 px"></span>
+          <span class="bp-measure bp-measure--ink" style="--len:160px" data-label="42.3 mm"></span>
+          <span class="bp-measure" style="--len:320px"></span>
+          <span class="bp-measure bp-measure--v" style="--len:72px" data-label="72 px"></span>
+        </div>
+      </div>
+      <p class="bp-prose bp-dim"><code>data-measure</code> needs the optional script below. <code>--ink</code> draws the line in full ink; the default is 72% so measurements sit behind the content.</p>
+    </section>
+
+    <section class="doc" id="script" data-keywords="script javascript js optional bp.toast bp.theme bp.measure light dismiss">
+      <h2>Optional script</h2>
+      <p class="bp-prose">The CSS needs no JavaScript. <code>blueprint-paper.js</code> (3 kB, no dependencies) adds the few things only script can do. Load it and you get:</p>
+      <ul class="notes bp-prose">
+        <li><code>data-measure</code> dimension lines that follow the element's size.</li>
+        <li>Menus close when you click elsewhere.</li>
+        <li><code>bp.toast('Saved', 'Rev B2 issued.', { solid: true, duration: 4000 })</code></li>
+        <li><code>bp.theme('whiteprint')</code> sets and remembers the theme; <code>bp.theme()</code> reads it.</li>
+        <li><code>bp.format(240, 'mm')</code> → <code>63.5 mm</code>, and <code>bp.measure(el)</code> to measure an element you add later.</li>
+        <li>Code blocks and table wrappers get <code>tabindex="0"</code> so keyboards can scroll them.</li>
+      </ul>
+      <pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/streamlinedesign/blueprint-paper@main/dist/blueprint-paper.js" defer&gt;&lt;/script&gt;
+import '@blueprint-paper/css/js';</code></pre>
+    </section>
+
     <section class="doc" id="themes" data-keywords="theme themes whiteprint light dark mode paper color-scheme">
       <h2>Whiteprint</h2>
       <p class="bp-prose">Pale paper, navy ink. Same tokens, swapped. Try the switch in the header. Set it for a whole page with <code>data-theme="whiteprint"</code> on <code>&lt;html&gt;</code>, or for one area with <code>bp-whiteprint</code> on a <code>.bp-sheet</code>.</p>
@@ -623,7 +681,9 @@ setTimeout(() =&gt; { t.classList.add('is-leaving'); t.addEventListener('animati
         <li><b>v0.1</b> Tokens, typography, switch, button, field, checkbox, radio, card, list, table, badge.</li>
         <li><b>v0.2</b> Tabs, accordion, alert, tooltip, dialog. Whiteprint theme.</li>
         <li><b>v0.3</b> Menu, popover, drawer, toast. This page.</li>
-        <li><b>v0.4</b> Hardening: screenshot and accessibility checks in CI, automated releases to npm. Color and style pass on the tokens.</li>
+        <li><b>v0.4</b> Overflow, console and accessibility checks in CI.</li>
+        <li><b>v0.5</b> Measure (dimension lines) and the optional script. This page.</li>
+        <li><b>v0.6</b> Automated releases to npm. Color and style pass on the tokens.</li>
         <li><b>v1.0</b> Names frozen. Contributing guide. CSS only, by design.</li>
       </ol>
     </section>
@@ -635,6 +695,7 @@ setTimeout(() =&gt; { t.classList.add('is-leaving'); t.addEventListener('animati
     </footer>
   </main>
 </div>
+<script src="blueprint-paper.js"></script>
 <script src="docs.js"></script>
 </body>
 </html>

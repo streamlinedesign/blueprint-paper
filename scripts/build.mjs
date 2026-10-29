@@ -40,5 +40,9 @@ for (const f of readdirSync(join(src, 'themes'))) copyFileSync(join(src, 'themes
 
 copyFileSync(join(dist, 'blueprint-paper.css'), join(root, 'docs', 'blueprint-paper.css'));
 
+// The optional script ships as-is (about 3 kB); it needs no build step.
+copyFileSync(join(src, 'js', 'blueprint-paper.js'), join(dist, 'blueprint-paper.js'));
+copyFileSync(join(src, 'js', 'blueprint-paper.js'), join(root, 'docs', 'blueprint-paper.js'));
+
 const kb = (s) => (Buffer.byteLength(s) / 1024).toFixed(1) + ' kB';
 console.log(`built dist/blueprint-paper.css (${kb(full)}), .min.css (${kb(readFileSync(join(dist, 'blueprint-paper.min.css'), 'utf8'))})`);

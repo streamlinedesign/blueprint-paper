@@ -37,7 +37,15 @@ Add `bp-switch--vertical` for a vertical switch where up is on.
 
 ## Components
 
-Tokens, typography, switch, button, field (input, textarea, select), checkbox, radio, card, list, table, badge, tabs, accordion, alert, tooltip, dialog, menu, drawer, toast.
+Tokens, typography, switch, button, field (input, textarea, select), checkbox, radio, card, list, table, badge, tabs, accordion, alert, tooltip, dialog, menu, drawer, toast, measure (dimension lines).
+
+## Optional script
+
+The CSS needs no JavaScript. `dist/blueprint-paper.js` (3 kB) adds auto-measured dimension lines (`data-measure="w h" data-unit="mm"`), menu light-dismiss, `bp.toast()` and `bp.theme()`.
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/streamlinedesign/blueprint-paper@main/dist/blueprint-paper.js" defer></script>
+```
 
 ## Themes
 
