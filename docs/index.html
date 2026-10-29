@@ -15,7 +15,7 @@
 <a class="skip" href="#content">Skip to content</a>
 
 <header class="top">
-  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.5.0</span></a>
+  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.5.1</span></a>
   <form class="search" role="search" onsubmit="return false">
     <label class="bp-label-s bp-dim" for="q">Search</label>
     <input class="bp-input bp-input--sm" id="q" type="search" placeholder="Search components, classes, tokens… ( / )" autocomplete="off">
@@ -582,23 +582,24 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
 
     <section class="doc" id="toast" data-keywords="toast notification snackbar message status live region">
       <h2>Toast</h2>
-      <p class="bp-prose">A toast is shown by script by nature, so the kit styles it and leaves the showing to you: five lines, below. The region is a live region, so screen readers announce it.</p>
+      <p class="bp-prose">Toasts stack the way Sonner's do: the newest in front, older ones peeking out behind. Hover or focus the stack and it fans out and the timers pause. Swipe one sideways (or drag it with a mouse) to clear it. The region is a live region, so screen readers announce each one. Showing them needs the optional script; the styles alone give you a static toast.</p>
       <div class="example">
         <div class="bp-row bp-wrap">
           <button class="bp-btn bp-btn--sm" type="button" id="toast-demo">Show a toast</button>
           <button class="bp-btn bp-btn--sm bp-btn--ghost" type="button" id="toast-demo-solid">Show a solid one</button>
+          <button class="bp-btn bp-btn--sm bp-btn--ghost" type="button" id="toast-demo-three">Show three</button>
+          <button class="bp-btn bp-btn--sm bp-btn--ghost" type="button" id="toast-demo-clear">Clear all</button>
         </div>
         <div class="bp-stack" style="margin-top:20px;max-width:360px">
           <div class="bp-toast"><span class="bp-toast__title">Saved</span><span class="bp-toast__text">Rev B2 issued on sheets 3 and 7.</span></div>
           <div class="bp-toast bp-toast--solid"><div class="bp-toast__row"><span class="bp-toast__title">Pump B stopped</span><button class="bp-btn bp-btn--sm" type="button">Undo</button></div></div>
         </div>
       </div>
-      <pre><code>&lt;div class="bp-toasts" role="status" aria-live="polite"&gt;&lt;/div&gt;     once, anywhere on the page
+      <pre><code>bp.toast('Saved', 'Rev B2 issued on sheets 3 and 7.');
+bp.toast('Pump B stopped', 'Stopped by operator.', { solid: true, duration: 6000 });
+bp.toast.dismiss();                 clears all; pass a toast element to clear one
 
-const t = Object.assign(document.createElement('div'), { className: 'bp-toast',
-  innerHTML: '&lt;span class="bp-toast__title"&gt;Saved&lt;/span&gt;&lt;span class="bp-toast__text"&gt;Rev B2 issued.&lt;/span&gt;' });
-document.querySelector('.bp-toasts').append(t);
-setTimeout(() =&gt; { t.classList.add('is-leaving'); t.addEventListener('animationend', () =&gt; t.remove()); }, 4000);</code></pre>
+&lt;div class="bp-toasts bp-toasts--top" role="status" aria-live="polite"&gt;&lt;/div&gt;   optional: place the region yourself</code></pre>
       <p class="bp-prose bp-dim">Region position: <code>--top</code>, <code>--left</code>, <code>--center</code> on <code>.bp-toasts</code>.</p>
     </section>
 

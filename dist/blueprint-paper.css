@@ -1,4 +1,4 @@
-/*! Blueprint Paper v0.5.0 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
+/*! Blueprint Paper v0.5.1 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
 @layer bp.tokens, bp.base, bp.components, bp.themes;
 @layer bp.tokens {
 /* Blueprint Paper · tokens
@@ -640,39 +640,58 @@
 }
 @layer bp.components {
 /* Blueprint Paper · toast
-   A toast is shown by script by nature, so the kit styles it and leaves the showing to you.
-   Markup (one region on the page, toasts appended inside):
-     <div class="bp-toasts" role="status" aria-live="polite">
-       <div class="bp-toast"><span class="bp-toast__title">Saved</span><span class="bp-toast__text">Rev B2 issued.</span></div>
-     </div>
-   Showing one, in five lines:
-     const t = Object.assign(document.createElement('div'), { className: 'bp-toast', innerHTML: '<span class="bp-toast__title">Saved</span>' });
-     document.querySelector('.bp-toasts').append(t);
-     setTimeout(() => { t.classList.add('is-leaving'); t.addEventListener('animationend', () => t.remove()); }, 4000);
+   Styles only here; bp.toast() in blueprint-paper.js shows them, stacks them like Sonner
+   (newest in front, older ones peek out behind), fans the stack out on hover, pauses timers
+   while hovered, and lets you swipe one away.
+   Markup, for a static toast anywhere:
+     <div class="bp-toast"><span class="bp-toast__title">Saved</span><span class="bp-toast__text">Rev B2 issued.</span></div>
+   The live region (made for you if missing): <div class="bp-toasts" role="status" aria-live="polite"></div>
    Region position: default bottom right; --top, --left, --center. */
-.bp-toasts {
-  position: fixed; z-index: 30; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px));
-  display: flex; flex-direction: column; align-items: flex-end; gap: var(--bp-2);
-  width: min(360px, calc(100vw - 32px)); pointer-events: none;
-}
-.bp-toasts--top { bottom: auto; top: max(16px, env(safe-area-inset-top, 0px)); flex-direction: column-reverse; }
-.bp-toasts--left { right: auto; left: max(16px, env(safe-area-inset-left, 0px)); align-items: flex-start; }
-.bp-toasts--center { right: 50%; transform: translateX(50%); align-items: center; }
 .bp-toast {
-  display: flex; flex-direction: column; gap: 2px; width: 100%; pointer-events: auto;
+  display: flex; flex-direction: column; gap: 2px; width: 100%;
   padding: var(--bp-3) var(--bp-4);
   border: var(--bp-stroke) solid var(--bp-ink); border-left-width: 4px;
   background: var(--bp-ground); color: var(--bp-ink); font-size: var(--bp-text-s); line-height: 1.5;
   box-shadow: 4px 4px 0 var(--bp-ground), 5px 5px 0 var(--bp-ink);   /* a second sheet behind */
-  animation: bp-toast-in var(--bp-speed) var(--bp-ease);
 }
 .bp-toast--solid { background: var(--bp-ink); color: var(--bp-ground); box-shadow: 4px 4px 0 var(--bp-ink), 5px 5px 0 var(--bp-ground); }
 .bp-toast__title { font-size: var(--bp-label); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
 .bp-toast__row { display: flex; align-items: center; gap: var(--bp-3); }
 .bp-toast__row .bp-btn { margin-left: auto; }
-.bp-toast.is-leaving { animation: bp-toast-out var(--bp-speed-s) linear forwards; }
-@keyframes bp-toast-in  { from { opacity: 0; transform: translateY(8px) scale(.97); } to { opacity: 1; transform: none; } }
+
+/* the live region and the stack */
+.bp-toasts {
+  --dir: -1;                                    /* stack grows upward from the bottom edge */
+  --peek: 14px;                                 /* how much each older toast shows behind the front one */
+  --gap: 8px;
+  position: fixed; z-index: 30; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  width: min(360px, calc(100vw - 32px)); height: var(--front-h, 0px);
+  pointer-events: none;
+}
+.bp-toasts--top { --dir: 1; bottom: auto; top: max(16px, env(safe-area-inset-top, 0px)); }
+.bp-toasts--left { right: auto; left: max(16px, env(safe-area-inset-left, 0px)); }
+.bp-toasts--center { right: 50%; transform: translateX(50%); }
+.bp-toasts > .bp-toast {
+  --index: 0; --offset: 0px; --swipe-x: 0px; --swipe-y: 0px;
+  position: absolute; left: 0; right: 0; bottom: 0; pointer-events: auto; touch-action: pan-x; user-select: none;
+  transform: translate(var(--swipe-x), calc(var(--dir) * var(--index) * var(--peek) + var(--swipe-y))) scale(calc(1 - var(--index) * .05));
+  transform-origin: center bottom;
+  transition: transform 220ms var(--bp-ease), opacity var(--bp-speed-s) linear;
+  animation: bp-toast-in var(--bp-speed) var(--bp-ease);
+}
+.bp-toasts--top > .bp-toast { bottom: auto; top: 0; transform-origin: center top; }
+.bp-toasts > .bp-toast[data-index="3"], .bp-toasts > .bp-toast[data-index="4"], .bp-toasts > .bp-toast[data-index="5"] { opacity: 0; pointer-events: none; }
+.bp-toasts > .bp-toast:not([data-index="0"]) > * { visibility: hidden; }     /* only the front toast shows its text when collapsed */
+.bp-toasts[data-expanded] { height: var(--total-h, 0px); }
+.bp-toasts[data-expanded] > .bp-toast { transform: translate(var(--swipe-x), calc(var(--dir) * var(--offset) + var(--swipe-y))) scale(1); opacity: 1; pointer-events: auto; }
+.bp-toasts[data-expanded] > .bp-toast > * { visibility: visible; }
+.bp-toasts > .bp-toast.is-swiping { transition: none; }
+.bp-toasts > .bp-toast.is-leaving { animation: bp-toast-out var(--bp-speed-s) linear forwards; pointer-events: none; }
+.bp-toasts > .bp-toast.is-swiped { animation: bp-toast-swiped var(--bp-speed) var(--bp-ease) forwards; pointer-events: none; }
+@keyframes bp-toast-in  { from { opacity: 0; transform: translateY(calc(var(--dir) * -8px)) scale(.97); } }
 @keyframes bp-toast-out { to { opacity: 0; } }
+@keyframes bp-toast-swiped { to { opacity: 0; transform: translate(calc(var(--swipe-x) * 2.5), var(--swipe-y)); } }
+@media (prefers-reduced-motion: reduce) { .bp-toasts > .bp-toast { animation: none; transition: none; } }
 }
 @layer bp.components {
 /* Blueprint Paper · measure (dimension lines)

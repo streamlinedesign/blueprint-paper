@@ -52,6 +52,11 @@
 
   document.getElementById('toast-demo').addEventListener('click', function () { bp.toast('Saved', 'Rev B2 issued on sheets 3 and 7.'); });
   document.getElementById('toast-demo-solid').addEventListener('click', function () { bp.toast('Pump B stopped', 'Stopped by operator at 22:08.', { solid: true }); });
+  document.getElementById('toast-demo-three').addEventListener('click', function () {
+    var msgs = [['Draft saved', 'Setpoints for Pump A.'], ['Rev B2 issued', 'Sheets 3 and 7.'], ['Pump B started', 'Auto changeover at 06:40.']];
+    msgs.forEach(function (m, i) { setTimeout(function () { bp.toast(m[0], m[1], { duration: 8000 }); }, i * 350); });
+  });
+  document.getElementById('toast-demo-clear').addEventListener('click', function () { bp.toast.dismiss(); });
 
   // theme switch, remembered per browser
   var theme = document.getElementById('theme');
