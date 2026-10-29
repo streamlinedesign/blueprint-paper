@@ -15,16 +15,16 @@
 .bp-menu > summary::-webkit-details-marker { display: none; }
 .bp-menu > summary::after {
   content: ""; width: 7px; height: 7px; margin-left: var(--bp-1);
-  border-right: var(--bp-stroke) solid currentColor; border-bottom: var(--bp-stroke) solid currentColor;
-  transform: translateY(-2px) rotate(45deg); transition: transform var(--bp-speed) var(--bp-ease);
+  border-right: var(--bp-line) var(--bp-line-style) currentColor; border-bottom: var(--bp-line) var(--bp-line-style) currentColor;
+  transform: translateY(-2px) rotate(45deg); transition: transform var(--bp-dur-2) var(--bp-ease);
 }
 .bp-menu[open] > summary::after { transform: translateY(2px) rotate(225deg); }
 .bp-menu > summary.bp-btn--icon::after { display: none; }
 .bp-menu__list, .bp-menu__panel {
   position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; min-width: 180px;
-  border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground);
+  border: var(--bp-line) var(--bp-line-style) var(--bp-ink); background: var(--bp-ground);
   transform-origin: top left;
-  animation: bp-menu-in var(--bp-speed-fast) var(--bp-ease);
+  animation: bp-menu-in var(--bp-dur-1) var(--bp-ease);
 }
 .bp-menu__list { display: flex; flex-direction: column; padding: var(--bp-1) 0; }
 .bp-menu__panel { padding: var(--bp-4); width: max-content; max-width: min(320px, calc(100vw - 32px)); font-size: var(--bp-text-sm); }
@@ -41,6 +41,6 @@
 .bp-menu__item:disabled:hover { background: transparent; color: var(--bp-ink); }
 .bp-menu__item svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.25; flex: none; }
 .bp-menu__item kbd { margin-left: auto; border-color: currentColor; opacity: .7; font-size: var(--bp-label-sm); }
-.bp-menu__rule { border: 0; border-top: var(--bp-stroke) solid var(--bp-ink-62); margin: var(--bp-1) 0; }
+.bp-menu__rule { border: 0; border-top: var(--bp-line) var(--bp-line-style) var(--bp-ink-62); margin: var(--bp-1) 0; }
 .bp-menu__heading { padding: var(--bp-2) var(--bp-4) var(--bp-1); font-size: var(--bp-label-sm); letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-78); }
 @keyframes bp-menu-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }

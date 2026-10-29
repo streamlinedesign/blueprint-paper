@@ -16,27 +16,28 @@
    --gap: distance from the element (default 12px). */
 .bp-measure {
   --len: 100%; --gap: 12px; --tick: 8px;
-  position: relative; display: block; width: var(--len); height: var(--tick);
+  position: relative; display: flex; align-items: center; justify-content: center;
+  width: var(--len); height: var(--tick);
   color: var(--bp-ink-78); font-family: var(--bp-font); white-space: nowrap;
-}
-.bp-measure::before {                                      /* the line */
-  content: ""; position: absolute; left: 0; right: 0; top: 50%;
-  border-top: var(--bp-stroke) solid currentColor;
+  /* the line is a background, so it needs no element and the label can sit on it */
+  background: linear-gradient(currentColor, currentColor) center / 100% var(--bp-line) no-repeat;
 }
 .bp-measure::after {                                       /* the two end ticks */
   content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 0;
-  border-left: var(--bp-stroke) solid currentColor; border-right: var(--bp-stroke) solid currentColor;
+  border-left: var(--bp-line) solid currentColor; border-right: var(--bp-line) solid currentColor;
 }
-.bp-measure[data-label]::before { content: attr(data-label); border: 0; top: 50%; left: 50%; right: auto; transform: translate(-50%, -50%);
-  padding: 0 6px; background: var(--bp-ground); font-size: var(--bp-label-sm); letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1.2; z-index: 1; }
-.bp-measure[data-label] { background:
-  linear-gradient(currentColor, currentColor) center / 100% var(--bp-stroke) no-repeat; }   /* line behind the label */
+.bp-measure[data-label]::before {                          /* the label, a flex item centred on the line (no transforms: Safari-safe) */
+  content: attr(data-label); position: relative; z-index: 1;
+  padding: 0 6px; background: var(--bp-ground);
+  font-size: var(--bp-label-sm); letter-spacing: var(--bp-track); text-transform: uppercase; line-height: 1.2;
+}
 
-.bp-measure--vertical { width: var(--tick); height: var(--len); }
-.bp-measure--vertical::before { left: 50%; right: auto; top: 0; bottom: 0; border-top: 0; border-left: var(--bp-stroke) solid currentColor; }
-.bp-measure--vertical::after { border-left: 0; border-right: 0; border-top: var(--bp-stroke) solid currentColor; border-bottom: var(--bp-stroke) solid currentColor; }
-.bp-measure--vertical[data-label]::before { border: 0; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-90deg); }
-.bp-measure--vertical[data-label] { background: linear-gradient(currentColor, currentColor) center / var(--bp-stroke) 100% no-repeat; }
+.bp-measure--vertical {
+  width: var(--tick); height: var(--len);
+  background-size: var(--bp-line) 100%;
+}
+.bp-measure--vertical::after { border-left: 0; border-right: 0; border-top: var(--bp-line) solid currentColor; border-bottom: var(--bp-line) solid currentColor; }
+.bp-measure--vertical[data-label]::before { padding: 6px 0; writing-mode: vertical-rl; transform: rotate(180deg); }   /* reads bottom to top, like a drawing */
 
 /* placed around an element */
 .bp-measured { position: relative; display: inline-block; max-width: 100%; }

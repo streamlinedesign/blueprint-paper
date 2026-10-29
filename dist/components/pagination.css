@@ -13,15 +13,15 @@
 .bp-pagination__item {
   display: inline-flex; align-items: center; justify-content: center;
   min-width: var(--bp-control-sm); height: var(--bp-control-sm); padding: 0 var(--bp-2);
-  border: var(--bp-stroke) solid var(--bp-ink); background: transparent; color: var(--bp-ink);
+  border: var(--bp-line) var(--bp-line-style) var(--bp-ink); background: transparent; color: var(--bp-ink);
   font: 500 var(--bp-label)/1 var(--bp-font); letter-spacing: var(--bp-track); text-decoration: none;
   cursor: pointer; -webkit-tap-highlight-color: transparent;
-  transition: background var(--bp-speed-fast) linear;
+  transition: background var(--bp-dur-1) linear;
 }
 .bp-pagination__item:hover { background: var(--bp-ink-20); text-decoration: none; }
 .bp-pagination__item[aria-current="page"] { background: var(--bp-ink); color: var(--bp-ground); cursor: default; }
 .bp-pagination__item:disabled, .bp-pagination__item[aria-disabled="true"] { opacity: .4; cursor: default; pointer-events: none; }
-.bp-pagination__item:focus-visible { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 2px; }
+.bp-pagination__item:focus-visible { outline: var(--bp-line) solid var(--bp-ink); outline-offset: 2px; }
 .bp-pagination__gap { min-width: var(--bp-control-sm); text-align: center; color: var(--bp-ink-62); font-size: var(--bp-label); }
 .bp-pagination__count { margin-left: var(--bp-3); font-size: var(--bp-label-sm); letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-78); white-space: nowrap; }
 .bp-pagination--sm .bp-pagination__item { min-width: 28px; height: 28px; font-size: var(--bp-label-sm); }

@@ -11,7 +11,7 @@
 .bp-kbd:not(:has(> kbd)), .bp-kbd > kbd {
   position: relative; display: inline-flex; align-items: center; justify-content: center;
   min-width: var(--cap); height: var(--cap); padding: 0 var(--bp-2);
-  border: var(--bp-stroke) solid var(--bp-ink); border-bottom-width: var(--bp-stroke-2);   /* the cap's shadow edge */
+  border: var(--bp-line) var(--bp-line-style) var(--bp-ink); border-bottom-width: var(--bp-line-bold);   /* the cap's shadow edge */
   background: var(--bp-ground); color: var(--bp-ink);
   font: inherit; line-height: 1;
 }

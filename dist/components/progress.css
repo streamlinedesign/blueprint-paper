@@ -7,21 +7,21 @@
 .bp-progress {
   --value: 0%; --h: 12px;
   position: relative; display: block; width: 100%; height: var(--h);
-  border: var(--bp-stroke) solid var(--bp-ink); background: var(--bp-ground);
+  border: var(--bp-line) var(--bp-line-style) var(--bp-ink); background: var(--bp-ground);
   overflow: hidden;
 }
 .bp-progress__bar {
   position: absolute; top: 0; bottom: 0; left: 0; width: var(--value);
   background: var(--bp-ink);
-  transition: width var(--bp-speed) var(--bp-ease);
+  transition: width var(--bp-dur-2) var(--bp-ease);
 }
 .bp-progress--hatched .bp-progress__bar {
-  background: repeating-linear-gradient(-45deg, var(--bp-ink) 0 var(--bp-stroke), transparent var(--bp-stroke) 6px);
-  border-right: var(--bp-stroke) solid var(--bp-ink);
+  background: repeating-linear-gradient(-45deg, var(--bp-ink) 0 var(--bp-line), transparent var(--bp-line) 6px);
+  border-right: var(--bp-line) var(--bp-line-style) var(--bp-ink);
 }
 .bp-progress--indeterminate .bp-progress__bar {
   width: 100%; border-right: 0;
-  background: repeating-linear-gradient(-45deg, var(--bp-ink) 0 var(--bp-stroke), transparent var(--bp-stroke) 8px);
+  background: repeating-linear-gradient(-45deg, var(--bp-ink) 0 var(--bp-line), transparent var(--bp-line) 8px);
   background-size: 11.3px 100%;                 /* one hatch period, so the slide loops without a seam */
   animation: bp-hatch 600ms linear infinite;
 }

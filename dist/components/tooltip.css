@@ -6,11 +6,11 @@
 .bp-tooltip::after {
   content: attr(data-tooltip); position: absolute; z-index: 5; left: 50%; bottom: calc(100% + 8px);
   transform: translate(-50%, 4px);
-  padding: 5px var(--bp-2); border: var(--bp-stroke) solid var(--bp-ink);
+  padding: 5px var(--bp-2); border: var(--bp-line) var(--bp-line-style) var(--bp-ink);
   background: var(--bp-ground); color: var(--bp-ink);
   font: 400 var(--bp-label-sm)/1.3 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase; white-space: nowrap;
   opacity: 0; pointer-events: none;
-  transition: opacity var(--bp-speed-fast) linear, transform var(--bp-speed-fast) var(--bp-ease);
+  transition: opacity var(--bp-dur-1) linear, transform var(--bp-dur-1) var(--bp-ease);
   transition-delay: 0s;
 }
 .bp-tooltip:hover::after, .bp-tooltip:focus-visible::after { opacity: 1; transform: translate(-50%, 0); transition-delay: 300ms; }

@@ -3,7 +3,7 @@
    The tabindex lets keyboard users scroll a wide table. */
 .bp-table-wrap { overflow-x: auto; max-width: 100%; }
 .bp-table { width: 100%; border-collapse: collapse; font-size: var(--bp-text-sm); font-variant-numeric: tabular-nums; }
-.bp-table th, .bp-table td { padding: var(--bp-3) var(--bp-4); text-align: left; vertical-align: middle; border: var(--bp-stroke) solid var(--bp-ink-62); }
+.bp-table th, .bp-table td { padding: var(--bp-3) var(--bp-4); text-align: left; vertical-align: middle; border: var(--bp-line) var(--bp-line-style) var(--bp-ink-62); }
 .bp-table th { font-size: var(--bp-label-sm); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-78); border-bottom-color: var(--bp-ink); }
 .bp-table .bp-num { text-align: right; }        /* numbers right-aligned, tabular (bp-num is in base.css) */
 .bp-table tbody tr:hover { background: var(--bp-ink-09); }

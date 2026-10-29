@@ -8,15 +8,15 @@
 .bp-field__label { font-size: var(--bp-label); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; }
 .bp-field__hint { font-size: var(--bp-text-sm); color: var(--bp-ink-78); }
 .bp-field--invalid .bp-field__hint { color: var(--bp-ink); }
-.bp-field--invalid .bp-input, .bp-field--invalid .bp-select, .bp-field--invalid .bp-textarea { border-width: var(--bp-stroke-2); }
+.bp-field--invalid .bp-input, .bp-field--invalid .bp-select, .bp-field--invalid .bp-textarea { border-width: var(--bp-line-bold); }
 
 .bp-input, .bp-textarea, .bp-select {
   width: 100%; min-height: var(--bp-control); padding: 0 var(--bp-4);
-  border: var(--bp-stroke) solid var(--bp-ink); border-radius: 0;
+  border: var(--bp-line) var(--bp-line-style) var(--bp-ink); border-radius: 0;
   background: var(--bp-ground); color: var(--bp-ink);
   font: 400 var(--bp-text)/1.4 var(--bp-font);
   -webkit-appearance: none; appearance: none;
-  transition: border-color var(--bp-speed-fast) linear;
+  transition: border-color var(--bp-dur-1) linear;
 }
 .bp-input::placeholder, .bp-textarea::placeholder { color: var(--bp-ink-62); }
 .bp-input:hover, .bp-textarea:hover, .bp-select:hover { border-color: var(--bp-ink); }
@@ -35,10 +35,10 @@
 /* input with a unit or prefix: <div class="bp-input-group"><span class="bp-input-group__addon">mm</span><input class="bp-input"></div> */
 .bp-input-group { display: flex; }
 .bp-input-group > .bp-input { flex: 1; min-width: 0; }
-.bp-input-group > .bp-input:not(:first-child) { margin-left: calc(-1 * var(--bp-stroke)); }
+.bp-input-group > .bp-input:not(:first-child) { margin-left: calc(-1 * var(--bp-line)); }
 .bp-input-group__addon {
   display: inline-flex; align-items: center; padding: 0 var(--bp-3);
-  border: var(--bp-stroke) solid var(--bp-ink); color: var(--bp-ink-78);
+  border: var(--bp-line) var(--bp-line-style) var(--bp-ink); color: var(--bp-ink-78);
   font-size: var(--bp-label-sm); letter-spacing: var(--bp-track); text-transform: uppercase; white-space: nowrap;
 }
-.bp-input-group__addon + .bp-input { margin-left: calc(-1 * var(--bp-stroke)); }
+.bp-input-group__addon + .bp-input { margin-left: calc(-1 * var(--bp-line)); }

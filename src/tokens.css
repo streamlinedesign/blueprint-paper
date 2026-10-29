@@ -1,13 +1,14 @@
 /* Blueprint Paper · tokens
    Every color, size and curve the components use. Change these, not the components. */
 :root {
-  /* paper and ink · palette approved 2026-10-29 */
+  /* paper and ink · palette approved 2026-10-29.
+     A theme sets --bp-ground and --bp-ink; the ink ramp follows (color-mix, supported since 2023). */
   --bp-ground:     #0B2F6E;
   --bp-ink:        #F2F6FF;
-  --bp-ink-78:     rgba(242, 246, 255, .78);   /* secondary text */
-  --bp-ink-62:     rgba(242, 246, 255, .62);   /* light rules, placeholders */
-  --bp-ink-20:     rgba(242, 246, 255, .20);   /* hover fill */
-  --bp-ink-09:     rgba(242, 246, 255, .09);   /* grid */
+  --bp-ink-78:     color-mix(in srgb, var(--bp-ink) 78%, transparent);   /* secondary text */
+  --bp-ink-62:     color-mix(in srgb, var(--bp-ink) 62%, transparent);   /* light rules, placeholders */
+  --bp-ink-20:     color-mix(in srgb, var(--bp-ink) 20%, transparent);   /* hover fill */
+  --bp-ink-09:     color-mix(in srgb, var(--bp-ink) 9%, transparent);    /* grid */
 
   /* type */
   --bp-font:       'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
@@ -15,27 +16,30 @@
   --bp-text:       14px;
   --bp-text-sm:    12px;
   --bp-label:      11px;
-  --bp-label-sm:    10px;
+  --bp-label-sm:   10px;
   --bp-display-xl: 56px;
-  --bp-display-lg:  40px;
-  --bp-display-md:  32px;
-  --bp-display-sm:  18px;
+  --bp-display-lg: 40px;
+  --bp-display-md: 32px;
+  --bp-display-sm: 18px;
   --bp-leading:    1.6;
 
   /* space */
   --bp-1: 4px;  --bp-2: 8px;  --bp-3: 12px; --bp-4: 16px;
   --bp-5: 24px; --bp-6: 32px; --bp-7: 48px; --bp-8: 64px;
 
-  /* line work */
-  --bp-stroke:     1px;
-  --bp-stroke-2:   2px;
+  /* line work: a hairline and a bold line. --bp-line-style is solid; .bp-dashed sets it to dashed for a subtree. */
+  --bp-line:       1px;
+  --bp-line-bold:  2px;
+  --bp-line-style: solid;
   --bp-grid:       26px;
-  --bp-control:    48px;                       /* standard control height */
-  --bp-control-sm:  36px;
+  --bp-control:    calc(var(--bp-grid) * 2 - 4px);      /* 48px: two grid squares less the lines, so controls sit on the grid */
+  --bp-control-sm: calc(var(--bp-grid) * 1.5 - 3px);    /* 36px */
 
-  /* motion: fast, ease-out, never ease-in-out */
-  --bp-speed:      180ms;
-  --bp-speed-fast: 120ms;
+  /* motion: three durations, one ease-out, never ease-in-out.
+     1 for color and fill changes, 2 for a thing that moves, 3 for a large panel sliding in. */
+  --bp-dur-1:      90ms;
+  --bp-dur-2:      180ms;
+  --bp-dur-3:      320ms;
   --bp-ease:       cubic-bezier(.25, 1, .5, 1);
 
   /* assets drawn in ink (themes override) */

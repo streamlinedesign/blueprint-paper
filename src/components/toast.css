@@ -10,7 +10,7 @@
 .bp-toast {
   display: flex; flex-direction: column; gap: 2px; width: 100%;
   padding: var(--bp-3) var(--bp-4);
-  border: var(--bp-stroke) solid var(--bp-ink); border-left-width: 4px;
+  border: var(--bp-line) var(--bp-line-style) var(--bp-ink); border-left-width: 4px;
   background: var(--bp-ground); color: var(--bp-ink); font-size: var(--bp-text-sm); line-height: 1.5;
   box-shadow: 4px 4px 0 var(--bp-ground), 5px 5px 0 var(--bp-ink);   /* a second sheet behind */
 }
@@ -36,18 +36,18 @@
   position: absolute; left: 0; right: 0; bottom: 0; pointer-events: auto; touch-action: pan-x; user-select: none;
   transform: translate(var(--swipe-x), calc(var(--dir) * var(--index) * var(--peek) + var(--swipe-y))) scale(calc(1 - var(--index) * .05));
   transform-origin: center bottom;
-  transition: transform 220ms var(--bp-ease), opacity var(--bp-speed-fast) linear;
-  animation: bp-toast-in var(--bp-speed) var(--bp-ease);
+  transition: transform var(--bp-dur-3) var(--bp-ease), opacity var(--bp-dur-1) linear;
+  animation: bp-toast-in var(--bp-dur-2) var(--bp-ease);
 }
 .bp-toasts--top > .bp-toast { bottom: auto; top: 0; transform-origin: center top; }
 .bp-toasts > .bp-toast[data-index="3"], .bp-toasts > .bp-toast[data-index="4"], .bp-toasts > .bp-toast[data-index="5"] { opacity: 0; pointer-events: none; }
 .bp-toasts > .bp-toast:not([data-index="0"]) > * { visibility: hidden; }     /* only the front toast shows its text when collapsed */
-.bp-toasts[data-expanded] { height: var(--total-h, 0px); }
+.bp-toasts[data-expanded] { height: var(--total-h, 0px); pointer-events: auto; }   /* the gaps between toasts count as inside, so the stack does not flicker */
 .bp-toasts[data-expanded] > .bp-toast { transform: translate(var(--swipe-x), calc(var(--dir) * var(--offset) + var(--swipe-y))) scale(1); opacity: 1; pointer-events: auto; }
 .bp-toasts[data-expanded] > .bp-toast > * { visibility: visible; }
 .bp-toasts > .bp-toast.is-swiping { transition: none; }
-.bp-toasts > .bp-toast.is-leaving { animation: bp-toast-out var(--bp-speed-fast) linear forwards; pointer-events: none; }
-.bp-toasts > .bp-toast.is-swiped { animation: bp-toast-swiped var(--bp-speed) var(--bp-ease) forwards; pointer-events: none; }
+.bp-toasts > .bp-toast.is-leaving { animation: bp-toast-out var(--bp-dur-1) linear forwards; pointer-events: none; }
+.bp-toasts > .bp-toast.is-swiped { animation: bp-toast-swiped var(--bp-dur-2) var(--bp-ease) forwards; pointer-events: none; }
 @keyframes bp-toast-in  { from { opacity: 0; transform: translateY(calc(var(--dir) * -8px)) scale(.97); } }
 @keyframes bp-toast-out { to { opacity: 0; } }
 @keyframes bp-toast-swiped { to { opacity: 0; transform: translate(calc(var(--swipe-x) * 2.5), var(--swipe-y)); } }

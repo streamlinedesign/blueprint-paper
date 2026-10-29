@@ -7,6 +7,9 @@ All notable changes to this project are listed here. The format follows [Keep a 
 The version stays at 0.9 until 1.0; changes land here in the meantime.
 
 ### Added
+- `docs/lab.html`: elevation and hover candidates side by side (flat, halo, offset line, double rule, hatch, soft shadow; fill, bold line, lift, invert, underline, corner marks) to pick from before they enter the kit.
+- `.bp-dashed` (or `data-line="dashed"`) makes a subtree's line work dashed via `--bp-line-style`. Switch tracks and dimension lines stay solid.
+- A root `index.html` that forwards to `docs/`, so GitHub Pages works whether its source is the Docs workflow or the main branch.
 - Progress: solid or hatched fill, indeterminate sliding hatch, `--sm` `--lg`, value label.
 - Skeleton: dashed draft placeholder with a slow pulse; `--line` `--sm` `--square` `--circle` `--solid`.
 - Pagination: sheet-number links or buttons, gap, count, `--sm`.
@@ -14,15 +17,19 @@ The version stays at 0.9 until 1.0; changes land here in the meantime.
 - Kbd: key caps with a heavier bottom edge; nested keys get a + between them; `--sm`.
 
 ### Fixed
+- Accordion chevron points right when closed and turns clockwise to point down when open (it turned the other way).
+- Measure label is a centred flex item on the line, no transform, so Safari draws the number on the line instead of above its own box.
+- Toast stack no longer flickers when the pointer crosses the gap between two toasts: the expanded region counts the gaps as inside.
 - Vertical switch moved the wrong edge first, so it squashed instead of stretching. It now moves exactly like the horizontal one turned 90°, and a keyboard flip is instant on it too.
 
 ### Changed
+- Tokens: the ink ramp (`--bp-ink-78/62/20/09`) is derived from `--bp-ink` with `color-mix()`, so a theme sets two colors and the rest follows; whiteprint lost its four hard-coded rgba lines. Line tokens are `--bp-line` (1px) and `--bp-line-bold` (2px), was `--bp-stroke` / `--bp-stroke-2`. Durations are a scale, `--bp-dur-1/2/3` = 90/180/320ms (color change, a move, a panel sliding in), was `--bp-speed-fast` / `--bp-speed`; the drawer and toast slide use `--bp-dur-3`. Control heights derive from the grid: `--bp-control` = 2 squares − 4px (48), `--bp-control-sm` = 1.5 squares − 3px (36).
 - Naming freeze. Size modifiers are `--sm` `--md` `--lg` `--xl` everywhere, and short names are spelled out. Renames, old → new:
   `bp-text-s` → `bp-text--sm` · `bp-label-s` → `bp-label--sm` · `bp-display--l/m/s` → `bp-display--lg/md/sm` ·
   `bp-switch--2/4/12/16` → `bp-switch--thumb-2/4/12/16` · `bp-measure--v` → `bp-measure--vertical` · `bp-marks--b` → `bp-marks--bottom` ·
   `bp-tip` + `data-tip` → `bp-tooltip` + `data-tooltip` · `bp-input-group__add` → `bp-input-group__addon` · `bp-rule--dash` → `bp-rule--dashed` ·
   `bp-fig` → `bp-readout` · `bp-table--lines` → `bp-table--rows`.
-  Tokens: `--bp-text-s` → `--bp-text-sm` · `--bp-label-s` → `--bp-label-sm` · `--bp-display-l/m/s` → `--bp-display-lg/md/sm` · `--bp-control-s` → `--bp-control-sm` · `--bp-speed-s` → `--bp-speed-fast`. The `--bp-ink-72` and `--bp-ink-55` aliases are gone; use `--bp-ink-78` and `--bp-ink-62`.
+  Tokens: `--bp-text-s` → `--bp-text-sm` · `--bp-label-s` → `--bp-label-sm` · `--bp-display-l/m/s` → `--bp-display-lg/md/sm` · `--bp-control-s` → `--bp-control-sm` · `--bp-dur-2-s` → `--bp-dur-1`. The `--bp-ink-72` and `--bp-ink-55` aliases are gone; use `--bp-ink-78` and `--bp-ink-62`.
 
 ## [0.9.0] - 2026-10-29
 

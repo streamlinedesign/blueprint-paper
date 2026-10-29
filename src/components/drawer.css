@@ -10,27 +10,27 @@
 .bp-drawer {
   position: fixed; inset: 0 0 0 auto; margin: 0; padding: 0; max-width: none; max-height: none;
   width: min(420px, 100vw); height: 100vh; height: 100dvh;
-  border: 0; border-left: var(--bp-stroke-2) solid var(--bp-ink);
+  border: 0; border-left: var(--bp-line-bold) var(--bp-line-style) var(--bp-ink);
   background: var(--bp-ground); color: var(--bp-ink); font-family: var(--bp-font); font-size: var(--bp-text);
 }
 .bp-drawer::backdrop { background: rgba(4, 19, 48, .6); }
 .bp-drawer__frame { display: flex; flex-direction: column; height: 100%; margin: 0; }
-.bp-drawer__title { display: flex; align-items: center; gap: var(--bp-3); padding: var(--bp-3) var(--bp-4); border-bottom: var(--bp-stroke) solid var(--bp-ink); }
+.bp-drawer__title { display: flex; align-items: center; gap: var(--bp-3); padding: var(--bp-3) var(--bp-4); border-bottom: var(--bp-line) var(--bp-line-style) var(--bp-ink); }
 .bp-drawer__title > :first-child { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--bp-1); }
 .bp-drawer__body { flex: 1; overflow-y: auto; padding: var(--bp-4); display: flex; flex-direction: column; gap: var(--bp-4); }
-.bp-drawer__footer { display: flex; justify-content: flex-end; gap: var(--bp-2); padding: var(--bp-3) var(--bp-4); border-top: var(--bp-stroke) solid var(--bp-ink); }
+.bp-drawer__footer { display: flex; justify-content: flex-end; gap: var(--bp-2); padding: var(--bp-3) var(--bp-4); border-top: var(--bp-line) var(--bp-line-style) var(--bp-ink); }
 
-.bp-drawer--left { inset: 0 auto 0 0; border-left: 0; border-right: var(--bp-stroke-2) solid var(--bp-ink); }
+.bp-drawer--left { inset: 0 auto 0 0; border-left: 0; border-right: var(--bp-line-bold) var(--bp-line-style) var(--bp-ink); }
 .bp-drawer--bottom {
   inset: auto 0 0 0; width: 100vw; height: auto; max-height: 85vh; max-height: 85dvh;
-  border-left: 0; border-top: var(--bp-stroke-2) solid var(--bp-ink);
+  border-left: 0; border-top: var(--bp-line-bold) var(--bp-line-style) var(--bp-ink);
 }
 
-/* enter: 220ms slide on the ease-out curve; exit is instant */
-.bp-drawer[open] { animation: bp-drawer-right 220ms var(--bp-ease); }
+/* enter: a --bp-dur-3 slide on the ease-out curve; exit is instant */
+.bp-drawer[open] { animation: bp-drawer-right var(--bp-dur-3) var(--bp-ease); }
 .bp-drawer--left[open] { animation-name: bp-drawer-left; }
 .bp-drawer--bottom[open] { animation-name: bp-drawer-bottom; }
-.bp-drawer[open]::backdrop { animation: bp-fade-in 220ms linear; }
+.bp-drawer[open]::backdrop { animation: bp-fade-in var(--bp-dur-3) linear; }
 @keyframes bp-drawer-right  { from { transform: translateX(24px);  opacity: 0; } to { transform: none; opacity: 1; } }
 @keyframes bp-drawer-left   { from { transform: translateX(-24px); opacity: 0; } to { transform: none; opacity: 1; } }
 @keyframes bp-drawer-bottom { from { transform: translateY(24px);  opacity: 0; } to { transform: none; opacity: 1; } }

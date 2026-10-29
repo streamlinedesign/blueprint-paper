@@ -11,7 +11,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const axeSource = readFileSync(createRequire(import.meta.url).resolve('axe-core/axe.min.js'), 'utf8');
-const pages = ['docs/index.html', 'docs/demo.html'];
+const pages = ['docs/index.html', 'docs/demo.html', 'docs/lab.html'];
 const widths = [1100, 390];
 const themes = ['blueprint', 'whiteprint'];
 let failures = 0;

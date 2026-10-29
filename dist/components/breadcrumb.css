@@ -14,4 +14,4 @@
 .bp-breadcrumb a { color: inherit; text-decoration: none; }
 .bp-breadcrumb a:hover { color: var(--bp-ink); text-decoration: underline; }
 .bp-breadcrumb [aria-current="page"] { color: var(--bp-ink); }
-.bp-breadcrumb a:focus-visible { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 2px; }
+.bp-breadcrumb a:focus-visible { outline: var(--bp-line) solid var(--bp-ink); outline-offset: 2px; }

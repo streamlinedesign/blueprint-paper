@@ -8,7 +8,7 @@
    </dialog>
    Open with document.getElementById('d').showModal(). The browser handles focus, Escape and the backdrop. */
 .bp-dialog {
-  margin: auto; padding: 0; border: var(--bp-stroke-2) solid var(--bp-ink);
+  margin: auto; padding: 0; border: var(--bp-line-bold) var(--bp-line-style) var(--bp-ink);
   background: var(--bp-ground); color: var(--bp-ink); font-family: var(--bp-font); font-size: var(--bp-text);
   width: min(480px, calc(100vw - 32px)); max-height: calc(100vh - 32px);
 }
@@ -21,14 +21,14 @@
   background-size: 26px 26px;
 }
 .bp-dialog__frame { display: flex; flex-direction: column; margin: 0; }
-.bp-dialog__title { display: flex; border-bottom: var(--bp-stroke) solid var(--bp-ink); }
-.bp-dialog__title > * { padding: var(--bp-3) var(--bp-4); border-left: var(--bp-stroke) solid var(--bp-ink); display: flex; flex-direction: column; gap: var(--bp-1); min-width: 0; }
+.bp-dialog__title { display: flex; border-bottom: var(--bp-line) var(--bp-line-style) var(--bp-ink); }
+.bp-dialog__title > * { padding: var(--bp-3) var(--bp-4); border-left: var(--bp-line) var(--bp-line-style) var(--bp-ink); display: flex; flex-direction: column; gap: var(--bp-1); min-width: 0; }
 .bp-dialog__title > :first-child { border-left: 0; flex: 1; }
 .bp-dialog__body { padding: var(--bp-4); display: flex; flex-direction: column; gap: var(--bp-3); overflow-y: auto; }
-.bp-dialog__footer { display: flex; justify-content: flex-end; gap: var(--bp-2); padding: var(--bp-3) var(--bp-4); border-top: var(--bp-stroke) solid var(--bp-ink); }
+.bp-dialog__footer { display: flex; justify-content: flex-end; gap: var(--bp-2); padding: var(--bp-3) var(--bp-4); border-top: var(--bp-line) var(--bp-line-style) var(--bp-ink); }
 
-/* enter: scale from .96 (never from 0), 180ms ease-out; exit is instant */
-.bp-dialog[open] { animation: bp-dialog-in var(--bp-speed) var(--bp-ease); }
-.bp-dialog[open]::backdrop { animation: bp-fade-in var(--bp-speed) linear; }
+/* enter: scale from .96 (never from 0), --bp-dur-2 ease-out; exit is instant */
+.bp-dialog[open] { animation: bp-dialog-in var(--bp-dur-2) var(--bp-ease); }
+.bp-dialog[open]::backdrop { animation: bp-fade-in var(--bp-dur-2) linear; }
 @keyframes bp-dialog-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
 @keyframes bp-fade-in { from { opacity: 0; } to { opacity: 1; } }

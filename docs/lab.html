@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blueprint Paper · Lab</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="blueprint-paper.css">
+<link rel="stylesheet" href="docs.css">
+<style>
+/* Lab-only styles. Nothing here is in the kit yet: pick, and the winner moves into the components. */
+.lab { display: flex; flex-direction: column; gap: var(--bp-8); max-width: 1100px; margin: 0 auto; padding: var(--bp-6) max(16px, env(safe-area-inset-right, 0px)) var(--bp-8) max(16px, env(safe-area-inset-left, 0px)); }
+.lab h2 { padding-bottom: var(--bp-2); border-bottom: var(--bp-line) solid var(--bp-ink); }
+.lab h3 { margin-top: var(--bp-4); }
+.opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--bp-5); }
+.opt { display: flex; flex-direction: column; gap: var(--bp-3); }
+.opt > .bp-label--sm { color: var(--bp-ink-78); }
+.opt > p { font-size: var(--bp-text-sm); color: var(--bp-ink-78); line-height: 1.5; }
+/* a busy background so overlays have something to sit on */
+.busy { position: relative; min-height: 230px; padding: var(--bp-3); border: var(--bp-line) solid var(--bp-ink-62); overflow: hidden; }
+.busy .bp-table { font-size: var(--bp-text-sm); }
+.busy .over { position: absolute; left: 24px; top: 48px; z-index: 2; }
+.panel { min-width: 200px; border: var(--bp-line) solid var(--bp-ink); background: var(--bp-ground); }
+.panel .bp-menu__item { font-size: var(--bp-label-sm); min-height: 30px; }
+.frame { border: var(--bp-line) solid var(--bp-ink); background: var(--bp-ground); max-width: 260px; }
+
+/* ---------- elevation options ---------- */
+.e-flat { }
+.e-halo   { box-shadow: 0 0 0 6px var(--bp-ground); }                                                      /* paper cut-out */
+.e-offset { box-shadow: 4px 4px 0 0 var(--bp-ink); }                                                       /* drafting shadow line */
+.e-both   { box-shadow: 0 0 0 6px var(--bp-ground), 10px 10px 0 -6px var(--bp-ink); }                      /* halo + offset line outside it */
+.e-double { outline: var(--bp-line) solid var(--bp-ink); outline-offset: 3px; box-shadow: 0 0 0 3px var(--bp-ground); }   /* double rule */
+.e-hatch  { position: relative; }
+.e-hatch::after { content: ""; position: absolute; z-index: -1; inset: 8px -8px -8px 8px;
+  background: repeating-linear-gradient(-45deg, var(--bp-ink) 0 1px, transparent 1px 6px); opacity: .7; }
+.e-soft   { box-shadow: 0 12px 32px -8px rgba(0, 0, 0, .55), 0 2px 6px rgba(0, 0, 0, .25); }                /* the usual soft shadow, for comparison */
+.e-tint   { box-shadow: 0 0 0 6px var(--bp-ground), 0 0 0 7px var(--bp-ink-20); }                           /* halo with a faint ring */
+
+/* ---------- hover options (cards and buttons) ---------- */
+.h-fill:hover   { background: var(--bp-ink-20); }
+.h-line:hover   { box-shadow: inset 0 0 0 1px var(--bp-ink); }                                             /* line goes bold, no layout shift */
+.h-lift:hover   { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 0 var(--bp-ink); }
+.h-halo:hover   { box-shadow: 0 0 0 6px var(--bp-ground), 0 0 0 7px var(--bp-ink); }
+.h-invert:hover { background: var(--bp-ink); color: var(--bp-ground); }
+.h-invert:hover .bp-dim { color: var(--bp-ground); opacity: .8; }
+.h-under { position: relative; }
+.h-under::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: var(--bp-line-bold); background: var(--bp-ink); transform: scaleX(0); transform-origin: left; transition: transform var(--bp-dur-2) var(--bp-ease); }
+.h-under:hover::after { transform: scaleX(1); }
+.h-corner { position: relative; }
+.h-corner::before, .h-corner::after { content: ""; position: absolute; width: 10px; height: 10px; border: 0 solid var(--bp-ink); opacity: 0; transition: opacity var(--bp-dur-1) linear, transform var(--bp-dur-2) var(--bp-ease); }
+.h-corner::before { left: -5px; top: -5px; border-left-width: 2px; border-top-width: 2px; transform: translate(3px, 3px); }
+.h-corner::after { right: -5px; bottom: -5px; border-right-width: 2px; border-bottom-width: 2px; transform: translate(-3px, -3px); }
+.h-corner:hover::before, .h-corner:hover::after { opacity: 1; transform: none; }
+.hcard { cursor: pointer; transition: background var(--bp-dur-1) linear, color var(--bp-dur-1) linear, box-shadow var(--bp-dur-1) linear, transform var(--bp-dur-2) var(--bp-ease); }
+.hcard .bp-card__body { gap: 4px; }
+.hbtn { transition: background var(--bp-dur-1) linear, color var(--bp-dur-1) linear, box-shadow var(--bp-dur-1) linear, transform var(--bp-dur-2) var(--bp-ease); }
+.hbtn.h-fill:hover { background: var(--bp-ink-20); }
+.hrow .bp-table tbody tr { transition: background var(--bp-dur-1) linear; }
+.hrow-fill tbody tr:hover { background: var(--bp-ink-09); }
+.hrow-invert tbody tr:hover { background: var(--bp-ink); color: var(--bp-ground); }
+.hrow-mark tbody tr:hover td:first-child { box-shadow: inset 3px 0 0 var(--bp-ink); }
+.hrow-line tbody tr:hover td { border-top-color: var(--bp-ink); border-bottom-color: var(--bp-ink); }
+.pick { position: sticky; bottom: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: var(--bp-3) var(--bp-5); padding: var(--bp-3) var(--bp-4); border: var(--bp-line) solid var(--bp-ink); background: var(--bp-ground); }
+.pick label { display: flex; align-items: center; gap: var(--bp-2); font-size: var(--bp-text-sm); }
+</style>
+</head>
+<body class="bp-sheet">
+<header class="top">
+  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label--sm bp-dim">Lab · elevation and hover</span></a>
+  <div></div>
+  <div class="top-links">
+    <label class="bp-switch-field" style="gap:8px"><span class="bp-label--sm bp-dim">White</span><span class="bp-switch bp-switch--thumb-4"><input type="checkbox" id="theme" role="switch" aria-label="Whiteprint theme"><span class="bp-switch__track"></span></span></label>
+    <a href="./">Docs</a>
+  </div>
+</header>
+
+<main class="lab">
+  <section class="bp-stack" style="gap:12px">
+    <h1 class="bp-display bp-display--md">Flat, or something.</h1>
+    <p class="bp-prose" style="max-width:62ch">Every overlay in the kit is flat today: one line, paper on paper. Below, the same menu, popover, dialog and toast with each candidate, drawn over a busy table so you can judge separation. Then hover treatments for cards, buttons and rows. Flip the theme too. Tell me the letters you want and they go into the kit.</p>
+  </section>
+
+  <section class="bp-stack" style="gap:20px">
+    <h2>Overlays · a menu over a table</h2>
+    <div class="opts" id="overlays"></div>
+  </section>
+
+  <section class="bp-stack" style="gap:20px">
+    <h2>Overlays · a dialog frame and a toast</h2>
+    <div class="opts" id="dialogs"></div>
+  </section>
+
+  <section class="bp-stack" style="gap:20px">
+    <h2>Hover · cards</h2>
+    <p class="bp-prose bp-dim">Hover each card. On touch, tap and hold shows the state.</p>
+    <div class="opts" id="cards"></div>
+  </section>
+
+  <section class="bp-stack" style="gap:20px">
+    <h2>Hover · buttons</h2>
+    <div class="opts" id="buttons"></div>
+  </section>
+
+  <section class="bp-stack" style="gap:20px">
+    <h2>Hover · table rows</h2>
+    <div class="opts" id="rows"></div>
+  </section>
+
+  <section class="bp-stack" style="gap:20px">
+    <h2>Dashed, as an option</h2>
+    <p class="bp-prose bp-dim"><code>.bp-dashed</code> on any container turns its line work dashed: a draft, a proposal, a not-yet. Switch tracks and dimension lines stay solid on purpose.</p>
+    <div class="opts">
+      <div class="opt"><span class="bp-label--sm">Solid (default)</span>
+        <section class="bp-card"><header class="bp-card__title"><div><span class="bp-label--sm bp-dim">Sheet 3</span><h3>Pump house</h3></div><div><span class="bp-label--sm bp-dim">Rev</span><span class="bp-label">B1</span></div></header><div class="bp-card__body"><div class="bp-row" style="gap:10px"><button class="bp-btn bp-btn--sm" type="button">Revert</button><span class="bp-badge">Issued</span><label class="bp-switch"><input type="checkbox" role="switch" aria-label="x" checked><span class="bp-switch__track"></span></label></div></div></section></div>
+      <div class="opt"><span class="bp-label--sm">.bp-dashed</span>
+        <section class="bp-card bp-dashed"><header class="bp-card__title"><div><span class="bp-label--sm bp-dim">Sheet 3</span><h3>Pump house</h3></div><div><span class="bp-label--sm bp-dim">Rev</span><span class="bp-label">B2 draft</span></div></header><div class="bp-card__body"><div class="bp-row" style="gap:10px"><button class="bp-btn bp-btn--sm" type="button">Revert</button><span class="bp-badge">Draft</span><label class="bp-switch"><input type="checkbox" role="switch" aria-label="x"><span class="bp-switch__track"></span></label></div></div></section></div>
+    </div>
+  </section>
+
+  <div class="pick" id="pick">
+    <span class="bp-label--sm">Your pick</span>
+    <label>Overlays <select class="bp-select bp-select--sm" id="p-over"></select></label>
+    <label>Cards <select class="bp-select bp-select--sm" id="p-card"></select></label>
+    <label>Buttons <select class="bp-select bp-select--sm" id="p-btn"></select></label>
+    <label>Rows <select class="bp-select bp-select--sm" id="p-row"></select></label>
+    <button class="bp-btn bp-btn--sm" type="button" id="copy">Copy picks</button>
+    <output id="out" class="bp-label--sm bp-dim"></output>
+  </div>
+</main>
+
+<script src="blueprint-paper.js"></script>
+<script>
+(function () {
+  var E = [
+    ['A', 'e-flat',   'Flat', 'As now. One line. Relies on the panel covering what is under it.'],
+    ['B', 'e-halo',   'Halo', 'A 6px band of paper around the panel, like a cut-out laid on the sheet. No shadow, still flat.'],
+    ['C', 'e-offset', 'Offset line', 'A second ink line 4px down and right: the shadow line draughtsmen add to show a raised face.'],
+    ['D', 'e-both',   'Halo + offset', 'B and C together: the cut-out, then its shadow line outside the halo.'],
+    ['E', 'e-double', 'Double rule', 'An outer hairline 3px out, paper between. A frame, not a lift.'],
+    ['F', 'e-hatch',  'Hatched shadow', 'Section hatching peeking out below and right, the way a cut surface is drawn.'],
+    ['G', 'e-soft',   'Soft shadow', 'The usual dark blur. Here for comparison; it is what the kit has avoided.'],
+    ['H', 'e-tint',   'Halo + faint ring', 'B with a 1px 20% ring outside the halo, for a touch more edge on busy ground.']
+  ];
+  var table = '<div class="bp-table-wrap"><table class="bp-table"><thead><tr><th>No.</th><th>Part</th><th>Material</th><th class="bp-num">Qty</th></tr></thead><tbody>' +
+    [['1','Pump, centrifugal','Cast iron','2'],['2','Flange, DN100','S235','8'],['3','Gasket, DN100','EPDM','8'],['4','Base frame','S355','1'],['5','Anchor bolt M16','8.8 HDG','16']].map(function (r) { return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td><td class="bp-num">' + r[3] + '</td></tr>'; }).join('') + '</tbody></table></div>';
+  var menu = '<div class="panel bp-menu__list" role="menu" style="position:static"><span class="bp-menu__heading">Sheet 3</span><button class="bp-menu__item" type="button">Duplicate</button><button class="bp-menu__item" type="button">Rename</button><hr class="bp-menu__rule"><button class="bp-menu__item" type="button">Delete</button></div>';
+  var pop = '<div class="panel bp-menu__panel" style="position:static;left:220px"><span class="bp-label">Rev B2</span><p class="bp-dim" style="margin-top:6px">Flange rating corrected to PN16.</p></div>';
+  var dialog = '<div class="frame"><header class="bp-dialog__title"><div><span class="bp-label--sm bp-dim">Confirm</span><h3>Issue revision B2?</h3></div></header><div class="bp-dialog__body"><p class="bp-text--sm">Sheets 3 and 7 will be reissued.</p></div><footer class="bp-dialog__footer"><button class="bp-btn bp-btn--sm" type="button">Cancel</button><button class="bp-btn bp-btn--sm bp-btn--solid" type="button">Issue</button></footer></div>';
+  var toast = '<div class="bp-toast" style="position:absolute;right:16px;bottom:16px;width:220px"><span class="bp-toast__title">Saved</span><span class="bp-toast__text">Rev B2 issued.</span></div>';
+  function opt(letter, title, text, inner) { return '<div class="opt"><span class="bp-label--sm">' + letter + ' · ' + title + '</span>' + inner + '<p>' + text + '</p></div>'; }
+  document.getElementById('overlays').innerHTML = E.map(function (e) {
+    return opt(e[0], e[2], e[3], '<div class="busy">' + table + '<div class="over ' + e[1] + '">' + menu + '</div><div class="over ' + e[1] + '" style="left:230px;top:70px;max-width:180px">' + pop + '</div></div>');
+  }).join('');
+  document.getElementById('dialogs').innerHTML = E.map(function (e) {
+    return opt(e[0], e[2], e[3], '<div class="busy" style="min-height:250px">' + table + '<div class="over ' + e[1] + '" style="left:40px;top:30px">' + dialog + '</div>' + toast.replace('class="bp-toast"', 'class="bp-toast ' + e[1] + '"') + '</div>');
+  }).join('');
+
+  var H = [
+    ['1', 'h-fill',   'Fill', '20% ink wash. What buttons do now.'],
+    ['2', 'h-line',   'Bold line', 'The line goes to 2px, drawn inward so nothing moves.'],
+    ['3', 'h-lift',   'Lift', 'Moves 1px up-left and gains the offset shadow line: the paper lifts off the sheet.'],
+    ['4', 'h-halo',   'Halo ring', 'A paper halo with an ink ring outside it.'],
+    ['5', 'h-invert', 'Invert', 'Ink fill, paper text. What menu items do now.'],
+    ['6', 'h-under',  'Underline draw', 'A bold line draws along the bottom edge, left to right.'],
+    ['7', 'h-corner', 'Corner marks', 'Registration marks fade in at two corners.']
+  ];
+  function card(cls) { return '<section class="bp-card hcard ' + cls + '"><header class="bp-card__title"><div><span class="bp-label--sm bp-dim">Sheet 3</span><h3>Pump house</h3></div><div><span class="bp-label--sm bp-dim">Rev</span><span class="bp-label">B1</span></div></header><div class="bp-card__body"><span class="bp-text--sm bp-dim">Level 1 · 12 drawings</span></div></section>'; }
+  document.getElementById('cards').innerHTML = H.map(function (h) { return opt(h[0], h[2], h[3], card(h[1])); }).join('');
+  document.getElementById('buttons').innerHTML = H.filter(function (h) { return h[0] !== '7'; }).map(function (h) {
+    return opt(h[0], h[2], h[3], '<div class="bp-row bp-wrap" style="gap:10px"><button class="bp-btn hbtn ' + h[1] + '" type="button">Outline</button><button class="bp-btn bp-btn--sm hbtn ' + h[1] + '" type="button">Small</button><button class="bp-btn bp-btn--ghost hbtn ' + h[1] + '" type="button">Ghost</button></div>');
+  }).join('');
+  var R = [['a', 'hrow-fill', 'Wash', '9% ink. What rows do now.'], ['b', 'hrow-invert', 'Invert', 'Ink fill, paper text.'], ['c', 'hrow-mark', 'Margin mark', 'A 3px ink bar at the left edge.'], ['d', 'hrow-line', 'Bold rules', 'The row\'s top and bottom rules go full ink.']];
+  document.getElementById('rows').innerHTML = R.map(function (r) { return opt(r[0], r[2], r[3], '<div class="hrow">' + table.replace('class="bp-table"', 'class="bp-table ' + r[1] + '"') + '</div>'); }).join('');
+
+  function fill(id, list) { var s = document.getElementById(id); s.innerHTML = list.map(function (x) { return '<option>' + x[0] + ' · ' + x[2] + '</option>'; }).join(''); }
+  fill('p-over', E); fill('p-card', H); fill('p-btn', H.slice(0, 6)); fill('p-row', R);
+  document.getElementById('copy').addEventListener('click', function () {
+    var t = 'Blueprint Paper picks: overlays ' + document.getElementById('p-over').value + ' · cards ' + document.getElementById('p-card').value + ' · buttons ' + document.getElementById('p-btn').value + ' · rows ' + document.getElementById('p-row').value;
+    var out = document.getElementById('out');
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { out.textContent = 'Copied'; }, function () { out.textContent = t; });
+  });
+  var sw = document.getElementById('theme');
+  sw.checked = bp.theme() === 'whiteprint';
+  sw.addEventListener('change', function () { bp.theme(sw.checked ? 'whiteprint' : 'blueprint'); });
+})();
+</script>
+</body>
+</html>

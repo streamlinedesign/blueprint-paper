@@ -21,7 +21,7 @@ This file is the rulebook. If a change follows it, it belongs; if it needs an ex
 
 **Motion.** Under 300ms, eased out with `--bp-ease`, never on a keyboard action, and off entirely under `prefers-reduced-motion`. A transition explains a state change; it never decorates one.
 
-**Tokens, not numbers.** Spacing from `--bp-1..8`, strokes from `--bp-stroke` and `--bp-stroke-2`, colors from the ink and ground tokens. A new number in a component file needs a comment saying why.
+**Tokens, not numbers.** Spacing from `--bp-1..8`, strokes from `--bp-line` and `--bp-line-bold`, colors from the ink and ground tokens. A new number in a component file needs a comment saying why.
 
 **Accessibility.** `npm test` renders the docs and demo in two themes at two widths and fails on serious axe-core violations, console errors, or horizontal overflow. Keep it green.
 

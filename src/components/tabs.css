@@ -13,11 +13,11 @@
 .bp-tabs, .bp-tabset { display: flex; flex-wrap: wrap; }
 .bp-tab {
   flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: var(--bp-2);
-  min-height: var(--bp-control); padding: 0 var(--bp-4); margin-left: calc(-1 * var(--bp-stroke));
-  border: var(--bp-stroke) solid var(--bp-ink-62); background: transparent; color: inherit;
+  min-height: var(--bp-control); padding: 0 var(--bp-4); margin-left: calc(-1 * var(--bp-line));
+  border: var(--bp-line) var(--bp-line-style) var(--bp-ink-62); background: transparent; color: inherit;
   font: 500 var(--bp-label)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
   text-decoration: none; cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent;
-  transition: background var(--bp-speed-fast) linear, color var(--bp-speed-fast) linear;
+  transition: background var(--bp-dur-1) linear, color var(--bp-dur-1) linear;
 }
 .bp-tab:first-of-type, .bp-tabset > input:first-of-type + .bp-tab { margin-left: 0; }
 .bp-tab:hover { border-color: var(--bp-ink); position: relative; z-index: 1; }
@@ -28,10 +28,10 @@
 .bp-tabs--fit .bp-tab, .bp-tabset--fit .bp-tab { flex: none; }
 
 .bp-tabset > input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
-.bp-tabset > input:focus-visible + .bp-tab { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 3px; z-index: 2; }
+.bp-tabset > input:focus-visible + .bp-tab { outline: var(--bp-line) solid var(--bp-ink); outline-offset: 3px; z-index: 2; }
 .bp-tabset__panels { flex-basis: 100%; }
 .bp-tabpanel { display: none; padding-top: var(--bp-4); }
-.bp-tabpanel--boxed { padding: var(--bp-4); border: var(--bp-stroke) solid var(--bp-ink-62); border-top: 0; }
+.bp-tabpanel--boxed { padding: var(--bp-4); border: var(--bp-line) var(--bp-line-style) var(--bp-ink-62); border-top: 0; }
 .bp-tabset:has(> input:nth-of-type(1):checked) .bp-tabpanel:nth-of-type(1),
 .bp-tabset:has(> input:nth-of-type(2):checked) .bp-tabpanel:nth-of-type(2),
 .bp-tabset:has(> input:nth-of-type(3):checked) .bp-tabpanel:nth-of-type(3),

@@ -7,7 +7,7 @@
    </div>
    Add name="group" to each <details> for one-open-at-a-time (Chrome 120+, Safari 17.2+). */
 .bp-accordion { display: flex; flex-direction: column; }
-.bp-accordion__item { border: var(--bp-stroke) solid var(--bp-ink); margin-top: calc(-1 * var(--bp-stroke)); }
+.bp-accordion__item { border: var(--bp-line) var(--bp-line-style) var(--bp-ink); margin-top: calc(-1 * var(--bp-line)); }
 .bp-accordion__item:first-child { margin-top: 0; }
 .bp-accordion__summary {
   display: flex; align-items: center; gap: var(--bp-3); list-style: none; cursor: pointer;
@@ -18,15 +18,15 @@
 .bp-accordion__summary::-webkit-details-marker { display: none; }
 .bp-accordion__summary::after {
   content: ""; margin-left: auto; flex: none; width: 10px; height: 10px;
-  border-right: var(--bp-stroke) solid var(--bp-ink); border-bottom: var(--bp-stroke) solid var(--bp-ink);
-  transform: translateY(-3px) rotate(45deg);
-  transition: transform var(--bp-speed) var(--bp-ease);
+  border-right: var(--bp-line) var(--bp-line-style) var(--bp-ink); border-bottom: var(--bp-line) var(--bp-line-style) var(--bp-ink);
+  transform: translateX(-2px) rotate(-45deg);          /* closed: points right */
+  transition: transform var(--bp-dur-2) var(--bp-ease);
 }
-.bp-accordion__item[open] > .bp-accordion__summary::after { transform: translateY(3px) rotate(225deg); }
+.bp-accordion__item[open] > .bp-accordion__summary::after { transform: translateY(-3px) rotate(45deg); }   /* open: turns clockwise to point down */
 .bp-accordion__summary:hover { background: var(--bp-ink-09); }
 .bp-accordion__summary:focus-visible { outline-offset: -4px; }
 .bp-accordion__body { padding: 0 var(--bp-4) var(--bp-4); display: flex; flex-direction: column; gap: var(--bp-3); }
-.bp-accordion--light .bp-accordion__item { border-width: 0 0 var(--bp-stroke); border-color: var(--bp-ink-62); margin-top: 0; }
-.bp-accordion--light .bp-accordion__item:first-child { border-top-width: var(--bp-stroke); }
+.bp-accordion--light .bp-accordion__item { border-width: 0 0 var(--bp-line); border-color: var(--bp-ink-62); margin-top: 0; }
+.bp-accordion--light .bp-accordion__item:first-child { border-top-width: var(--bp-line); }
 .bp-accordion--light .bp-accordion__summary, .bp-accordion--light .bp-accordion__body { padding-left: 0; padding-right: 0; }
 .bp-accordion--light .bp-accordion__summary:hover { background: transparent; text-decoration: underline; text-underline-offset: .25em; }

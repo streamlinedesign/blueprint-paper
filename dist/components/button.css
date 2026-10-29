@@ -4,12 +4,12 @@
 .bp-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--bp-3);
   min-height: var(--bp-control); padding: 0 var(--bp-5);
-  border: var(--bp-stroke) solid var(--bp-ink);
+  border: var(--bp-line) var(--bp-line-style) var(--bp-ink);
   background: transparent; color: var(--bp-ink);
   font: 500 var(--bp-label)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
   text-decoration: none; cursor: pointer; white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
-  transition: background var(--bp-speed-fast) linear, color var(--bp-speed-fast) linear, transform var(--bp-speed-fast) var(--bp-ease);
+  transition: background var(--bp-dur-1) linear, color var(--bp-dur-1) linear, transform var(--bp-dur-1) var(--bp-ease);
 }
 .bp-btn:hover { background: var(--bp-ink-20); }
 .bp-btn:active { transform: scale(.97); }
@@ -29,6 +29,6 @@
 
 /* a row of buttons sharing edges */
 .bp-btn-group { display: inline-flex; }
-.bp-btn-group > .bp-btn { margin-left: calc(-1 * var(--bp-stroke)); }
+.bp-btn-group > .bp-btn { margin-left: calc(-1 * var(--bp-line)); }
 .bp-btn-group > .bp-btn:first-child { margin-left: 0; }
 .bp-btn-group > .bp-btn:hover, .bp-btn-group > .bp-btn:focus-visible { position: relative; z-index: 1; }
