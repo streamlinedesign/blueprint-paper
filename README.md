@@ -47,6 +47,10 @@ The CSS needs no JavaScript. `dist/blueprint-paper.js` (3 kB) adds auto-measured
 <script src="https://cdn.jsdelivr.net/gh/streamlinedesign/blueprint-paper@main/dist/blueprint-paper.js" defer></script>
 ```
 
+## Credits
+
+The toast stack is inspired by the shadcn/ui toast ([Sonner](https://sonner.emilkowal.ski/), by Emil Kowalski), whose motion principles also shaped the switch.
+
 ## Themes
 
 Blueprint (navy paper) is the default. For whiteprint (pale paper, navy ink), put `data-theme="whiteprint"` on `<html>`, or `bp-whiteprint` on any `.bp-sheet`.

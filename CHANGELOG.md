@@ -2,7 +2,11 @@
 
 All notable changes to this project are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/). Until 1.0, minor versions may rename things.
 
-## [0.7.0] - 2026-10-29
+## [Unreleased]
+
+The version stays at 0.9 until 1.0; changes land here in the meantime.
+
+## [0.9.0] - 2026-10-29
 
 ### Added
 - Code: `<pre data-code>` gets line numbers and a Copy button from the optional script (`bp.code(pre)`); `.bp-code`, `.bp-code__line` and `.bp-code__copy` for static markup.
@@ -11,6 +15,9 @@ All notable changes to this project are listed here. The format follows [Keep a 
 - `CONTRIBUTING.md` with the rules the kit follows, and `.editorconfig`.
 
 ### Changed
+- Version jumps to 0.9.0 and stays there until 1.0. The docs roadmap is gone; this changelog is the plan.
+- Colors approved: paper `#0B2F6E`, ink `#F2F6FF`, 78% and 62% tiers.
+- Toast docs credit the shadcn/ui toast (Sonner).
 - npm package name is `blueprint-paper` (unscoped), not `@blueprint-paper/css`. Nothing was published under the old name.
 - Table: right-aligned number cells use `.bp-num` (was a stray `.num`).
 

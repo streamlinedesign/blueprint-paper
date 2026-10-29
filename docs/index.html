@@ -15,7 +15,7 @@
 <a class="skip" href="#content">Skip to content</a>
 
 <header class="top">
-  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.7.0</span></a>
+  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.9.0</span></a>
   <form class="search" role="search" onsubmit="return false">
     <label class="bp-label-s bp-dim" for="q">Search</label>
     <input class="bp-input bp-input--sm" id="q" type="search" placeholder="Search components, classes, tokens… ( / )" autocomplete="off">
@@ -56,8 +56,6 @@
     <a href="#script">Optional script</a>
     <span class="bp-label-s bp-dim">Themes</span>
     <a href="#themes">Whiteprint</a>
-    <span class="bp-label-s bp-dim">Project</span>
-    <a href="#roadmap">Roadmap</a>
   </nav>
 
   <main class="content" id="content">
@@ -583,7 +581,7 @@ import 'blueprint-paper/components/switch.css';</code></pre>
 
     <section class="doc" id="toast" data-keywords="toast notification snackbar message status live region">
       <h2>Toast</h2>
-      <p class="bp-prose">Toasts stack the way Sonner's do: the newest in front, older ones peeking out behind. Hover or focus the stack and it fans out and the timers pause. Swipe one sideways (or drag it with a mouse) to clear it. The region is a live region, so screen readers announce each one. Showing them needs the optional script; the styles alone give you a static toast.</p>
+      <p class="bp-prose">Inspired by the shadcn/ui toast (Sonner, by Emil Kowalski). Toasts stack the same way: the newest in front, older ones peeking out behind. Hover or focus the stack and it fans out and the timers pause. Swipe one sideways (or drag it with a mouse) to clear it. The region is a live region, so screen readers announce each one. Showing them needs the optional script; the styles alone give you a static toast.</p>
       <div class="example">
         <div class="bp-row bp-wrap">
           <button class="bp-btn bp-btn--sm" type="button" id="toast-demo">Show a toast</button>
@@ -690,21 +688,6 @@ import 'blueprint-paper/js';</code></pre>
       </div>
       <pre data-code><code>&lt;html data-theme="whiteprint"&gt;            whole page
 &lt;div class="bp-sheet bp-whiteprint"&gt;…&lt;/div&gt;   one area</code></pre>
-    </section>
-
-    <section class="doc" id="roadmap" data-keywords="roadmap plan versions releases changelog contributing">
-      <h2>Roadmap</h2>
-      <ol class="notes bp-prose">
-        <li><b>v0.1</b> Tokens, typography, switch, button, field, checkbox, radio, card, list, table, badge.</li>
-        <li><b>v0.2</b> Tabs, accordion, alert, tooltip, dialog. Whiteprint theme.</li>
-        <li><b>v0.3</b> Menu, popover, drawer, toast. This page.</li>
-        <li><b>v0.4</b> Overflow, console and accessibility checks in CI.</li>
-        <li><b>v0.5</b> Measure (dimension lines) and the optional script. This page.</li>
-        <li><b>v0.6</b> Switch motion rework, lighter ink, saturated paper.</li>
-        <li><b>v0.7</b> Code blocks with line numbers and copy. Lint, contributing guide, automated releases to npm.</li>
-        <li><b>v0.8</b> Color and style pass on the tokens. First npm publish.</li>
-        <li><b>v1.0</b> Names frozen. CSS only, by design.</li>
-      </ol>
     </section>
 
     <div class="bp-toasts" role="status" aria-live="polite"></div>

@@ -1,4 +1,5 @@
 /* Blueprint Paper · toast
+   Inspired by the shadcn/ui toast (Sonner, by Emil Kowalski).
    Styles only here; bp.toast() in blueprint-paper.js shows them, stacks them like Sonner
    (newest in front, older ones peek out behind), fans the stack out on hover, pauses timers
    while hovered, and lets you swipe one away.

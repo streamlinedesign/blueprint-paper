@@ -35,7 +35,7 @@ This file is the rulebook. If a change follows it, it belongs; if it needs an ex
 
 ## Releasing
 
-Versions follow semver; until 1.0 a minor version may rename things, and the changelog says what. To release:
+Versions follow semver. The version sits at 0.9.x until 1.0: changes go under `## [Unreleased]` in the changelog, patch releases are fine, and 1.0 is the moment names freeze. To release:
 
 ```sh
 npm version minor      # or patch / major: bumps package.json, commits, tags vX.Y.Z

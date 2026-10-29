@@ -1,10 +1,10 @@
-/*! Blueprint Paper v0.7.0 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
+/*! Blueprint Paper v0.9.0 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
 @layer bp.tokens, bp.base, bp.components, bp.themes;
 @layer bp.tokens {
 /* Blueprint Paper · tokens
    Every color, size and curve the components use. Change these, not the components. */
 :root {
-  /* paper and ink */
+  /* paper and ink · palette approved 2026-10-29 */
   --bp-ground:     #0B2F6E;
   --bp-ink:        #F2F6FF;
   --bp-ink-78:     rgba(242, 246, 255, .78);   /* secondary text */
@@ -645,6 +645,7 @@
 }
 @layer bp.components {
 /* Blueprint Paper · toast
+   Inspired by the shadcn/ui toast (Sonner, by Emil Kowalski).
    Styles only here; bp.toast() in blueprint-paper.js shows them, stacks them like Sonner
    (newest in front, older ones peek out behind), fans the stack out on hover, pauses timers
    while hovered, and lets you swipe one away.

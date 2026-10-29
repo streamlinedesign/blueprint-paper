@@ -1,7 +1,7 @@
 /* Blueprint Paper · tokens
    Every color, size and curve the components use. Change these, not the components. */
 :root {
-  /* paper and ink */
+  /* paper and ink · palette approved 2026-10-29 */
   --bp-ground:     #0B2F6E;
   --bp-ink:        #F2F6FF;
   --bp-ink-78:     rgba(242, 246, 255, .78);   /* secondary text */
