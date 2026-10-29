@@ -22,7 +22,7 @@
 .bp-menu > summary.bp-btn--icon::after { display: none; }
 .bp-menu__list, .bp-menu__panel {
   position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; min-width: 180px;
-  border: var(--bp-line) var(--bp-line-style) var(--bp-ink); background: var(--bp-ground);
+  border: var(--bp-line) var(--bp-line-style) var(--bp-ink); background: var(--bp-ground); box-shadow: var(--bp-lift);
   transform-origin: top left;
   animation: bp-menu-in var(--bp-dur-1) var(--bp-ease);
 }

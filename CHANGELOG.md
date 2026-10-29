@@ -7,6 +7,11 @@ All notable changes to this project are listed here. The format follows [Keep a 
 The version stays at 0.9 until 1.0; changes land here in the meantime.
 
 ### Added
+- Overlays lift: menus, popovers, dialogs, drawers and toasts carry `--bp-lift`, a 6px paper halo and a shadow line 4px down-right (lab pick D).
+- Cards that are links or buttons invert on hover (ink and paper swap); `.bp-card--hover` for a card you make interactive yourself.
+- `.bp-invert` swaps ink and paper for a subtree. `.bp-corners` draws only the four corners of an element's outline (`--bp-corner` length, `--bold`).
+- Tokens: `--bp-paper` and `--bp-pen` are the two colors a theme sets; `--bp-ground` and `--bp-ink` derive from them, and the ink ramp re-derives wherever ink changes.
+- Docs: a Line work section (solid, dashed, corners, invert, lift).
 - `docs/lab.html`: elevation and hover candidates side by side (flat, halo, offset line, double rule, hatch, soft shadow; fill, bold line, lift, invert, underline, corner marks) to pick from before they enter the kit.
 - `.bp-dashed` (or `data-line="dashed"`) makes a subtree's line work dashed via `--bp-line-style`. Switch tracks and dimension lines stay solid.
 - A root `index.html` that forwards to `docs/`, so GitHub Pages works whether its source is the Docs workflow or the main branch.

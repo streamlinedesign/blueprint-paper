@@ -33,6 +33,7 @@
     <span class="bp-label--sm bp-dim">Start</span>
     <a href="#install">Install</a>
     <a href="#tokens">Tokens</a>
+    <a href="#linework">Line work</a>
     <a href="#typography">Typography</a>
     <span class="bp-label--sm bp-dim">Components</span>
     <a href="#switch">Switch</a>
@@ -109,6 +110,24 @@ import 'blueprint-paper/components/switch.css';</code></pre>
           <tr><td><code>--bp-ease</code></td><td>cubic-bezier(.25, 1, .5, 1)</td><td>Ease-out for every transition</td></tr>
         </tbody>
       </table></div>
+    </section>
+
+    <section class="doc" id="linework" data-keywords="line work dashed corners corner marks invert solid outline draft registration halo lift shadow">
+      <h2>Line work</h2>
+      <p class="bp-prose">Lines are solid. Three switches change that for a reason: <code>.bp-dashed</code> turns a subtree's lines dashed (a draft, a not-yet), <code>.bp-corners</code> draws only the four corners of an element's outline (a registration frame), and <code>.bp-invert</code> swaps ink and paper for a subtree. Overlays sit on the sheet with <code>--bp-lift</code>: a paper halo and a shadow line, the way a draughtsman shows a raised face.</p>
+      <div class="example">
+        <div class="bp-row bp-wrap" style="gap:24px;align-items:flex-start">
+          <section class="bp-card" style="width:220px"><header class="bp-card__title"><div><span class="bp-label--sm bp-dim">Solid</span><h3>Sheet 3</h3></div></header><div class="bp-card__body"><div class="bp-row" style="gap:10px"><button class="bp-btn bp-btn--sm" type="button">Issue</button><span class="bp-badge">Rev B1</span></div></div></section>
+          <section class="bp-card bp-dashed" style="width:220px"><header class="bp-card__title"><div><span class="bp-label--sm bp-dim">.bp-dashed</span><h3>Sheet 3</h3></div></header><div class="bp-card__body"><div class="bp-row" style="gap:10px"><button class="bp-btn bp-btn--sm" type="button">Issue</button><span class="bp-badge">Draft</span></div></div></section>
+          <section class="bp-card bp-corners" style="width:220px"><header class="bp-card__title"><div><span class="bp-label--sm bp-dim">.bp-corners</span><h3>Sheet 3</h3></div></header><div class="bp-card__body"><div class="bp-row" style="gap:10px"><button class="bp-btn bp-btn--sm bp-corners" type="button">Issue</button><span class="bp-badge bp-corners">Mark</span></div></div></section>
+          <section class="bp-card bp-invert" style="width:220px"><header class="bp-card__title"><div><span class="bp-label--sm bp-dim">.bp-invert</span><h3>Sheet 3</h3></div></header><div class="bp-card__body"><div class="bp-row" style="gap:10px"><button class="bp-btn bp-btn--sm" type="button">Issue</button><span class="bp-badge">Rev B1</span></div></div></section>
+        </div>
+      </div>
+      <pre data-code><code>&lt;section class="bp-card bp-dashed"&gt;…&lt;/section&gt;      every line inside is dashed; switches and measures stay solid
+&lt;section class="bp-card bp-corners"&gt;…&lt;/section&gt;     only the corners of this element's outline; --bp-corner: 10px; --bold
+&lt;div class="bp-invert"&gt;…&lt;/div&gt;                     ink and paper swapped for everything inside
+a.bp-card, button.bp-card, .bp-card--hover          a card that is a link inverts on hover</code></pre>
+      <p class="bp-prose bp-dim">Tokens: <code>--bp-line-style</code> (what <code>.bp-dashed</code> sets), <code>--bp-corner</code>, <code>--bp-lift</code>. Switch tracks and dimension lines ignore <code>.bp-dashed</code> on purpose.</p>
     </section>
 
     <section class="doc" id="typography" data-keywords="typography type font heading display label text dim prose mono plex rule hr">

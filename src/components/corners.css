@@ -1,0 +1,26 @@
+/* Blueprint Paper · corner marks
+   .bp-corners on any bordered element draws only the corners of its outline: four registration marks,
+   the rest of the edge open. Works like .bp-dashed but on the element itself (inner rules stay).
+   <section class="bp-card bp-corners">…</section>   <button class="bp-btn bp-corners">…</button>
+   --bp-corner sets the mark length (10px). --bp-corners-bold doubles the line. */
+.bp-corners {
+  --_w: var(--bp-line);
+  border-color: transparent;
+  background-image:
+    linear-gradient(var(--bp-ink), var(--bp-ink)), linear-gradient(var(--bp-ink), var(--bp-ink)),
+    linear-gradient(var(--bp-ink), var(--bp-ink)), linear-gradient(var(--bp-ink), var(--bp-ink)),
+    linear-gradient(var(--bp-ink), var(--bp-ink)), linear-gradient(var(--bp-ink), var(--bp-ink)),
+    linear-gradient(var(--bp-ink), var(--bp-ink)), linear-gradient(var(--bp-ink), var(--bp-ink));
+  background-size:
+    var(--bp-corner) var(--_w), var(--_w) var(--bp-corner),
+    var(--bp-corner) var(--_w), var(--_w) var(--bp-corner),
+    var(--bp-corner) var(--_w), var(--_w) var(--bp-corner),
+    var(--bp-corner) var(--_w), var(--_w) var(--bp-corner);
+  background-position: top left, top left, top right, top right, bottom left, bottom left, bottom right, bottom right;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  background-clip: border-box;
+}
+.bp-corners--bold { --_w: var(--bp-line-bold); }
+/* the ink wash on hover must not cover the marks: give it a lower layer */
+.bp-btn.bp-corners:hover { background-color: var(--bp-ink-20); }

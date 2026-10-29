@@ -2,8 +2,8 @@
    Pale paper, navy ink. Put data-theme="whiteprint" on <html> (or the class on any .bp-sheet).
    Only the color tokens change; every component follows. */
 :root[data-theme="whiteprint"], .bp-whiteprint {
-  --bp-ground:  #F3F6FB;
-  --bp-ink:     #0B2F6E;
+  --bp-paper:   #F3F6FB;
+  --bp-pen:     #0B2F6E;
   --bp-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%230B2F6E' stroke-width='1.25'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
   color-scheme: light;
 }

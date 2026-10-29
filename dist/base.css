@@ -21,6 +21,8 @@
 .bp-sheet--plain { background-image: none; }
 /* dashed line work for a subtree (a draft, a proposal, a not-yet). Switch tracks and dimension lines stay solid. */
 .bp-dashed, [data-line="dashed"] { --bp-line-style: dashed; }
+/* ink and paper swapped for a subtree: solid blocks, selected rows, hovered cards */
+.bp-invert { background: var(--bp-ground); color: var(--bp-ink); }   /* the swap itself is in tokens.css */
 .bp-sheet *, .bp-sheet *::before, .bp-sheet *::after { box-sizing: border-box; }
 .bp-sheet ::selection { background: var(--bp-ink); color: var(--bp-ground); }
 .bp-sheet :focus-visible { outline: var(--bp-line) solid var(--bp-ink); outline-offset: 3px; }

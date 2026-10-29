@@ -12,6 +12,7 @@
   padding: var(--bp-3) var(--bp-4);
   border: var(--bp-line) var(--bp-line-style) var(--bp-ink); border-left-width: 4px;
   background: var(--bp-ground); color: var(--bp-ink); font-size: var(--bp-text-sm); line-height: 1.5;
+  box-shadow: var(--bp-lift);
   box-shadow: 4px 4px 0 var(--bp-ground), 5px 5px 0 var(--bp-ink);   /* a second sheet behind */
 }
 .bp-toast--solid { background: var(--bp-ink); color: var(--bp-ground); box-shadow: 4px 4px 0 var(--bp-ink), 5px 5px 0 var(--bp-ground); }

@@ -27,4 +27,5 @@
 @import url("components/pagination.css") layer(bp.components);
 @import url("components/breadcrumb.css") layer(bp.components);
 @import url("components/kbd.css") layer(bp.components);
+@import url("components/corners.css") layer(bp.components);
 @import url("themes/whiteprint.css") layer(bp.themes);

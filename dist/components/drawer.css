@@ -12,6 +12,7 @@
   width: min(420px, 100vw); height: 100vh; height: 100dvh;
   border: 0; border-left: var(--bp-line-bold) var(--bp-line-style) var(--bp-ink);
   background: var(--bp-ground); color: var(--bp-ink); font-family: var(--bp-font); font-size: var(--bp-text);
+  box-shadow: var(--bp-lift);
 }
 .bp-drawer::backdrop { background: rgba(4, 19, 48, .6); }
 .bp-drawer__frame { display: flex; flex-direction: column; height: 100%; margin: 0; }

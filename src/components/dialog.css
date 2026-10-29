@@ -10,6 +10,7 @@
 .bp-dialog {
   margin: auto; padding: 0; border: var(--bp-line-bold) var(--bp-line-style) var(--bp-ink);
   background: var(--bp-ground); color: var(--bp-ink); font-family: var(--bp-font); font-size: var(--bp-text);
+  box-shadow: var(--bp-lift);
   width: min(480px, calc(100vw - 32px)); max-height: calc(100vh - 32px);
 }
 .bp-dialog--wide { width: min(720px, calc(100vw - 32px)); }

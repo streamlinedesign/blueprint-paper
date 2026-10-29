@@ -1,14 +1,9 @@
 /* Blueprint Paper · tokens
    Every color, size and curve the components use. Change these, not the components. */
 :root {
-  /* paper and ink · palette approved 2026-10-29.
-     A theme sets --bp-ground and --bp-ink; the ink ramp follows (color-mix, supported since 2023). */
-  --bp-ground:     #0B2F6E;
-  --bp-ink:        #F2F6FF;
-  --bp-ink-78:     color-mix(in srgb, var(--bp-ink) 78%, transparent);   /* secondary text */
-  --bp-ink-62:     color-mix(in srgb, var(--bp-ink) 62%, transparent);   /* light rules, placeholders */
-  --bp-ink-20:     color-mix(in srgb, var(--bp-ink) 20%, transparent);   /* hover fill */
-  --bp-ink-09:     color-mix(in srgb, var(--bp-ink) 9%, transparent);    /* grid */
+  /* paper and ink · palette approved 2026-10-29. A theme sets these two. */
+  --bp-paper:      #0B2F6E;
+  --bp-pen:        #F2F6FF;
 
   /* type */
   --bp-font:       'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
@@ -31,6 +26,8 @@
   --bp-line:       1px;
   --bp-line-bold:  2px;
   --bp-line-style: solid;
+  --bp-corner:     10px;                       /* length of a corner mark (.bp-corners) */
+  --bp-lift:       0 0 0 6px var(--bp-ground), 10px 10px 0 -6px var(--bp-ink);   /* overlays: a paper halo, then a shadow line */
   --bp-grid:       26px;
   --bp-control:    calc(var(--bp-grid) * 2 - 4px);      /* 48px: two grid squares less the lines, so controls sit on the grid */
   --bp-control-sm: calc(var(--bp-grid) * 1.5 - 3px);    /* 36px */
@@ -47,3 +44,15 @@
 
   color-scheme: dark;
 }
+
+/* What components draw with, derived from the two colors above. Custom properties resolve where they
+   are declared, so this block is repeated on every selector that changes --bp-ink: a theme class,
+   .bp-invert, and a hovered card. Add yours here if you make another. */
+:root, .bp-whiteprint, .bp-invert, .bp-card--hover:hover, a.bp-card:hover, button.bp-card:hover {
+  --bp-ink-78:     color-mix(in srgb, var(--bp-ink) 78%, transparent);   /* secondary text */
+  --bp-ink-62:     color-mix(in srgb, var(--bp-ink) 62%, transparent);   /* light rules, placeholders */
+  --bp-ink-20:     color-mix(in srgb, var(--bp-ink) 20%, transparent);   /* hover fill */
+  --bp-ink-09:     color-mix(in srgb, var(--bp-ink) 9%, transparent);    /* grid */
+}
+:root, .bp-whiteprint { --bp-ground: var(--bp-paper); --bp-ink: var(--bp-pen); }
+.bp-invert, .bp-card--hover:hover, a.bp-card:hover, button.bp-card:hover { --bp-ground: var(--bp-pen); --bp-ink: var(--bp-paper); }

@@ -4,14 +4,9 @@
 /* Blueprint Paper · tokens
    Every color, size and curve the components use. Change these, not the components. */
 :root {
-  /* paper and ink · palette approved 2026-10-29.
-     A theme sets --bp-ground and --bp-ink; the ink ramp follows (color-mix, supported since 2023). */
-  --bp-ground:     #0B2F6E;
-  --bp-ink:        #F2F6FF;
-  --bp-ink-78:     color-mix(in srgb, var(--bp-ink) 78%, transparent);   /* secondary text */
-  --bp-ink-62:     color-mix(in srgb, var(--bp-ink) 62%, transparent);   /* light rules, placeholders */
-  --bp-ink-20:     color-mix(in srgb, var(--bp-ink) 20%, transparent);   /* hover fill */
-  --bp-ink-09:     color-mix(in srgb, var(--bp-ink) 9%, transparent);    /* grid */
+  /* paper and ink · palette approved 2026-10-29. A theme sets these two. */
+  --bp-paper:      #0B2F6E;
+  --bp-pen:        #F2F6FF;
 
   /* type */
   --bp-font:       'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
@@ -34,6 +29,8 @@
   --bp-line:       1px;
   --bp-line-bold:  2px;
   --bp-line-style: solid;
+  --bp-corner:     10px;                       /* length of a corner mark (.bp-corners) */
+  --bp-lift:       0 0 0 6px var(--bp-ground), 10px 10px 0 -6px var(--bp-ink);   /* overlays: a paper halo, then a shadow line */
   --bp-grid:       26px;
   --bp-control:    calc(var(--bp-grid) * 2 - 4px);      /* 48px: two grid squares less the lines, so controls sit on the grid */
   --bp-control-sm: calc(var(--bp-grid) * 1.5 - 3px);    /* 36px */
@@ -50,6 +47,18 @@
 
   color-scheme: dark;
 }
+
+/* What components draw with, derived from the two colors above. Custom properties resolve where they
+   are declared, so this block is repeated on every selector that changes --bp-ink: a theme class,
+   .bp-invert, and a hovered card. Add yours here if you make another. */
+:root, .bp-whiteprint, .bp-invert, .bp-card--hover:hover, a.bp-card:hover, button.bp-card:hover {
+  --bp-ink-78:     color-mix(in srgb, var(--bp-ink) 78%, transparent);   /* secondary text */
+  --bp-ink-62:     color-mix(in srgb, var(--bp-ink) 62%, transparent);   /* light rules, placeholders */
+  --bp-ink-20:     color-mix(in srgb, var(--bp-ink) 20%, transparent);   /* hover fill */
+  --bp-ink-09:     color-mix(in srgb, var(--bp-ink) 9%, transparent);    /* grid */
+}
+:root, .bp-whiteprint { --bp-ground: var(--bp-paper); --bp-ink: var(--bp-pen); }
+.bp-invert, .bp-card--hover:hover, a.bp-card:hover, button.bp-card:hover { --bp-ground: var(--bp-pen); --bp-ink: var(--bp-paper); }
 }
 @layer bp.base {
 /* Blueprint Paper · base
@@ -75,6 +84,8 @@
 .bp-sheet--plain { background-image: none; }
 /* dashed line work for a subtree (a draft, a proposal, a not-yet). Switch tracks and dimension lines stay solid. */
 .bp-dashed, [data-line="dashed"] { --bp-line-style: dashed; }
+/* ink and paper swapped for a subtree: solid blocks, selected rows, hovered cards */
+.bp-invert { background: var(--bp-ground); color: var(--bp-ink); }   /* the swap itself is in tokens.css */
 .bp-sheet *, .bp-sheet *::before, .bp-sheet *::after { box-sizing: border-box; }
 .bp-sheet ::selection { background: var(--bp-ink); color: var(--bp-ground); }
 .bp-sheet :focus-visible { outline: var(--bp-line) solid var(--bp-ink); outline-offset: 3px; }
@@ -373,6 +384,9 @@
 .bp-card__body--flush { padding: 0; gap: 0; }
 .bp-card__footer { display: flex; align-items: center; justify-content: flex-end; gap: var(--bp-3); padding: var(--bp-3) var(--bp-4); border-top: var(--bp-line) var(--bp-line-style) var(--bp-ink); }
 .bp-card--heavy { border-width: var(--bp-line-bold); }
+/* a card that is a link or a button inverts on hover; .bp-card--hover for a card you make interactive yourself */
+a.bp-card, button.bp-card, .bp-card--hover { cursor: pointer; text-decoration: none; transition: background var(--bp-dur-1) linear, color var(--bp-dur-1) linear; }
+a.bp-card:hover, button.bp-card:hover, .bp-card--hover:hover { background: var(--bp-ground); color: var(--bp-ink); text-decoration: none; }   /* ink and paper swap in tokens.css */
 
 /* rows: a list where each item shares edges with the next */
 .bp-list { display: flex; flex-direction: column; }
@@ -558,6 +572,7 @@
 .bp-dialog {
   margin: auto; padding: 0; border: var(--bp-line-bold) var(--bp-line-style) var(--bp-ink);
   background: var(--bp-ground); color: var(--bp-ink); font-family: var(--bp-font); font-size: var(--bp-text);
+  box-shadow: var(--bp-lift);
   width: min(480px, calc(100vw - 32px)); max-height: calc(100vh - 32px);
 }
 .bp-dialog--wide { width: min(720px, calc(100vw - 32px)); }
@@ -606,7 +621,7 @@
 .bp-menu > summary.bp-btn--icon::after { display: none; }
 .bp-menu__list, .bp-menu__panel {
   position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; min-width: 180px;
-  border: var(--bp-line) var(--bp-line-style) var(--bp-ink); background: var(--bp-ground);
+  border: var(--bp-line) var(--bp-line-style) var(--bp-ink); background: var(--bp-ground); box-shadow: var(--bp-lift);
   transform-origin: top left;
   animation: bp-menu-in var(--bp-dur-1) var(--bp-ease);
 }
@@ -644,6 +659,7 @@
   width: min(420px, 100vw); height: 100vh; height: 100dvh;
   border: 0; border-left: var(--bp-line-bold) var(--bp-line-style) var(--bp-ink);
   background: var(--bp-ground); color: var(--bp-ink); font-family: var(--bp-font); font-size: var(--bp-text);
+  box-shadow: var(--bp-lift);
 }
 .bp-drawer::backdrop { background: rgba(4, 19, 48, .6); }
 .bp-drawer__frame { display: flex; flex-direction: column; height: 100%; margin: 0; }
@@ -682,6 +698,7 @@
   padding: var(--bp-3) var(--bp-4);
   border: var(--bp-line) var(--bp-line-style) var(--bp-ink); border-left-width: 4px;
   background: var(--bp-ground); color: var(--bp-ink); font-size: var(--bp-text-sm); line-height: 1.5;
+  box-shadow: var(--bp-lift);
   box-shadow: 4px 4px 0 var(--bp-ground), 5px 5px 0 var(--bp-ink);   /* a second sheet behind */
 }
 .bp-toast--solid { background: var(--bp-ink); color: var(--bp-ground); box-shadow: 4px 4px 0 var(--bp-ink), 5px 5px 0 var(--bp-ground); }
@@ -948,13 +965,41 @@
 }
 .bp-kbd--sm { --cap: 20px; }
 }
+@layer bp.components {
+/* Blueprint Paper · corner marks
+   .bp-corners on any bordered element draws only the corners of its outline: four registration marks,
+   the rest of the edge open. Works like .bp-dashed but on the element itself (inner rules stay).
+   <section class="bp-card bp-corners">…</section>   <button class="bp-btn bp-corners">…</button>
+   --bp-corner sets the mark length (10px). --bp-corners-bold doubles the line. */
+.bp-corners {
+  --_w: var(--bp-line);
+  border-color: transparent;
+  background-image:
+    linear-gradient(var(--bp-ink), var(--bp-ink)), linear-gradient(var(--bp-ink), var(--bp-ink)),
+    linear-gradient(var(--bp-ink), var(--bp-ink)), linear-gradient(var(--bp-ink), var(--bp-ink)),
+    linear-gradient(var(--bp-ink), var(--bp-ink)), linear-gradient(var(--bp-ink), var(--bp-ink)),
+    linear-gradient(var(--bp-ink), var(--bp-ink)), linear-gradient(var(--bp-ink), var(--bp-ink));
+  background-size:
+    var(--bp-corner) var(--_w), var(--_w) var(--bp-corner),
+    var(--bp-corner) var(--_w), var(--_w) var(--bp-corner),
+    var(--bp-corner) var(--_w), var(--_w) var(--bp-corner),
+    var(--bp-corner) var(--_w), var(--_w) var(--bp-corner);
+  background-position: top left, top left, top right, top right, bottom left, bottom left, bottom right, bottom right;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  background-clip: border-box;
+}
+.bp-corners--bold { --_w: var(--bp-line-bold); }
+/* the ink wash on hover must not cover the marks: give it a lower layer */
+.bp-btn.bp-corners:hover { background-color: var(--bp-ink-20); }
+}
 @layer bp.themes {
 /* Blueprint Paper · whiteprint theme
    Pale paper, navy ink. Put data-theme="whiteprint" on <html> (or the class on any .bp-sheet).
    Only the color tokens change; every component follows. */
 :root[data-theme="whiteprint"], .bp-whiteprint {
-  --bp-ground:  #F3F6FB;
-  --bp-ink:     #0B2F6E;
+  --bp-paper:   #F3F6FB;
+  --bp-pen:     #0B2F6E;
   --bp-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%230B2F6E' stroke-width='1.25'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
   color-scheme: light;
 }

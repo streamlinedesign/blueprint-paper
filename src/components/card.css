@@ -14,6 +14,9 @@
 .bp-card__body--flush { padding: 0; gap: 0; }
 .bp-card__footer { display: flex; align-items: center; justify-content: flex-end; gap: var(--bp-3); padding: var(--bp-3) var(--bp-4); border-top: var(--bp-line) var(--bp-line-style) var(--bp-ink); }
 .bp-card--heavy { border-width: var(--bp-line-bold); }
+/* a card that is a link or a button inverts on hover; .bp-card--hover for a card you make interactive yourself */
+a.bp-card, button.bp-card, .bp-card--hover { cursor: pointer; text-decoration: none; transition: background var(--bp-dur-1) linear, color var(--bp-dur-1) linear; }
+a.bp-card:hover, button.bp-card:hover, .bp-card--hover:hover { background: var(--bp-ground); color: var(--bp-ink); text-decoration: none; }   /* ink and paper swap in tokens.css */
 
 /* rows: a list where each item shares edges with the next */
 .bp-list { display: flex; flex-direction: column; }
