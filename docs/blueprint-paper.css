@@ -1,4 +1,4 @@
-/*! Blueprint Paper v0.6.0 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
+/*! Blueprint Paper v0.7.0 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
 @layer bp.tokens, bp.base, bp.components, bp.themes;
 @layer bp.tokens {
 /* Blueprint Paper · tokens
@@ -373,7 +373,7 @@
 .bp-table { width: 100%; border-collapse: collapse; font-size: var(--bp-text-s); font-variant-numeric: tabular-nums; }
 .bp-table th, .bp-table td { padding: var(--bp-3) var(--bp-4); text-align: left; vertical-align: middle; border: var(--bp-stroke) solid var(--bp-ink-55); }
 .bp-table th { font-size: var(--bp-label-s); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-72); border-bottom-color: var(--bp-ink); }
-.bp-table .num { text-align: right; }
+.bp-table .bp-num { text-align: right; }        /* numbers right-aligned, tabular (bp-num is in base.css) */
 .bp-table tbody tr:hover { background: var(--bp-ink-09); }
 .bp-table--heavy th, .bp-table--heavy td { border-color: var(--bp-ink); }
 .bp-table--lines th, .bp-table--lines td { border-left: 0; border-right: 0; }
@@ -751,6 +751,38 @@
 .bp-measured > .bp-measure:not(.bp-measure--v):not(.bp-measure--bottom) { bottom: calc(100% + var(--gap)); }
 .bp-measured > .bp-measure--v:not(.bp-measure--right) { right: calc(100% + var(--gap)); }
 .bp-measure--ink { color: var(--bp-ink); }
+}
+@layer bp.components {
+/* Blueprint Paper · code block
+   <pre data-code><code>…</code></pre>
+   With the optional script, data-code gives a block line numbers and a Copy button:
+   data-code="numbers", data-code="copy", or both (the default; numbers only when there is more than one line).
+   Without the script you still get the plain block from base.css, and you can write the markup yourself:
+   <div class="bp-code bp-code--numbered"><pre><code><span class="bp-code__line">…</span></code></pre>
+     <button class="bp-code__copy" type="button">Copy</button></div> */
+.bp-code { position: relative; }
+.bp-code pre { padding-right: calc(var(--bp-4) + 7ch); }         /* room for the button over the first line */
+.bp-code code { display: block; counter-reset: line; min-width: max-content; }
+.bp-code__line { display: block; }
+.bp-code--numbered .bp-code__line { counter-increment: line; }
+.bp-code--numbered .bp-code__line::before {
+  content: counter(line);
+  display: inline-block; width: 2ch; margin-right: var(--bp-4);
+  text-align: right; color: var(--bp-ink-62);
+  user-select: none; -webkit-user-select: none;
+}
+.bp-code__copy {
+  position: absolute; top: var(--bp-2); right: var(--bp-2);
+  min-height: 28px; padding: 0 var(--bp-3);
+  border: var(--bp-stroke) solid var(--bp-ink-62); background: var(--bp-ground); color: var(--bp-ink);
+  font: 500 var(--bp-label-s)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: border-color var(--bp-speed-s) linear, opacity var(--bp-speed-s) linear;
+}
+.bp-code__copy:hover, .bp-code__copy:focus-visible { border-color: var(--bp-ink); }
+.bp-code__copy:focus-visible { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 2px; }
+.bp-code__copy:active { opacity: .7; }
+.bp-code__copy[data-done] { background: var(--bp-ink); color: var(--bp-ground); border-color: var(--bp-ink); }
 }
 @layer bp.themes {
 /* Blueprint Paper · whiteprint theme

@@ -15,13 +15,13 @@ Docs and live examples: https://streamlinedesign.github.io/blueprint-paper/
 Or from npm:
 
 ```sh
-npm install @blueprint-paper/css
+npm install blueprint-paper
 ```
 
 ```js
-import '@blueprint-paper/css';                       // everything
-import '@blueprint-paper/css/tokens';                // or tokens + only what you need
-import '@blueprint-paper/css/components/switch.css';
+import 'blueprint-paper';                 // everything
+import 'blueprint-paper/tokens';          // or tokens + only what you need
+import 'blueprint-paper/components/switch.css';
 ```
 
 ## The switch
@@ -37,11 +37,11 @@ Add `bp-switch--vertical` for a vertical switch where up is on.
 
 ## Components
 
-Tokens, typography, switch, button, field (input, textarea, select), checkbox, radio, card, list, table, badge, tabs, accordion, alert, tooltip, dialog, menu, drawer, toast, measure (dimension lines).
+Tokens, typography, switch, button, field (input, textarea, select), checkbox, radio, card, list, table, badge, tabs, accordion, alert, tooltip, dialog, menu, drawer, toast, measure (dimension lines), code (line numbers, copy).
 
 ## Optional script
 
-The CSS needs no JavaScript. `dist/blueprint-paper.js` (3 kB) adds auto-measured dimension lines (`data-measure="w h" data-unit="mm"`), menu light-dismiss, `bp.toast()` and `bp.theme()`.
+The CSS needs no JavaScript. `dist/blueprint-paper.js` (3 kB) adds auto-measured dimension lines (`data-measure="w h" data-unit="mm"`), code blocks with line numbers and a Copy button (`<pre data-code>`), menu light-dismiss, `bp.toast()` and `bp.theme()`.
 
 ```html
 <script src="https://cdn.jsdelivr.net/gh/streamlinedesign/blueprint-paper@main/dist/blueprint-paper.js" defer></script>
@@ -56,6 +56,7 @@ Blueprint (navy paper) is the default. For whiteprint (pale paper, navy ink), pu
 ```sh
 npm install
 npm run build     # src/ -> dist/ and docs/blueprint-paper.css
+npm run lint      # class naming and CSS hygiene (stylelint)
 npm run dev       # serve docs/ on http://localhost:4321
 npm test          # overflow, console and accessibility checks (needs: npx playwright install chromium)
 ```

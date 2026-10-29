@@ -1,5 +1,5 @@
 /*! Blueprint Paper · optional script. The CSS works without it.
-    Adds: auto-measured dimension lines, menu light-dismiss, toasts, theme switching.
+    Adds: auto-measured dimension lines, menu light-dismiss, toasts, theme switching, code blocks with line numbers and copy.
     Load it with a script tag (defer is fine), then bp.toast('Saved'), bp.theme('whiteprint'), etc. */
 (function (root) {
   'use strict';
@@ -151,10 +151,63 @@
     return name;
   };
 
+
+  // bp.code(pre, { numbers, copy }): wraps the block so it can show line numbers and a Copy button.
+  // <pre data-code> is picked up on load: data-code="numbers", "copy", or both (default; numbers only past one line).
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function (resolve, reject) {         // fallback for http and old browsers
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy') ? resolve() : reject(new Error('copy failed')); } catch (e) { reject(e); }
+      ta.remove();
+    });
+  }
+  bp.code = function (pre, opts) {
+    if (!pre || pre.closest('.bp-code')) return pre;
+    opts = opts || {};
+    var code = pre.querySelector('code') || pre;
+    var lines = code.textContent.replace(/\n$/, '').split('\n');
+    var numbers = opts.numbers !== undefined ? opts.numbers : lines.length > 1;
+    var copy = opts.copy !== undefined ? opts.copy : true;
+    var wrap = document.createElement('div');
+    wrap.className = 'bp-code' + (numbers ? ' bp-code--numbered' : '');
+    pre.parentNode.insertBefore(wrap, pre);
+    wrap.appendChild(pre);
+    if (numbers) {
+      code.textContent = '';
+      lines.forEach(function (l) {
+        var span = document.createElement('span');
+        span.className = 'bp-code__line';
+        span.textContent = l + '\n';
+        code.appendChild(span);
+      });
+    }
+    if (copy) {
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'bp-code__copy'; btn.textContent = 'Copy';
+      btn.setAttribute('aria-label', 'Copy code');
+      btn.addEventListener('click', function () {
+        copyText(lines.join('\n')).then(function () {
+          btn.textContent = 'Copied'; btn.setAttribute('data-done', '');
+          clearTimeout(btn._bp); btn._bp = setTimeout(function () { btn.textContent = 'Copy'; btn.removeAttribute('data-done'); }, 1500);
+        }, function () { btn.textContent = 'Select & copy'; });
+      });
+      wrap.appendChild(btn);
+    }
+    return wrap;
+  };
+
   function init() {
     try { var saved = localStorage.getItem('bp-theme'); if (saved && saved !== 'blueprint') document.documentElement.setAttribute('data-theme', saved); } catch (e) {}
     var measured = document.querySelectorAll('[data-measure]');
     for (var i = 0; i < measured.length; i++) bp.measure(measured[i]);
+    var blocks = document.querySelectorAll('pre[data-code]');
+    for (var b = 0; b < blocks.length; b++) {
+      var want = blocks[b].getAttribute('data-code');
+      bp.code(blocks[b], want ? { numbers: /numbers/.test(want), copy: /copy/.test(want) } : {});
+    }
     // menus close when you click elsewhere
     document.addEventListener('click', function (e) {
       var open = document.querySelectorAll('.bp-menu[open]');

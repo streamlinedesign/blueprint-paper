@@ -21,4 +21,5 @@
 @import url("components/drawer.css") layer(bp.components);
 @import url("components/toast.css") layer(bp.components);
 @import url("components/measure.css") layer(bp.components);
+@import url("components/code.css") layer(bp.components);
 @import url("themes/whiteprint.css") layer(bp.themes);

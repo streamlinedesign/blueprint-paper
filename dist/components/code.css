@@ -1,0 +1,30 @@
+/* Blueprint Paper · code block
+   <pre data-code><code>…</code></pre>
+   With the optional script, data-code gives a block line numbers and a Copy button:
+   data-code="numbers", data-code="copy", or both (the default; numbers only when there is more than one line).
+   Without the script you still get the plain block from base.css, and you can write the markup yourself:
+   <div class="bp-code bp-code--numbered"><pre><code><span class="bp-code__line">…</span></code></pre>
+     <button class="bp-code__copy" type="button">Copy</button></div> */
+.bp-code { position: relative; }
+.bp-code pre { padding-right: calc(var(--bp-4) + 7ch); }         /* room for the button over the first line */
+.bp-code code { display: block; counter-reset: line; min-width: max-content; }
+.bp-code__line { display: block; }
+.bp-code--numbered .bp-code__line { counter-increment: line; }
+.bp-code--numbered .bp-code__line::before {
+  content: counter(line);
+  display: inline-block; width: 2ch; margin-right: var(--bp-4);
+  text-align: right; color: var(--bp-ink-62);
+  user-select: none; -webkit-user-select: none;
+}
+.bp-code__copy {
+  position: absolute; top: var(--bp-2); right: var(--bp-2);
+  min-height: 28px; padding: 0 var(--bp-3);
+  border: var(--bp-stroke) solid var(--bp-ink-62); background: var(--bp-ground); color: var(--bp-ink);
+  font: 500 var(--bp-label-s)/1 var(--bp-font); letter-spacing: var(--bp-track); text-transform: uppercase;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: border-color var(--bp-speed-s) linear, opacity var(--bp-speed-s) linear;
+}
+.bp-code__copy:hover, .bp-code__copy:focus-visible { border-color: var(--bp-ink); }
+.bp-code__copy:focus-visible { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 2px; }
+.bp-code__copy:active { opacity: .7; }
+.bp-code__copy[data-done] { background: var(--bp-ink); color: var(--bp-ground); border-color: var(--bp-ink); }

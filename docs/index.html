@@ -15,7 +15,7 @@
 <a class="skip" href="#content">Skip to content</a>
 
 <header class="top">
-  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.6.0</span></a>
+  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.7.0</span></a>
   <form class="search" role="search" onsubmit="return false">
     <label class="bp-label-s bp-dim" for="q">Search</label>
     <input class="bp-input bp-input--sm" id="q" type="search" placeholder="Search components, classes, tokens… ( / )" autocomplete="off">
@@ -51,6 +51,7 @@
     <a href="#drawer">Drawer</a>
     <a href="#toast">Toast</a>
     <a href="#measure">Measure</a>
+    <a href="#code">Code</a>
     <span class="bp-label-s bp-dim">Script</span>
     <a href="#script">Optional script</a>
     <span class="bp-label-s bp-dim">Themes</span>
@@ -75,13 +76,13 @@
       <h2>Install</h2>
       <p class="bp-prose">One stylesheet. Load it, then put <code>bp-sheet</code> on <code>&lt;body&gt;</code>. The kit uses IBM Plex Mono and falls back to the system monospace if you don't load it.</p>
       <h4>From the CDN</h4>
-<pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/streamlinedesign/blueprint-paper@main/dist/blueprint-paper.min.css"&gt;
+<pre data-code><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/streamlinedesign/blueprint-paper@main/dist/blueprint-paper.min.css"&gt;
 &lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&amp;display=swap"&gt;</code></pre>
       <h4>From npm</h4>
-<pre><code>npm install @blueprint-paper/css
-import '@blueprint-paper/css';            // everything
-import '@blueprint-paper/css/tokens';     // or tokens + just what you need
-import '@blueprint-paper/css/components/switch.css';</code></pre>
+<pre data-code><code>npm install blueprint-paper
+import 'blueprint-paper';            // everything
+import 'blueprint-paper/tokens';     // or tokens + just what you need
+import 'blueprint-paper/components/switch.css';</code></pre>
       <p class="bp-prose bp-dim">Everything lives in cascade layers (<code>bp.tokens</code>, <code>bp.base</code>, <code>bp.components</code>), so any CSS you write outside a layer overrides the kit without <code>!important</code>.</p>
     </section>
 
@@ -141,7 +142,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           <label class="bp-switch"><input type="checkbox" role="switch" aria-label="Disabled switch" checked disabled><span class="bp-switch__track"></span></label>
         </div>
       </div>
-      <pre><code>&lt;label class="bp-switch"&gt;
+      <pre data-code><code>&lt;label class="bp-switch"&gt;
   &lt;input type="checkbox" role="switch"&gt;
   &lt;span class="bp-switch__track"&gt;&lt;/span&gt;
 &lt;/label&gt;
@@ -154,7 +155,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           <label class="bp-switch-field"><span class="bp-switch bp-switch--vertical"><input type="checkbox" role="switch"><span class="bp-switch__track"></span></span><span>Pump B</span></label>
         </div>
       </div>
-      <pre><code>&lt;label class="bp-switch-field"&gt;
+      <pre data-code><code>&lt;label class="bp-switch-field"&gt;
   &lt;span class="bp-switch"&gt;&lt;input type="checkbox" role="switch"&gt;&lt;span class="bp-switch__track"&gt;&lt;/span&gt;&lt;/span&gt;
   &lt;span&gt;Pump A&lt;/span&gt;
 &lt;/label&gt;</code></pre>
@@ -192,7 +193,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           <button class="bp-btn bp-btn--icon" type="button" aria-label="Add"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg></button>
         </div>
       </div>
-      <pre><code>&lt;button class="bp-btn"&gt;Outline&lt;/button&gt;
+      <pre data-code><code>&lt;button class="bp-btn"&gt;Outline&lt;/button&gt;
 &lt;button class="bp-btn bp-btn--solid"&gt;Solid&lt;/button&gt;
 &lt;button class="bp-btn bp-btn--ghost"&gt;Ghost&lt;/button&gt;
 &lt;button class="bp-btn bp-btn--icon" aria-label="Add"&gt;&lt;svg …&gt;&lt;/button&gt;</code></pre>
@@ -212,7 +213,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           <button class="bp-btn bp-btn--block" type="button">Block</button>
         </div>
       </div>
-      <pre><code>&lt;button class="bp-btn bp-btn--sm"&gt;Small&lt;/button&gt;
+      <pre data-code><code>&lt;button class="bp-btn bp-btn--sm"&gt;Small&lt;/button&gt;
 &lt;button class="bp-btn bp-btn--lg"&gt;Large&lt;/button&gt;
 &lt;button class="bp-btn bp-btn--block"&gt;Block&lt;/button&gt;
 &lt;div class="bp-btn-group"&gt;…buttons…&lt;/div&gt;</code></pre>
@@ -257,7 +258,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           </div>
         </div>
       </div>
-      <pre><code>&lt;div class="bp-field"&gt;
+      <pre data-code><code>&lt;div class="bp-field"&gt;
   &lt;label class="bp-field__label" for="title"&gt;Drawing title&lt;/label&gt;
   &lt;input class="bp-input" id="title"&gt;
   &lt;p class="bp-field__hint"&gt;Shown in the title block.&lt;/p&gt;
@@ -292,7 +293,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           </div>
         </div>
       </div>
-      <pre><code>&lt;label class="bp-choice"&gt;&lt;input type="checkbox" class="bp-checkbox"&gt; Dimensions&lt;/label&gt;
+      <pre data-code><code>&lt;label class="bp-choice"&gt;&lt;input type="checkbox" class="bp-checkbox"&gt; Dimensions&lt;/label&gt;
 &lt;label class="bp-choice"&gt;&lt;input type="radio" class="bp-radio" name="paper"&gt; A1&lt;/label&gt;
 &lt;div class="bp-choice-group"&gt;…&lt;/div&gt;   add --row for a horizontal group</code></pre>
     </section>
@@ -320,7 +321,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           </footer>
         </section>
       </div>
-      <pre><code>&lt;section class="bp-card"&gt;
+      <pre data-code><code>&lt;section class="bp-card"&gt;
   &lt;header class="bp-card__title"&gt;
     &lt;div&gt;&lt;span class="bp-label-s bp-dim"&gt;Sheet 3&lt;/span&gt;&lt;h3&gt;Pump house&lt;/h3&gt;&lt;/div&gt;
     &lt;div&gt;&lt;span class="bp-label-s bp-dim"&gt;Rev&lt;/span&gt;&lt;span class="bp-label"&gt;B1&lt;/span&gt;&lt;/div&gt;
@@ -336,20 +337,20 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
 
     <section class="doc" id="table" data-keywords="table parts list rows columns data grid">
       <h2>Table</h2>
-      <p class="bp-prose">Styled as a parts list. Numbers are tabular and right-aligned with <code>.num</code>.</p>
+      <p class="bp-prose">Styled as a parts list. Number cells are right-aligned with <code>.bp-num</code>.</p>
       <div class="example">
         <div class="bp-table-wrap" tabindex="0"><table class="bp-table">
           <caption>Parts list · sheet 3</caption>
-          <thead><tr><th>No.</th><th>Part</th><th>Material</th><th class="num">Qty</th><th class="num">Mass kg</th></tr></thead>
+          <thead><tr><th>No.</th><th>Part</th><th>Material</th><th class="bp-num">Qty</th><th class="bp-num">Mass kg</th></tr></thead>
           <tbody>
-            <tr><td>1</td><td>Pump, centrifugal</td><td>Cast iron</td><td class="num">2</td><td class="num">184.0</td></tr>
-            <tr><td>2</td><td>Flange, DN100</td><td>S235</td><td class="num">8</td><td class="num">3.2</td></tr>
-            <tr><td>3</td><td>Gasket, DN100</td><td>EPDM</td><td class="num">8</td><td class="num">0.1</td></tr>
-            <tr><td>4</td><td>Base frame</td><td>S355</td><td class="num">1</td><td class="num">96.5</td></tr>
+            <tr><td>1</td><td>Pump, centrifugal</td><td>Cast iron</td><td class="bp-num">2</td><td class="bp-num">184.0</td></tr>
+            <tr><td>2</td><td>Flange, DN100</td><td>S235</td><td class="bp-num">8</td><td class="bp-num">3.2</td></tr>
+            <tr><td>3</td><td>Gasket, DN100</td><td>EPDM</td><td class="bp-num">8</td><td class="bp-num">0.1</td></tr>
+            <tr><td>4</td><td>Base frame</td><td>S355</td><td class="bp-num">1</td><td class="bp-num">96.5</td></tr>
           </tbody>
         </table></div>
       </div>
-      <pre><code>&lt;div class="bp-table-wrap" tabindex="0"&gt;
+      <pre data-code><code>&lt;div class="bp-table-wrap" tabindex="0"&gt;
   &lt;table class="bp-table"&gt;…&lt;/table&gt;     add --heavy for full ink edges, --lines for rows only
 &lt;/div&gt;</code></pre>
     </section>
@@ -365,7 +366,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           <span class="bp-stamp">Approved</span>
         </div>
       </div>
-      <pre><code>&lt;span class="bp-badge"&gt;Draft&lt;/span&gt;
+      <pre data-code><code>&lt;span class="bp-badge"&gt;Draft&lt;/span&gt;
 &lt;span class="bp-badge bp-badge--solid"&gt;Issued&lt;/span&gt;
 &lt;span class="bp-stamp"&gt;Approved&lt;/span&gt;</code></pre>
     </section>
@@ -385,7 +386,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           </div>
         </div>
       </div>
-      <pre><code>&lt;div class="bp-tabset"&gt;
+      <pre data-code><code>&lt;div class="bp-tabset"&gt;
   &lt;input type="radio" name="t" id="t1" checked&gt;&lt;label class="bp-tab" for="t1"&gt;Power&lt;/label&gt;
   &lt;input type="radio" name="t" id="t2"&gt;&lt;label class="bp-tab" for="t2"&gt;Network&lt;/label&gt;
   &lt;div class="bp-tabset__panels"&gt;
@@ -417,7 +418,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           </details>
         </div>
       </div>
-      <pre><code>&lt;div class="bp-accordion"&gt;
+      <pre data-code><code>&lt;div class="bp-accordion"&gt;
   &lt;details class="bp-accordion__item" name="acc" open&gt;
     &lt;summary class="bp-accordion__summary"&gt;General notes&lt;/summary&gt;
     &lt;div class="bp-accordion__body"&gt;…&lt;/div&gt;
@@ -435,7 +436,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           <div class="bp-alert bp-alert--dim bp-alert--row"><span class="bp-alert__title">Autosave</span><p class="bp-alert__text">Draft saved 22:08.</p><div class="bp-alert__actions"><button class="bp-btn bp-btn--sm bp-btn--ghost" type="button">Dismiss</button></div></div>
         </div>
       </div>
-      <pre><code>&lt;div class="bp-alert" role="status"&gt;
+      <pre data-code><code>&lt;div class="bp-alert" role="status"&gt;
   &lt;span class="bp-alert__title"&gt;Rev B2 issued&lt;/span&gt;
   &lt;p class="bp-alert__text"&gt;…&lt;/p&gt;
 &lt;/div&gt;
@@ -454,7 +455,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           <button class="bp-btn bp-btn--sm bp-btn--icon bp-tip" type="button" data-tip="Add part" aria-label="Add part"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg></button>
         </div>
       </div>
-      <pre><code>&lt;button class="bp-btn bp-tip" data-tip="Issue revision B2"&gt;Issue&lt;/button&gt;
+      <pre data-code><code>&lt;button class="bp-btn bp-tip" data-tip="Issue revision B2"&gt;Issue&lt;/button&gt;
 &lt;button class="bp-btn bp-tip bp-tip--below" data-tip="…"&gt;…&lt;/button&gt;   --left --right</code></pre>
     </section>
 
@@ -474,7 +475,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           </form>
         </dialog>
       </div>
-      <pre><code>&lt;button class="bp-btn" onclick="document.getElementById('d').showModal()"&gt;Open&lt;/button&gt;
+      <pre data-code><code>&lt;button class="bp-btn" onclick="document.getElementById('d').showModal()"&gt;Open&lt;/button&gt;
 &lt;dialog class="bp-dialog" id="d"&gt;
   &lt;form method="dialog" class="bp-dialog__frame"&gt;
     &lt;header class="bp-dialog__title"&gt;&lt;div&gt;&lt;span class="bp-label-s bp-dim"&gt;Confirm&lt;/span&gt;&lt;h3&gt;Issue revision B2?&lt;/h3&gt;&lt;/div&gt;&lt;/header&gt;
@@ -519,7 +520,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           </details>
         </div>
       </div>
-      <pre><code>&lt;details class="bp-menu"&gt;
+      <pre data-code><code>&lt;details class="bp-menu"&gt;
   &lt;summary class="bp-btn bp-btn--sm"&gt;Actions&lt;/summary&gt;
   &lt;div class="bp-menu__list" role="menu"&gt;
     &lt;button class="bp-menu__item" role="menuitem"&gt;Duplicate &lt;kbd&gt;D&lt;/kbd&gt;&lt;/button&gt;
@@ -570,7 +571,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           </form>
         </dialog>
       </div>
-      <pre><code>&lt;button class="bp-btn" onclick="document.getElementById('d').showModal()"&gt;Open&lt;/button&gt;
+      <pre data-code><code>&lt;button class="bp-btn" onclick="document.getElementById('d').showModal()"&gt;Open&lt;/button&gt;
 &lt;dialog class="bp-drawer" id="d"&gt;                        --left  --bottom
   &lt;form method="dialog" class="bp-drawer__frame"&gt;
     &lt;header class="bp-drawer__title"&gt;&lt;div&gt;…&lt;/div&gt;&lt;button class="bp-btn bp-btn--sm bp-btn--icon bp-btn--ghost" aria-label="Close"&gt;×&lt;/button&gt;&lt;/header&gt;
@@ -595,7 +596,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
           <div class="bp-toast bp-toast--solid"><div class="bp-toast__row"><span class="bp-toast__title">Pump B stopped</span><button class="bp-btn bp-btn--sm" type="button">Undo</button></div></div>
         </div>
       </div>
-      <pre><code>bp.toast('Saved', 'Rev B2 issued on sheets 3 and 7.');
+      <pre data-code><code>bp.toast('Saved', 'Rev B2 issued on sheets 3 and 7.');
 bp.toast('Pump B stopped', 'Stopped by operator.', { solid: true, duration: 6000 });
 bp.toast.dismiss();                 clears all; pass a toast element to clear one
 
@@ -619,7 +620,7 @@ bp.toast.dismiss();                 clears all; pass a toast element to clear on
           </div>
         </div>
       </div>
-      <pre><code>&lt;div data-measure="w h"&gt;…one element…&lt;/div&gt;                       px, lines above and left
+      <pre data-code><code>&lt;div data-measure="w h"&gt;…one element…&lt;/div&gt;                       px, lines above and left
 &lt;div data-measure="w h" data-unit="mm" data-side="bottom right"&gt;…&lt;/div&gt;
 &lt;div data-measure="w" data-unit="cm" data-scale="1:50"&gt;…&lt;/div&gt;
 
@@ -643,6 +644,20 @@ standalone:
       <p class="bp-prose bp-dim"><code>data-measure</code> needs the optional script below. <code>--ink</code> draws the line in full ink; the default is 72% so measurements sit behind the content.</p>
     </section>
 
+    <section class="doc" id="code" data-keywords="code block pre snippet line numbers copy button clipboard">
+      <h2>Code</h2>
+      <p class="bp-prose">A plain <code>&lt;pre&gt;&lt;code&gt;</code> is already drawn as a block. Add <code>data-code</code> and the optional script gives it line numbers and a Copy button, like every block on this page. <code>data-code="copy"</code> for the button only, <code>data-code="numbers"</code> for numbers only. One-line blocks get no numbers unless you ask.</p>
+      <div class="example">
+        <pre data-code><code>.bp-switch {
+  --w: 52px;
+  --h: 28px;
+}</code></pre>
+      </div>
+      <pre data-code><code>&lt;pre data-code&gt;&lt;code&gt;…&lt;/code&gt;&lt;/pre&gt;
+&lt;pre data-code="copy"&gt;&lt;code&gt;npm install blueprint-paper&lt;/code&gt;&lt;/pre&gt;</code></pre>
+      <p class="bp-prose">From script: <code>bp.code(pre, { numbers: true, copy: true })</code>. Without the script, the same look is a <code>.bp-code</code> wrapper, one <code>.bp-code__line</code> span per line and a <code>.bp-code__copy</code> button, so a static site generator can produce it at build time.</p>
+    </section>
+
     <section class="doc" id="script" data-keywords="script javascript js optional bp.toast bp.theme bp.measure light dismiss">
       <h2>Optional script</h2>
       <p class="bp-prose">The CSS needs no JavaScript. <code>blueprint-paper.js</code> (3 kB, no dependencies) adds the few things only script can do. Load it and you get:</p>
@@ -652,10 +667,11 @@ standalone:
         <li><code>bp.toast('Saved', 'Rev B2 issued.', { solid: true, duration: 4000 })</code></li>
         <li><code>bp.theme('whiteprint')</code> sets and remembers the theme; <code>bp.theme()</code> reads it.</li>
         <li><code>bp.format(240, 'mm')</code> → <code>63.5 mm</code>, and <code>bp.measure(el)</code> to measure an element you add later.</li>
+        <li><code>&lt;pre data-code&gt;</code> blocks get line numbers and a Copy button; <code>bp.code(pre)</code> for one you add later.</li>
         <li>Code blocks and table wrappers get <code>tabindex="0"</code> so keyboards can scroll them.</li>
       </ul>
-      <pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/streamlinedesign/blueprint-paper@main/dist/blueprint-paper.js" defer&gt;&lt;/script&gt;
-import '@blueprint-paper/css/js';</code></pre>
+      <pre data-code><code>&lt;script src="https://cdn.jsdelivr.net/gh/streamlinedesign/blueprint-paper@main/dist/blueprint-paper.js" defer&gt;&lt;/script&gt;
+import 'blueprint-paper/js';</code></pre>
     </section>
 
     <section class="doc" id="themes" data-keywords="theme themes whiteprint light dark mode paper color-scheme">
@@ -672,7 +688,7 @@ import '@blueprint-paper/css/js';</code></pre>
           <select class="bp-select bp-select--sm" style="width:140px" aria-label="Scale"><option>1 : 100</option></select>
         </div>
       </div>
-      <pre><code>&lt;html data-theme="whiteprint"&gt;            whole page
+      <pre data-code><code>&lt;html data-theme="whiteprint"&gt;            whole page
 &lt;div class="bp-sheet bp-whiteprint"&gt;…&lt;/div&gt;   one area</code></pre>
     </section>
 
@@ -684,8 +700,10 @@ import '@blueprint-paper/css/js';</code></pre>
         <li><b>v0.3</b> Menu, popover, drawer, toast. This page.</li>
         <li><b>v0.4</b> Overflow, console and accessibility checks in CI.</li>
         <li><b>v0.5</b> Measure (dimension lines) and the optional script. This page.</li>
-        <li><b>v0.6</b> Automated releases to npm. Color and style pass on the tokens.</li>
-        <li><b>v1.0</b> Names frozen. Contributing guide. CSS only, by design.</li>
+        <li><b>v0.6</b> Switch motion rework, lighter ink, saturated paper.</li>
+        <li><b>v0.7</b> Code blocks with line numbers and copy. Lint, contributing guide, automated releases to npm.</li>
+        <li><b>v0.8</b> Color and style pass on the tokens. First npm publish.</li>
+        <li><b>v1.0</b> Names frozen. CSS only, by design.</li>
       </ol>
     </section>
 

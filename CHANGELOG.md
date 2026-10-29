@@ -2,6 +2,18 @@
 
 All notable changes to this project are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/). Until 1.0, minor versions may rename things.
 
+## [0.7.0] - 2026-10-29
+
+### Added
+- Code: `<pre data-code>` gets line numbers and a Copy button from the optional script (`bp.code(pre)`); `.bp-code`, `.bp-code__line` and `.bp-code__copy` for static markup.
+- Stylelint with a `bp-block__element--modifier` naming rule (`npm run lint`, runs in CI).
+- Release workflow: pushing a `vX.Y.Z` tag publishes to npm with provenance and creates a GitHub release.
+- `CONTRIBUTING.md` with the rules the kit follows, and `.editorconfig`.
+
+### Changed
+- npm package name is `blueprint-paper` (unscoped), not `@blueprint-paper/css`. Nothing was published under the old name.
+- Table: right-aligned number cells use `.bp-num` (was a stray `.num`).
+
 ## [0.6.0] - 2026-10-29
 
 ### Changed

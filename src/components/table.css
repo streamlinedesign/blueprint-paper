@@ -5,7 +5,7 @@
 .bp-table { width: 100%; border-collapse: collapse; font-size: var(--bp-text-s); font-variant-numeric: tabular-nums; }
 .bp-table th, .bp-table td { padding: var(--bp-3) var(--bp-4); text-align: left; vertical-align: middle; border: var(--bp-stroke) solid var(--bp-ink-55); }
 .bp-table th { font-size: var(--bp-label-s); font-weight: 500; letter-spacing: var(--bp-track); text-transform: uppercase; color: var(--bp-ink-72); border-bottom-color: var(--bp-ink); }
-.bp-table .num { text-align: right; }
+.bp-table .bp-num { text-align: right; }        /* numbers right-aligned, tabular (bp-num is in base.css) */
 .bp-table tbody tr:hover { background: var(--bp-ink-09); }
 .bp-table--heavy th, .bp-table--heavy td { border-color: var(--bp-ink); }
 .bp-table--lines th, .bp-table--lines td { border-left: 0; border-right: 0; }
