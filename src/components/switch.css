@@ -43,8 +43,11 @@
   background: var(--bp-ink);
   transform: translateX(calc(var(--travel) - var(--stretch)));
 }
-/* press: the thumb stretches toward where it is about to go, then snaps back as it slides */
+/* press and hold: the thumb stretches toward where it is about to go, then snaps back as it slides.
+   The stretch waits 250ms so a quick tap just slides; on touch, :active outlives the tap by up to
+   ~200ms and would otherwise stretch the thumb during or after the slide. */
 .bp-switch:active { --stretch: 6px; }
+.bp-switch:active .bp-switch__track::after { transition-delay: 0s, 250ms, 250ms, 0s; }
 .bp-switch:has(input:disabled) { --stretch: 0px; cursor: default; }
 .bp-switch input:disabled { cursor: default; }
 .bp-switch input:disabled + .bp-switch__track { opacity: .4; }

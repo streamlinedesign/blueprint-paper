@@ -4,6 +4,9 @@ All notable changes to this project are listed here. The format follows [Keep a 
 
 ## [0.5.1] - 2026-10-29
 
+### Fixed
+- Switch stuttered when turned off by touch: the press stretch kicked in after the tap, mid-slide. The stretch now waits 250ms, so a quick tap just slides and only a hold stretches.
+
 ### Changed
 - Toasts stack like Sonner: newest in front, older ones peek out behind, the stack fans out on hover or focus, timers pause while hovered, a sideways swipe (or mouse drag) clears one. `bp.toast.dismiss()` clears all.
 
