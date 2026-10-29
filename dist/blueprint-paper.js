@@ -1,6 +1,6 @@
 /*! Blueprint Paper · optional script. The CSS works without it.
     Adds: auto-measured dimension lines, menu light-dismiss, toasts, theme switching.
-    <script src="blueprint-paper.js" defer></script>  then  bp.toast('Saved')  etc. */
+    Load it with a script tag (defer is fine), then bp.toast('Saved'), bp.theme('whiteprint'), etc. */
 (function (root) {
   'use strict';
   var bp = {};
