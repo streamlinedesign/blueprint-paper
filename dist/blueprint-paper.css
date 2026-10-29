@@ -1,16 +1,18 @@
-/*! Blueprint Paper v0.5.1 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
+/*! Blueprint Paper v0.6.0 · https://streamlinedesign.github.io/blueprint-paper/ · MIT */
 @layer bp.tokens, bp.base, bp.components, bp.themes;
 @layer bp.tokens {
 /* Blueprint Paper · tokens
    Every color, size and curve the components use. Change these, not the components. */
 :root {
   /* paper and ink */
-  --bp-ground:     #0F2E5C;
-  --bp-ink:        #E6EEFF;
-  --bp-ink-72:     rgba(230, 238, 255, .72);   /* secondary text */
-  --bp-ink-55:     rgba(230, 238, 255, .55);   /* light rules, placeholders */
-  --bp-ink-20:     rgba(230, 238, 255, .20);   /* hover fill */
-  --bp-ink-09:     rgba(230, 238, 255, .09);   /* grid */
+  --bp-ground:     #0B2F6E;
+  --bp-ink:        #F2F6FF;
+  --bp-ink-78:     rgba(242, 246, 255, .78);   /* secondary text */
+  --bp-ink-72:     var(--bp-ink-78);             /* kept for older markup */
+  --bp-ink-62:     rgba(242, 246, 255, .62);   /* light rules, placeholders */
+  --bp-ink-55:     var(--bp-ink-62);             /* kept for older markup */
+  --bp-ink-20:     rgba(242, 246, 255, .20);   /* hover fill */
+  --bp-ink-09:     rgba(242, 246, 255, .09);   /* grid */
 
   /* type */
   --bp-font:       'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
@@ -42,7 +44,7 @@
   --bp-ease:       cubic-bezier(.25, 1, .5, 1);
 
   /* assets drawn in ink (themes override) */
-  --bp-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23E6EEFF' stroke-width='1.25'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  --bp-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23F2F6FF' stroke-width='1.25'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
 
   color-scheme: dark;
 }
@@ -141,14 +143,18 @@
    </label>
    Track: solid, always. State is the thumb: hollow = off, filled = on.
    Horizontal (default): off left, on right.  .bp-switch--vertical: off down, on up.
-   Thumb width: --2 --4 --12 --16 (8 default). Track weight: --light (1px). */
+   Thumb width: --2 --4 --12 --16 (8 default). Track weight: --light (1px).
+
+   Motion: the thumb's leading edge sets off first and its trailing edge follows 35ms later,
+   so it stretches through the slide and settles at the far side, like a real lever under load.
+   Nothing happens on press; a keyboard toggle flips instantly. */
 .bp-switch {
   --w: 52px; --h: 28px; --pad: 4px;
   --track-stroke: var(--bp-stroke-2);
   --thumb-stroke: var(--bp-stroke);
   --thumb: 8px;
-  --stretch: 0px;                                   /* extra thumb length while pressed */
-  --travel: calc(var(--w) - var(--thumb) - 2 * var(--pad) - 2 * var(--track-stroke));
+  --lag: 35ms;                                      /* trailing edge delay = how much it stretches */
+  --far: calc(var(--w) - var(--thumb) - var(--pad) - 2 * var(--track-stroke));   /* inset of the far edge */
   position: relative; display: inline-block; flex: none; vertical-align: middle;
   width: var(--w); height: var(--h);
   cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
@@ -165,42 +171,39 @@
 }
 .bp-switch__track::after {
   content: ""; position: absolute;
-  top: var(--pad); bottom: var(--pad); left: var(--pad);
-  width: calc(var(--thumb) + var(--stretch));
+  top: var(--pad); bottom: var(--pad);
+  left: var(--pad); right: var(--far);                /* off: thumb at the left */
   border: var(--thumb-stroke) solid var(--bp-ink); background: transparent;
-  transform: translateX(0);
+  /* going off (this is the destination state): left edge leads, right edge lags */
   transition:
-    transform  var(--bp-speed) var(--bp-ease),
-    width      var(--bp-speed) var(--bp-ease),
-    height     var(--bp-speed) var(--bp-ease),
+    left       var(--bp-speed) var(--bp-ease),
+    right      var(--bp-speed) var(--bp-ease) var(--lag),
+    top        var(--bp-speed) var(--bp-ease),
+    bottom     var(--bp-speed) var(--bp-ease) var(--lag),
     background var(--bp-speed-s) linear;
 }
 .bp-switch input:checked + .bp-switch__track::after {
+  left: var(--far); right: var(--pad);                /* on: thumb at the right */
   background: var(--bp-ink);
-  transform: translateX(calc(var(--travel) - var(--stretch)));
+  /* going on: right edge leads, left edge lags */
+  transition:
+    right      var(--bp-speed) var(--bp-ease),
+    left       var(--bp-speed) var(--bp-ease) var(--lag),
+    bottom     var(--bp-speed) var(--bp-ease),
+    top        var(--bp-speed) var(--bp-ease) var(--lag),
+    background var(--bp-speed-s) linear;
 }
-/* press and hold: the thumb stretches toward where it is about to go, then snaps back as it slides.
-   The stretch waits 250ms so a quick tap just slides; on touch, :active outlives the tap by up to
-   ~200ms and would otherwise stretch the thumb during or after the slide. */
-.bp-switch:active { --stretch: 6px; }
-.bp-switch:active .bp-switch__track::after { transition-delay: 0s, 250ms, 250ms, 0s; }
-.bp-switch:has(input:disabled) { --stretch: 0px; cursor: default; }
+.bp-switch:has(input:disabled) { cursor: default; }
 .bp-switch input:disabled { cursor: default; }
 .bp-switch input:disabled + .bp-switch__track { opacity: .4; }
 /* keyboard: flip instantly, a keyboard action should never wait on motion */
 .bp-switch input:focus-visible + .bp-switch__track { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 3px; }
-.bp-switch input:focus-visible + .bp-switch__track::after { transition-duration: 0s; }
+.bp-switch input:focus-visible + .bp-switch__track::after { transition-duration: 0s; transition-delay: 0s; }
 
 /* vertical: up is on */
-.bp-switch--vertical { --w: 28px; --h: 52px; --travel: calc(var(--h) - var(--thumb) - 2 * var(--pad) - 2 * var(--track-stroke)); }
-.bp-switch--vertical .bp-switch__track::after {
-  top: auto; left: var(--pad); right: var(--pad); bottom: var(--pad);
-  width: auto; height: calc(var(--thumb) + var(--stretch));
-  transform: translateY(0);
-}
-.bp-switch--vertical input:checked + .bp-switch__track::after {
-  transform: translateY(calc(-1 * (var(--travel) - var(--stretch))));
-}
+.bp-switch--vertical { --w: 28px; --h: 52px; --far: calc(var(--h) - var(--thumb) - var(--pad) - 2 * var(--track-stroke)); }
+.bp-switch--vertical .bp-switch__track::after { left: var(--pad); right: var(--pad); bottom: var(--pad); top: var(--far); }
+.bp-switch--vertical input:checked + .bp-switch__track::after { left: var(--pad); right: var(--pad); top: var(--pad); bottom: var(--far); }
 
 /* sizes */
 .bp-switch--2  { --thumb: 2px; }
@@ -208,9 +211,8 @@
 .bp-switch--12 { --thumb: 12px; }
 .bp-switch--16 { --thumb: 16px; }
 .bp-switch--light { --track-stroke: var(--bp-stroke); }
-.bp-switch--lg { --w: 78px; --h: 42px; --pad: 6px; --thumb: 12px; }
+.bp-switch--lg { --w: 78px; --h: 42px; --pad: 6px; --thumb: 12px; --lag: 40ms; }
 .bp-switch--lg.bp-switch--vertical { --w: 42px; --h: 78px; }
-.bp-switch--lg:active { --stretch: 9px; }
 
 /* with a label: <label class="bp-switch-field"><span class="bp-switch">…</span><span>Text</span></label> */
 .bp-switch-field { display: inline-flex; align-items: center; gap: var(--bp-3); cursor: pointer; }
@@ -536,10 +538,10 @@
 }
 .bp-dialog--wide { width: min(720px, calc(100vw - 32px)); }
 .bp-dialog::backdrop {
-  background-color: rgba(5, 18, 40, .7);
+  background-color: rgba(4, 19, 48, .7);
   background-image:
-    linear-gradient(rgba(230, 238, 255, .06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(230, 238, 255, .06) 1px, transparent 1px);
+    linear-gradient(rgba(242, 246, 255, .06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242, 246, 255, .06) 1px, transparent 1px);
   background-size: 26px 26px;
 }
 .bp-dialog__frame { display: flex; flex-direction: column; margin: 0; }
@@ -619,7 +621,7 @@
   border: 0; border-left: var(--bp-stroke-2) solid var(--bp-ink);
   background: var(--bp-ground); color: var(--bp-ink); font-family: var(--bp-font); font-size: var(--bp-text);
 }
-.bp-drawer::backdrop { background: rgba(5, 18, 40, .6); }
+.bp-drawer::backdrop { background: rgba(4, 19, 48, .6); }
 .bp-drawer__frame { display: flex; flex-direction: column; height: 100%; margin: 0; }
 .bp-drawer__title { display: flex; align-items: center; gap: var(--bp-3); padding: var(--bp-3) var(--bp-4); border-bottom: var(--bp-stroke) solid var(--bp-ink); }
 .bp-drawer__title > :first-child { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--bp-1); }
@@ -756,16 +758,18 @@
    Only the color tokens change; every component follows. */
 :root[data-theme="whiteprint"], .bp-whiteprint {
   --bp-ground:  #F3F6FB;
-  --bp-ink:     #0F2E5C;
-  --bp-ink-72:  rgba(15, 46, 92, .72);
-  --bp-ink-55:  rgba(15, 46, 92, .55);
-  --bp-ink-20:  rgba(15, 46, 92, .16);
-  --bp-ink-09:  rgba(15, 46, 92, .09);
-  --bp-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%230F2E5C' stroke-width='1.25'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  --bp-ink:     #0B2F6E;
+  --bp-ink-78:  rgba(11, 47, 110, .78);
+  --bp-ink-72:  var(--bp-ink-78);
+  --bp-ink-62:  rgba(11, 47, 110, .62);
+  --bp-ink-55:  var(--bp-ink-62);
+  --bp-ink-20:  rgba(11, 47, 110, .16);
+  --bp-ink-09:  rgba(11, 47, 110, .09);
+  --bp-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%230B2F6E' stroke-width='1.25'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
   color-scheme: light;
 }
 :root[data-theme="whiteprint"] .bp-dialog::backdrop, .bp-whiteprint .bp-dialog::backdrop {
-  background-color: rgba(15, 46, 92, .45);
+  background-color: rgba(11, 47, 110, .45);
   background-image:
     linear-gradient(rgba(243, 246, 251, .12) 1px, transparent 1px),
     linear-gradient(90deg, rgba(243, 246, 251, .12) 1px, transparent 1px);

@@ -14,10 +14,10 @@
 }
 .bp-dialog--wide { width: min(720px, calc(100vw - 32px)); }
 .bp-dialog::backdrop {
-  background-color: rgba(5, 18, 40, .7);
+  background-color: rgba(4, 19, 48, .7);
   background-image:
-    linear-gradient(rgba(230, 238, 255, .06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(230, 238, 255, .06) 1px, transparent 1px);
+    linear-gradient(rgba(242, 246, 255, .06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242, 246, 255, .06) 1px, transparent 1px);
   background-size: 26px 26px;
 }
 .bp-dialog__frame { display: flex; flex-direction: column; margin: 0; }

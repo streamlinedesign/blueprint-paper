@@ -15,7 +15,7 @@
 <a class="skip" href="#content">Skip to content</a>
 
 <header class="top">
-  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.5.1</span></a>
+  <a class="brand" href="./"><span class="bp-label">Blueprint Paper</span><span class="bp-label-s bp-dim">v0.6.0</span></a>
   <form class="search" role="search" onsubmit="return false">
     <label class="bp-label-s bp-dim" for="q">Search</label>
     <input class="bp-input bp-input--sm" id="q" type="search" placeholder="Search components, classes, tokens… ( / )" autocomplete="off">
@@ -91,12 +91,12 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
       <div class="bp-table-wrap" tabindex="0"><table class="bp-table">
         <thead><tr><th>Token</th><th>Value</th><th>Used for</th></tr></thead>
         <tbody>
-          <tr><td><code>--bp-ground</code></td><td><span class="swatch" style="background:#0F2E5C"></span>#0F2E5C</td><td>Paper</td></tr>
-          <tr><td><code>--bp-ink</code></td><td><span class="swatch" style="background:#E6EEFF"></span>#E6EEFF</td><td>Ink, 11.5:1 on paper</td></tr>
-          <tr><td><code>--bp-ink-72</code></td><td><span class="swatch" style="background:rgba(230,238,255,.72)"></span>72% ink</td><td>Secondary text, 6.7:1</td></tr>
-          <tr><td><code>--bp-ink-55</code></td><td><span class="swatch" style="background:rgba(230,238,255,.55)"></span>55% ink</td><td>Light rules, placeholders, 4.6:1</td></tr>
-          <tr><td><code>--bp-ink-20</code></td><td><span class="swatch" style="background:rgba(230,238,255,.2)"></span>20% ink</td><td>Hover fill</td></tr>
-          <tr><td><code>--bp-ink-09</code></td><td><span class="swatch" style="background:rgba(230,238,255,.09)"></span>9% ink</td><td>Grid</td></tr>
+          <tr><td><code>--bp-ground</code></td><td><span class="swatch" style="background:#0B2F6E"></span>#0B2F6E</td><td>Paper</td></tr>
+          <tr><td><code>--bp-ink</code></td><td><span class="swatch" style="background:#F2F6FF"></span>#F2F6FF</td><td>Ink, 11.8:1 on paper</td></tr>
+          <tr><td><code>--bp-ink-78</code></td><td><span class="swatch" style="background:rgba(242,246,255,.78)"></span>78% ink</td><td>Secondary text, 7.8:1</td></tr>
+          <tr><td><code>--bp-ink-62</code></td><td><span class="swatch" style="background:rgba(242,246,255,.62)"></span>62% ink</td><td>Light rules, placeholders, 5.5:1</td></tr>
+          <tr><td><code>--bp-ink-20</code></td><td><span class="swatch" style="background:rgba(242,246,255,.2)"></span>20% ink</td><td>Hover fill</td></tr>
+          <tr><td><code>--bp-ink-09</code></td><td><span class="swatch" style="background:rgba(242,246,255,.09)"></span>9% ink</td><td>Grid</td></tr>
           <tr><td><code>--bp-stroke</code> / <code>--bp-stroke-2</code></td><td>1px / 2px</td><td>Structure / interactive edges</td></tr>
           <tr><td><code>--bp-grid</code></td><td>26px</td><td>Paper grid</td></tr>
           <tr><td><code>--bp-control</code> / <code>--bp-control-s</code></td><td>48px / 36px</td><td>Control heights</td></tr>
@@ -172,7 +172,7 @@ import '@blueprint-paper/css/components/switch.css';</code></pre>
       <h4>Motion</h4>
       <ul class="notes bp-prose">
         <li>180ms slide on a custom ease-out. Under 300ms, never the built-in curves.</li>
-        <li>Press and hold: the thumb stretches toward where it's going, then snaps back as it slides. The control answers your finger before the state changes.</li>
+        <li>The thumb's leading edge sets off first and the trailing edge follows 35ms later, so it stretches through the slide and settles on the far side, like a lever under load. Nothing happens on press.</li>
         <li>Keyboard (Tab, Space): flips instantly. Keyboard actions are never animated.</li>
         <li><code>prefers-reduced-motion</code>: every transition is removed.</li>
         <li>The hit area is at least 44 × 44px on every size.</li>

@@ -13,7 +13,7 @@
   border: 0; border-left: var(--bp-stroke-2) solid var(--bp-ink);
   background: var(--bp-ground); color: var(--bp-ink); font-family: var(--bp-font); font-size: var(--bp-text);
 }
-.bp-drawer::backdrop { background: rgba(5, 18, 40, .6); }
+.bp-drawer::backdrop { background: rgba(4, 19, 48, .6); }
 .bp-drawer__frame { display: flex; flex-direction: column; height: 100%; margin: 0; }
 .bp-drawer__title { display: flex; align-items: center; gap: var(--bp-3); padding: var(--bp-3) var(--bp-4); border-bottom: var(--bp-stroke) solid var(--bp-ink); }
 .bp-drawer__title > :first-child { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--bp-1); }

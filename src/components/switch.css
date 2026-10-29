@@ -5,14 +5,18 @@
    </label>
    Track: solid, always. State is the thumb: hollow = off, filled = on.
    Horizontal (default): off left, on right.  .bp-switch--vertical: off down, on up.
-   Thumb width: --2 --4 --12 --16 (8 default). Track weight: --light (1px). */
+   Thumb width: --2 --4 --12 --16 (8 default). Track weight: --light (1px).
+
+   Motion: the thumb's leading edge sets off first and its trailing edge follows 35ms later,
+   so it stretches through the slide and settles at the far side, like a real lever under load.
+   Nothing happens on press; a keyboard toggle flips instantly. */
 .bp-switch {
   --w: 52px; --h: 28px; --pad: 4px;
   --track-stroke: var(--bp-stroke-2);
   --thumb-stroke: var(--bp-stroke);
   --thumb: 8px;
-  --stretch: 0px;                                   /* extra thumb length while pressed */
-  --travel: calc(var(--w) - var(--thumb) - 2 * var(--pad) - 2 * var(--track-stroke));
+  --lag: 35ms;                                      /* trailing edge delay = how much it stretches */
+  --far: calc(var(--w) - var(--thumb) - var(--pad) - 2 * var(--track-stroke));   /* inset of the far edge */
   position: relative; display: inline-block; flex: none; vertical-align: middle;
   width: var(--w); height: var(--h);
   cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
@@ -29,42 +33,39 @@
 }
 .bp-switch__track::after {
   content: ""; position: absolute;
-  top: var(--pad); bottom: var(--pad); left: var(--pad);
-  width: calc(var(--thumb) + var(--stretch));
+  top: var(--pad); bottom: var(--pad);
+  left: var(--pad); right: var(--far);                /* off: thumb at the left */
   border: var(--thumb-stroke) solid var(--bp-ink); background: transparent;
-  transform: translateX(0);
+  /* going off (this is the destination state): left edge leads, right edge lags */
   transition:
-    transform  var(--bp-speed) var(--bp-ease),
-    width      var(--bp-speed) var(--bp-ease),
-    height     var(--bp-speed) var(--bp-ease),
+    left       var(--bp-speed) var(--bp-ease),
+    right      var(--bp-speed) var(--bp-ease) var(--lag),
+    top        var(--bp-speed) var(--bp-ease),
+    bottom     var(--bp-speed) var(--bp-ease) var(--lag),
     background var(--bp-speed-s) linear;
 }
 .bp-switch input:checked + .bp-switch__track::after {
+  left: var(--far); right: var(--pad);                /* on: thumb at the right */
   background: var(--bp-ink);
-  transform: translateX(calc(var(--travel) - var(--stretch)));
+  /* going on: right edge leads, left edge lags */
+  transition:
+    right      var(--bp-speed) var(--bp-ease),
+    left       var(--bp-speed) var(--bp-ease) var(--lag),
+    bottom     var(--bp-speed) var(--bp-ease),
+    top        var(--bp-speed) var(--bp-ease) var(--lag),
+    background var(--bp-speed-s) linear;
 }
-/* press and hold: the thumb stretches toward where it is about to go, then snaps back as it slides.
-   The stretch waits 250ms so a quick tap just slides; on touch, :active outlives the tap by up to
-   ~200ms and would otherwise stretch the thumb during or after the slide. */
-.bp-switch:active { --stretch: 6px; }
-.bp-switch:active .bp-switch__track::after { transition-delay: 0s, 250ms, 250ms, 0s; }
-.bp-switch:has(input:disabled) { --stretch: 0px; cursor: default; }
+.bp-switch:has(input:disabled) { cursor: default; }
 .bp-switch input:disabled { cursor: default; }
 .bp-switch input:disabled + .bp-switch__track { opacity: .4; }
 /* keyboard: flip instantly, a keyboard action should never wait on motion */
 .bp-switch input:focus-visible + .bp-switch__track { outline: var(--bp-stroke) solid var(--bp-ink); outline-offset: 3px; }
-.bp-switch input:focus-visible + .bp-switch__track::after { transition-duration: 0s; }
+.bp-switch input:focus-visible + .bp-switch__track::after { transition-duration: 0s; transition-delay: 0s; }
 
 /* vertical: up is on */
-.bp-switch--vertical { --w: 28px; --h: 52px; --travel: calc(var(--h) - var(--thumb) - 2 * var(--pad) - 2 * var(--track-stroke)); }
-.bp-switch--vertical .bp-switch__track::after {
-  top: auto; left: var(--pad); right: var(--pad); bottom: var(--pad);
-  width: auto; height: calc(var(--thumb) + var(--stretch));
-  transform: translateY(0);
-}
-.bp-switch--vertical input:checked + .bp-switch__track::after {
-  transform: translateY(calc(-1 * (var(--travel) - var(--stretch))));
-}
+.bp-switch--vertical { --w: 28px; --h: 52px; --far: calc(var(--h) - var(--thumb) - var(--pad) - 2 * var(--track-stroke)); }
+.bp-switch--vertical .bp-switch__track::after { left: var(--pad); right: var(--pad); bottom: var(--pad); top: var(--far); }
+.bp-switch--vertical input:checked + .bp-switch__track::after { left: var(--pad); right: var(--pad); top: var(--pad); bottom: var(--far); }
 
 /* sizes */
 .bp-switch--2  { --thumb: 2px; }
@@ -72,9 +73,8 @@
 .bp-switch--12 { --thumb: 12px; }
 .bp-switch--16 { --thumb: 16px; }
 .bp-switch--light { --track-stroke: var(--bp-stroke); }
-.bp-switch--lg { --w: 78px; --h: 42px; --pad: 6px; --thumb: 12px; }
+.bp-switch--lg { --w: 78px; --h: 42px; --pad: 6px; --thumb: 12px; --lag: 40ms; }
 .bp-switch--lg.bp-switch--vertical { --w: 42px; --h: 78px; }
-.bp-switch--lg:active { --stretch: 9px; }
 
 /* with a label: <label class="bp-switch-field"><span class="bp-switch">…</span><span>Text</span></label> */
 .bp-switch-field { display: inline-flex; align-items: center; gap: var(--bp-3); cursor: pointer; }

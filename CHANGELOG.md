@@ -2,10 +2,16 @@
 
 All notable changes to this project are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/). Until 1.0, minor versions may rename things.
 
+## [0.6.0] - 2026-10-29
+
+### Changed
+- Switch motion: the press-and-hold stretch is gone. The thumb now stretches through the slide itself: its leading edge sets off first and the trailing edge follows 35ms later (`--lag`), so it elongates mid-travel and settles at the far side. Same on and off, by mouse or touch.
+- Colors: a more saturated blue paper (`#0B2F6E`, was `#0F2E5C`) and lighter ink (`#F2F6FF`, was `#E6EEFF`). Secondary text is 78% ink (was 72%), light rules 62% (was 55%). `--bp-ink-72` and `--bp-ink-55` still work as aliases.
+
 ## [0.5.1] - 2026-10-29
 
 ### Fixed
-- Switch stuttered when turned off by touch: the press stretch kicked in after the tap, mid-slide. The stretch now waits 250ms, so a quick tap just slides and only a hold stretches.
+- Switch stuttered when turned off by touch: the press stretch kicked in after the tap, mid-slide.
 
 ### Changed
 - Toasts stack like Sonner: newest in front, older ones peek out behind, the stack fans out on hover or focus, timers pause while hovered, a sideways swipe (or mouse drag) clears one. `bp.toast.dismiss()` clears all.
